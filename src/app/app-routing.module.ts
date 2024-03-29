@@ -20,6 +20,8 @@ import { UpgradeEventComponent } from './FrontOffice/upgrade-event/upgrade-event
 import { CompetitionPDFComponent } from './BackOffice/competition-pdf/competition-pdf.component';
 import { TriviaComponent } from './FrontOffice/trivia/trivia.component';
 import { RegisterEventComponent } from './FrontOffice/register-event/register-event.component';
+import { EventFlyerComponent } from './event-flyer/event-flyer.component';
+
 
 
 const routes: Routes = [
@@ -35,10 +37,13 @@ const routes: Routes = [
     {path:'MyEvents',component:MyEventsComponent},
     {path:'upgradevent/:id',component:UpgradeEventComponent},
     {path:'trivia',component:TriviaComponent},
-    {path:'registerEvent/:id',component:RegisterEventComponent}
+    {path:'registerEvent/:id',component:RegisterEventComponent},
+    
+
   ]
 },{
-  path:'test',component:TestComponent
+  path:'eventFlyer',component:EventFlyerComponent
+  
 },
 {
   path:"admin",

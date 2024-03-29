@@ -31,6 +31,8 @@ import { CompetitionPDFComponent } from './BackOffice/competition-pdf/competitio
 import { TriviaComponent } from './FrontOffice/trivia/trivia.component';
 import { ListCompetitionsComponent } from './FrontOffice/list-competitions/list-competitions.component';
 import { RegisterEventComponent } from './FrontOffice/register-event/register-event.component';
+import { EventFlyerComponent } from './event-flyer/event-flyer.component';
+
 
 @NgModule({
   declarations: [
@@ -61,6 +63,8 @@ import { RegisterEventComponent } from './FrontOffice/register-event/register-ev
     CompetitionPDFComponent,
     TriviaComponent,
     RegisterEventComponent,
+    EventFlyerComponent,
+
   ],
   imports: [
     BrowserModule,

@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ElementRef, ViewChild } from '@angular/core';
 import { jsPDF } from "jspdf";
 import html2canvas from 'html2canvas';
 
@@ -8,22 +8,19 @@ import html2canvas from 'html2canvas';
   styleUrls: ['./competition-pdf.component.css']
 })
 export class CompetitionPDFComponent {
-  generatePDF() {
-    const elementToPrint: any = document.getElementById('contentToConvert');
-    html2canvas(elementToPrint, { scale: 2 }).then((canvas) => {
-      const pdf = new jsPDF()
- ;
-      pdf.setProperties({
-        title: 'Competition Details',
-        subject: 'Details of the competition',
-        author: 'Mostfa Jenhani'
-      });
-      pdf.setFontSize(12); // Fixed typo: 'setFontsize' to 'setFontSize'
-      pdf.text('oyyyy', 10, 10); // Added sample text at coordinates (10, 10)
+  @ViewChild('contentToConvert', { static: false }) contentToConvert!: ElementRef;
+
+  downloadPDF() {
+    const elementToPrint = this.contentToConvert.nativeElement;
+
+    html2canvas(elementToPrint).then((canvas) => {
+      const pdf = new jsPDF('p', 'mm', 'a4'); // Portrait, millimeters, A4 size
+      const imgData = canvas.toDataURL('image/png');
+      const imgWidth = 210; // A4 size width mm (210mm)
+      const imgHeight = (canvas.height * imgWidth) / canvas.width;
+
+      pdf.addImage(imgData, 'PNG', 0, 0, imgWidth, imgHeight);
       pdf.save('myFile.pdf');
     });
-  }
-  downloadPDF() {
-    this.generatePDF();
   }
 }

@@ -1,49 +1,116 @@
 <div class="hero overlay" style="background-image: url('/assets/images/addEvent.jpg');">
-    <div class="container">
-      <div class="row align-items-center">
-        <div class="col-lg-5 mx-auto text-center">
-          <h1 class="text-white">My Created Events</h1>
-          <p>Here you can see the list of the events you have created</p>
+  <div class="container">
+    <div class="row align-items-center">
+      <div class="col-lg-5 mx-auto text-center">
+        <h1 class="text-white">My Created Events</h1>
+        <p>Here you can see the list of the events you have created</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="container site-section">
+  <div class="row">
+    <div class="col-12 title-section">
+      <h2>My Created Events</h2>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-12">
+      <table class="table table-bordered">
+        <thead>
+          <tr>
+            <th>Event Name</th>
+            <th>Start Date</th>
+            <th>Location</th>
+            <th>Current Participants</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let event of myCreatedEvents">
+            <td>{{ event.eventName }}</td>
+            <td>{{ event.startDate | date:'medium' }}</td>
+            <td>{{ event.location }}</td>
+            <td>{{ event.currentParticipants }}</td>
+            <td>
+              <button class="btn btn-primary btn-sm" [routerLink]="['/upgradevent', event.eventID] " style="margin-right: 5px;">Update</button>
+              <button class="btn btn-primary btn-sm" (click)="deleteEvent(event.eventID)" style="margin-right: 5px;">Delete</button>
+              <button class="btn btn-primary btn-sm" (click)="generateFlyer(event); showImageSelection = true;">Flyer</button>
+
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      <div class="image-selection-section" *ngIf="showImageSelection" style="margin-top: 50px;">
+        <h2>Select the backround image for your flyer</h2>
+        <div class="image-options"style="margin-top: 50px;">
+            <img src="/assets/images/competitions.jpg" (click)="selectBackground('/assets/images/competitions.jpg')" class="image-option">
+            <img src="/assets/images/competition.jpg" (click)="selectBackground('/assets/images/competition.jpg')" class="image-option">
+            <img src="/assets/images/eventimage.jpg" (click)="selectBackground('/assets/images/eventimage.jpg')" class="image-option">
         </div>
+        <button class="btn btn-primary btn-lg my-3" *ngIf="backgroundSelected" (click)="downloadFlyer()">Download Flyer</button>
+
+    </div>
+    
+<style>
+  .image-options {
+    display: flex;  
+}
+
+.image-option {
+    width: 300px;
+    height: 300px;
+    margin-right: 30px; 
+    cursor: pointer; 
+    transition: transform 0.3s ease; 
+}
+
+.image-option:hover {
+    transform: scale(1.1); 
+}
+.my-3 {
+  margin-top: 80px; 
+  font-size: small;
+  margin-left: 35%;
+}
+
+
+</style> 
+<div class="poster" #contentToConvert [hidden]="!backgroundSelected" style="margin-top: 250px; max-width: 500px;">
+  <div class="background-img" [style.background-image]="'url(' + backgroundImageUrl + ')'" ></div>
+  <div class="info">
+    <header>
+      <h3 style="font-size: 2rem;">Dance Odyssey</h3>
+      <p style="font-size: 1.5rem;">Presents</p>
+    </header>
+    <main>
+      <div class="event-title" style="font-size: 3rem;">
+        <h1>{{ eventName }}</h1>
       </div>
+    </main>
+    <section id="date" style="margin-top: 25px;">
+      <div class="circle-item" style="font-size: 1.5rem;">{{ eventStartDate | date:'dd' }}</div>
+      <div class="circle-item" style="font-size: 1.5rem;">{{ eventStartDate | date:'MMM' }}</div>
+      <div class="circle-item" style="font-size: 1.5rem;">{{ eventStartDate| date:'yyyy' }}</div>
+    </section>
+    <footer style="margin-top: 25px;">
+      <div class="tickets" style="font-size: 1.5rem;">
+        25D Pre Sale Tickets / 18+ Ages / 30D at Door
+      </div>
+      <div class="venue" style="margin-top: 25px;">
+        <h3 style="margin-bottom: 10px; font-size: 2rem;">{{ splitLocation(eventLocation).city }}</h3>
+        <p style="margin-bottom: 10px; font-size: 1.5rem;">{{ splitLocation(eventLocation).street }}</p>
+        <p style="margin-bottom:10px; font-size: 1rem;"><small>www.danceodyssey.com</small></p>
+        <p style="margin-bottom: 10px; font-size: 1rem;"><small>+21672545873</small></p>
+      </div>
+    </footer>
+  </div>
+</div>
+
+
     </div>
   </div>
-  
-  <div class="container site-section">
-    <div class="row">
-      <div class="col-12 title-section">
-        <h2>My Created Events</h2>
-      </div>
-    </div>
-  
-    <div class="row">
-      <div class="col-12">
-        <table class="table table-bordered">
-          <thead>
-            <tr>
-              <th>Event Name</th>
-              <th>Start Date</th>
-              <th>Location</th>
-              
-              <th>Current Participants</th>
-              <th>Actions</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr *ngFor="let event of myCreatedEvents">
-              <td>{{ event.eventName }}</td>
-              <td>{{ event.startDate | date:'medium' }}</td>
-              <td>{{ event.location }}</td>
-            
-              <td>{{event.currentParticipants}}</td>
-              <td>
-                <button class="btn btn-primary btn-sm" [routerLink]="['/upgradevent',event.eventID] "style="margin-right: 5px;">Update</button>
-                <button class="btn btn-primary btn-sm" (click)="deleteEvent(event.eventID)">Delete</button>
-              </td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-    </div>
-  </div>
-  
+</div>
+
