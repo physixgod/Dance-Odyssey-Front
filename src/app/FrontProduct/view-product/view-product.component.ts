@@ -49,4 +49,20 @@ export class ViewProductComponent implements OnInit {
   getDefaultImage(): string {
     return 'URL_de_votre_image_par_défaut';
   }
+  showPreviousImage(): void {
+    if (this.product && this.product.images && this.selectedImage) {
+      const currentIndex = this.product.images.indexOf(this.selectedImage);
+      const previousIndex = (currentIndex - 1 + this.product.images.length) % this.product.images.length;
+      this.selectedImage = this.product.images[previousIndex];
+    }
+  }
+  
+  showNextImage(): void {
+    if (this.product && this.product.images && this.selectedImage) {
+      const currentIndex = this.product.images.indexOf(this.selectedImage);
+      const nextIndex = (currentIndex + 1) % this.product.images.length;
+      this.selectedImage = this.product.images[nextIndex];
+    }
+  }
+  
 }

@@ -1,0 +1,13 @@
+#product-imgs {
+    display: flex;
+    flex-direction: column; /* Affichage en colonne */
+}
+
+.product-preview {
+    margin-bottom: 10px; /* Espacement vertical entre les miniatures d'images */
+}
+
+/* Ajouter une bordure rouge à l'image sélectionnée */
+.product-preview.selected-thumbnail img {
+    border: 2px solid red;
+}

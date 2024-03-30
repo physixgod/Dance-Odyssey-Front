@@ -1,11 +1,11 @@
-import { SideBarComponent } from './FrontProduct/side-bar/side-bar.component';
+import { TestComponent } from './FrontProduct/test/test.component';
+import { HomeProductComponent } from './FrontProduct/home-product/home-product.component';
 import { SidebarBackComponent } from './BackOffice/sidebar-back/sidebar-back.component';
 import { CheckoutComponent } from './FrontProduct/checkout/checkout.component';
 import { CartComponent } from './FrontProduct/cart/cart.component';
 import { ViewProductComponent } from './FrontProduct/view-product/view-product.component';
 import { ProductDetailComponent } from './FrontProduct/product-detail/product-detail.component';
 import { AlltemplateFrontProductComponent } from './FrontProduct/alltemplate-front-product/alltemplate-front-product.component';
-import { ShowProductComponent } from './FrontProduct/show-product/show-product.component';
 import { Component, NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AllTemplateBackComponent } from './BackOffice/all-template-back/all-template-back.component';
@@ -39,8 +39,9 @@ const routes: Routes = [
     {path:'viewproduct/:id',component:ViewProductComponent},
     {path:'cart',component:CartComponent},
     {path:'checkout',component:CheckoutComponent},
-    {path:'show',component:ShowProductComponent},
-    {path:'side',component:SideBarComponent},
+    {path:'homeproduct',component:HomeProductComponent},
+
+    {path:'test',component:TestComponent},
 
 
 
@@ -67,6 +68,7 @@ const routes: Routes = [
 {path:'add-Categoriesproduct',component:CategorieProductComponent},
 {path:'list_Archived',component:ListArchivedComponent},
 {path:'list_Categories',component:ListCategoriesComponent},
+
 
 
 

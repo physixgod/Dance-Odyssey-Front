@@ -14,7 +14,10 @@ export class Product {
   categoriesProduct?: CategoriesProduct | null;
   images: Image[] = [];
   today!: string; // Ajoutez la propriété today
-
+  isFlashSale: boolean; // Ajout de la propriété isFlashSale
+  isPromotion: boolean; // Ajout de la propriété isPromotion
+  prixPromotion: number; // Ajout de la propriété prixPromotion
+  pourcentagePromotion: number; // Ajout de la propriété pourcentagePromotion
 
   constructor(options: {
     idProduct: number;
@@ -28,9 +31,15 @@ export class Product {
     model: string;
     datePublication: Date;
     quantity: number;
+    quantiteVendue: number;
+    pourcentagePromotion: number;
+    isFlashSale: boolean; // Ajout de la propriété isFlashSale
+    isPromotion: boolean; // Ajout de la propriété isPromotion
+    prixPromotion: number; // Ajout de la propriété prixPromotion
     ratingProductsP: RatingProduct[];
     categoriesProduct?: CategoriesProduct | null;
     images: Image[];
+
   }) {
     this.idProduct = options.idProduct;
     this.refProduct = options.refProduct;
@@ -46,6 +55,10 @@ export class Product {
     this.ratingProductsP = options.ratingProductsP;
     this.categoriesProduct = options.categoriesProduct || null;
     this.images = options.images;
+    this.pourcentagePromotion = options.pourcentagePromotion; // Initialisation de la propriété pourcentagePromotion
+    this.isFlashSale = options.isFlashSale; // Initialisation de la propriété isFlashSale
+    this.isPromotion = options.isPromotion; // Initialisation de la propriété isPromotion
+    this.prixPromotion = options.prixPromotion; // Initialisation de la propriété prixPromotion
   }
 }
 
@@ -78,4 +91,12 @@ export class Image {
     this.imageUrl = imageUrl;
    
   }
+
 }
+export class Catalogue {
+  id!: number;
+  nom!: string;
+  description!: string;
+  img!: string;
+ }
+

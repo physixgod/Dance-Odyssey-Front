@@ -4,7 +4,6 @@ import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http
 import { Observable, throwError, of } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
 import { Product,Image } from '../models/product';
-import { CategoriesProduct } from '../models/categorie-product';
 
 @Injectable({
   providedIn: 'root'
@@ -95,8 +94,17 @@ export class ProductService {
   }
   
 
+  getPromotionalProducts(): Observable<Product[]> {
+    return this.http.get<Product[]>(`${this.baseURL}/promotions`);
+  }
+  getLast5Products(): Observable<Product[]> {
+    return this.http.get<Product[]>(`${this.baseURL}/last-5`);
+  }
 
-
+  // Méthode pour obtenir les produits les mieux notés
+  getTopRatingProducts(): Observable<Product[]> {
+    return this.http.get<Product[]>(`${this.baseURL}/products/top-rating`);
+  }
 
 
 archiveProduct(productId: number): Observable<string> {

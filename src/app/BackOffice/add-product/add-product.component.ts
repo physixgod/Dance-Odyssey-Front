@@ -30,6 +30,10 @@ export class AddProductComponent implements OnInit {
     description: '',
     productState: false,
     model: '',
+    pourcentagePromotion: 0,
+    isFlashSale: false, // Ajout de la propriété isFlashSale
+    isPromotion: false, // Ajout de la propriété isPromotion
+    prixPromotion: 0, // Ajout de la propriété prixPromotion
     quantity: 0,
     ratingProductsP: [],
     categoriesProduct: {

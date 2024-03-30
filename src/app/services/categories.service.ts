@@ -4,6 +4,7 @@ import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http
 import { Observable, throwError, of } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
 import { CategoriesProduct } from '../models/categorie-product';
+import { Product,Image } from '../models/product';
 
 @Injectable({
   providedIn: 'root'
