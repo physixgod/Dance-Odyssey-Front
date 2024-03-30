@@ -13,6 +13,7 @@ import { UserLoginComponent } from './FrontOffice/user-login/user-login.componen
 import { config } from 'rxjs';
 import { AuthGuardService } from './services/AuthGuardService';
 import { UsereditComponent } from './FrontOffice/useredit/useredit.component';
+import { ForgotpasswordComponent } from './FrontOffice/forgotpassword/forgotpassword.component';
 
 
 
@@ -28,6 +29,10 @@ const routes: Routes = [
   ]
 },
 { path: 'login', component: UserLoginComponent }, // Ad
+{ path: 'forgotpassword', component: ForgotpasswordComponent },
+{path:'useredit',component:UsereditComponent},
+
+
 {
   path:'register',component:UserRegisterComponent
 },

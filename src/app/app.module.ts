@@ -23,7 +23,9 @@ import { UserLoginComponent } from './FrontOffice/user-login/user-login.componen
 import { TokenInterceptor } from './services/token.interceptor';
 import { ReactiveFormsModule } from '@angular/forms';
 import { RecaptchaModule, RECAPTCHA_V3_SITE_KEY } from 'ng-recaptcha';
-import { UsereditComponent } from './FrontOffice/useredit/useredit.component'; 
+import { UsereditComponent } from './FrontOffice/useredit/useredit.component';
+import { ForgotpasswordComponent } from './FrontOffice/forgotpassword/forgotpassword.component';
+
 
 
 @NgModule({
@@ -45,6 +47,8 @@ import { UsereditComponent } from './FrontOffice/useredit/useredit.component';
     TableadminComponent,
     UserLoginComponent,
     UsereditComponent,
+    ForgotpasswordComponent,
+   
   ],
   imports: [
     BrowserModule,

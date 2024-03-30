@@ -32,6 +32,8 @@ export class UserLoginComponent {
           this.router.navigate(['/homepage']);
 
         }
+        
+
         else {
           this.router.navigate(['/homepage']);
 
@@ -47,4 +49,8 @@ export class UserLoginComponent {
   navigateToSignUp() {
     this.router.navigate(['/register']); 
   }
+  navigateToForgotPassword() {
+    this.router.navigate(['/forgotpassword']);
+  }
+  
 }
