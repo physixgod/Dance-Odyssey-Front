@@ -78,36 +78,39 @@
 
 
 </style> 
-<div class="poster" #contentToConvert [hidden]="!backgroundSelected" style="margin-top: 250px; max-width: 500px;">
+<div class="poster" #contentToConvert [hidden]="!backgroundSelected" style="margin-top: 250px; max-width: 500px; position: relative;">
+  
   <div class="background-img" [style.background-image]="'url(' + backgroundImageUrl + ')'" ></div>
-  <div class="info">
+  <div class="info" style="padding-top: 120px;"> <!-- Added padding to the top to accommodate the logo -->
     <header>
-      <h3 style="font-size: 2rem;">Dance Odyssey</h3>
-      <p style="font-size: 1.5rem;">Presents</p>
+      <h3 style="font-size: 2rem; text-align: center;">Dance Odyssey</h3> <!-- Centered the header -->
+      <p style="font-size: 1.5rem; text-align: center;">Presents</p> <!-- Centered the text -->
     </header>
+    <img src="/assets/images/logo.png" style="position: absolute; top: 0; left: 50%; transform: translateX(-50%); width: 100px; height: auto;">
     <main>
-      <div class="event-title" style="font-size: 3rem;">
+      <div class="event-title" style="font-size: 3rem; text-align: center;"> <!-- Centered the title -->
         <h1>{{ eventName }}</h1>
       </div>
     </main>
-    <section id="date" style="margin-top: 25px;">
+    <section id="date" style="margin-top: 25px; text-align: center;"> <!-- Centered the date -->
       <div class="circle-item" style="font-size: 1.5rem;">{{ eventStartDate | date:'dd' }}</div>
       <div class="circle-item" style="font-size: 1.5rem;">{{ eventStartDate | date:'MMM' }}</div>
       <div class="circle-item" style="font-size: 1.5rem;">{{ eventStartDate| date:'yyyy' }}</div>
     </section>
-    <footer style="margin-top: 25px;">
+    <footer style="margin-top: 25px; text-align: center;"> <!-- Centered the footer content -->
       <div class="tickets" style="font-size: 1.5rem;">
         25D Pre Sale Tickets / 18+ Ages / 30D at Door
       </div>
       <div class="venue" style="margin-top: 25px;">
-        <h3 style="margin-bottom: 10px; font-size: 2rem;">{{ splitLocation(eventLocation).city }}</h3>
-        <p style="margin-bottom: 10px; font-size: 1.5rem;">{{ splitLocation(eventLocation).street }}</p>
+        <h3 style="margin-bottom: 10px; font-size: 2rem; text-align: center;">{{ splitLocation(eventLocation).city }}</h3> <!-- Centered the venue -->
+        <p style="margin-bottom: 10px; font-size: 1.5rem; text-align: center;">{{ splitLocation(eventLocation).street }}</p> <!-- Centered the venue -->
         <p style="margin-bottom:10px; font-size: 1rem;"><small>www.danceodyssey.com</small></p>
         <p style="margin-bottom: 10px; font-size: 1rem;"><small>+21672545873</small></p>
       </div>
     </footer>
   </div>
 </div>
+
 
 
     </div>
