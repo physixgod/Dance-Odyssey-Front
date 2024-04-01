@@ -1,8 +1,11 @@
-import { Component, OnInit } from '@angular/core';
-import { Product, CategoriesProduct } from 'src/app/models/product';
-import { ProductService } from 'src/app/services/product.service';
+import { ParentCategory ,SubCategory} from "src/app/models/parentcategories_product";
+import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { CategoriesService } from 'src/app/services/categories.service';
+import { ProductService } from 'src/app/services/product.service';
+import { Product } from 'src/app/models/product';
+import { SubCategoryService } from 'src/app/services/subcategories.service';
+import { ParentCategoryService } from 'src/app/services/parentcategories.service';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-add-product',
@@ -10,137 +13,95 @@ import { CategoriesService } from 'src/app/services/categories.service';
   styleUrls: ['./add-product.component.css'],
 })
 export class AddProductComponent implements OnInit {
-  today: string = ''; // Initialisation de la propriété today
-
+  selectedFiles: File[] = [];
   statusMessage: string | null = null;
   statusClass: string | null = null;
-  categories: CategoriesProduct[] = [];
-  subCategories: CategoriesProduct[] = [];
-  categoryId: number = 0;
-  subCategoryIds: number[] = [];
-  selectedFiles: File[] = [];
+  categories: ParentCategory[] = [];
+  selectedParentCategory: ParentCategory | null = null; // Variable pour stocker la catégorie parent sélectionnée
+  subCategories: SubCategory[] = []; // Variable pour stocker les sous-catégories correspondant à la catégorie parent sélectionnée
   product: Product = {
     idProduct: 0,
     archived: false,
     refProduct: 0,
     productName: '',
     price: 0,
+    images: [],
     datePublication: new Date(),
     pointsPrice: 0,
     description: '',
-    productState: false,
+    productState: true,
     model: '',
+    quantiteVendue: 0,
     pourcentagePromotion: 0,
-    isFlashSale: false, // Ajout de la propriété isFlashSale
     isPromotion: false, // Ajout de la propriété isPromotion
-    prixPromotion: 0, // Ajout de la propriété prixPromotion
+    pricePromotion: 0, // Ajout de la propriété prixPromotion
     quantity: 0,
+    subCategories: [] = [], // Propriété pour stocker les sous-catégories associées au produit
+
     ratingProductsP: [],
-    categoriesProduct: {
-      idCategories: 0,
-      type: '',
-      subCategories: [],
-      productsSS_C: [],
-    },
-    images: [],
-    today: '', // Ajout de la propriété today dans l'objet Product
+    parentCategory: this.selectedParentCategory || { id: 0, type: '', subCategories: [], products: [] },
 
   };
 
-  constructor(
-    private productService: ProductService,
-    private categoriesService: CategoriesService, // Injectez le service ici
+    constructor(
+      private http: HttpClient, // Injection du service HttpClient
 
-     private router: Router) {}
+    private productService: ProductService,
+    private router: Router,
+    private ParentCategory: ParentCategoryService,
+  ) {}
 
   ngOnInit(): void {
     this.loadCategories();
-    const now = new Date();
-    this.today = `${now.getFullYear()}-${(now.getMonth() + 1).toString().padStart(2, '0')}-${now.getDate().toString().padStart(2, '0')}`;
-
+  
   }
-
   loadCategories(): void {
-    this.categoriesService. getParentCategories().subscribe((categories: CategoriesProduct[]) => {
+    this.ParentCategory. getAllParentCategoriesWithSubCategories().subscribe((categories: ParentCategory[]) => {
       this.categories = categories;
     });
   }
-
-  getSubCategories(): void {
-    if (this.categoryId) {
-      this.categoriesService.getSubCategories(this.categoryId).subscribe((subCategories: CategoriesProduct[]) => {
-        this.subCategories = subCategories;
-      });
-    }
-  }
-
   onCategoryChange(): void {
-    this.subCategories = [];
-    this.subCategoryIds = [];
-    this.getSubCategories();
-  }
-
-  onSubCategoryChange(subCategoryId: number): void {
-    this.subCategoryIds = [subCategoryId]; // Mettez le sous-catégorie ID dans le tableau subCategoryIds
+    if (this.selectedParentCategory) {
+      this.subCategories = this.selectedParentCategory.subCategories;
+    } else {
+      this.subCategories = []; 
+    }
   }
   
   
   onFileSelected(event: any): void {
-  // Réinitialisez le tableau des fichiers sélectionnés
-  this.selectedFiles = [];
+    this.selectedFiles = [];
+  
+    for (let i = 0; i < event.target.files.length; i++) {
+      this.selectedFiles.push(event.target.files[i]);
+    }
+  }
 
-  // Parcourez les fichiers sélectionnés et ajoutez-les à votre tableau
-  for (let i = 0; i < event.target.files.length; i++) {
-    this.selectedFiles.push(event.target.files[i]);
+  addProduct() {
+    if (this.selectedParentCategory && this.product) {
+      this.product.parentCategory = this.selectedParentCategory;
+      this.productService.addProductToParentCategory(this.selectedParentCategory.id, this.product).subscribe(
+        (newProduct: Product) => {
+          console.log('Product added successfully:', newProduct);
+          if (this.selectedFiles.length > 0) {
+            this.productService.addImagesToProduct(newProduct.idProduct, this.selectedFiles).subscribe(
+              (result) => {
+                console.log('Images added successfully:', result);
+              },
+              (error) => {
+                console.error('Error adding images:', error);
+              }
+            );
+          }
+        },
+        (error) => {
+          console.error('Error adding product:', error);
+        }
+      );
+    
+      this.router.navigate(['/admin/list-product']);
+    } else {
+      console.error('Selected parent category or product is null.');
+    }
   }
 }
-
-  addProduct(): void {
-    if (!this.categoryId) {
-      alert('Veuillez sélectionner une catégorie.');
-      return;
-    }
-
-    this.productService.addProduct(this.product).subscribe(
-      (addedProduct: Product) => {
-        console.log('Product added successfully:', addedProduct);
-
-        if (this.selectedFiles.length > 0) {
-          this.productService.addImagesToProduct(addedProduct.idProduct, this.selectedFiles).subscribe(
-            (result) => {
-              console.log('Images added successfully:', result);
-            },
-            (error) => {
-              console.error('Error adding images:', error);
-            }
-            
-          );
-
-        }
-
-        // Ajoutez le produit à la catégorie et sous-catégorie ici
-        this.addProductToCategory(addedProduct.idProduct, this.categoryId, this.subCategoryIds[0]);
-
-        console.log('Navigating to list-product page...');
-        // Navigate to the "list-product" route after adding the product
-      },
-      (error) => {
-        console.error('Error adding product:', error);
-      }
-    );
-    this.router.navigate(['/admin/list-product']);
-
-  }
-  
-
-   // Méthode pour ajouter le produit à la catégorie
-   addProductToCategory(productId: number, categoryId: number, subCategoryId: number): void {
-    this.productService.addProductToCategory(productId, categoryId, subCategoryId).subscribe(
-      (result) => {
-        console.log(result);
-      },
-      (error) => {
-        console.error(error);
-      }
-    );
-  }}

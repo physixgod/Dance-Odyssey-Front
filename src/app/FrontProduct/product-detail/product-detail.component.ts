@@ -23,7 +23,7 @@ export class ProductDetailComponent {
   }
 
   loadProducts(): void {
-    this.productService.getAllProducts().subscribe(products => {
+    this.productService.showAllProducts().subscribe(products => {
       this.products = products.filter(product => !product.archived);
     });
   }

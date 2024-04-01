@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { CategoriesProduct } from 'src/app/models/categorie-product';
-import { CategoriesService } from 'src/app/services/categories.service';
+import { ParentCategory,SubCategory } from './../../models/parentcategories_product';
+import { ParentCategoryService } from 'src/app/services/parentcategories.service';
+import { SubCategoryService } from 'src/app/services/subcategories.service';
 
 @Component({
   selector: 'app-list-categories',
@@ -8,75 +9,73 @@ import { CategoriesService } from 'src/app/services/categories.service';
   styleUrls: ['./list-categories.component.css']
 })
 export class ListCategoriesComponent implements OnInit {
-  parentCategories: CategoriesProduct[] = [];
-  subCategoriesMap: Map<number, CategoriesProduct[]> = new Map();
-  errorMessage: string = '';
-  
+  parentCategories: ParentCategory[] = [];
+  newSubCategoryType: string = '';
+  selectedSubCategory: SubCategory | null = null;
+  selectedParentCategory: ParentCategory | null = null; // Garder une référence à la catégorie parent sélectionnée
+  showNewSubCategoryInput: boolean = false;
 
   constructor(
-    private categoriesService: CategoriesService)
-
-     { }
+    private parentCategoryService: ParentCategoryService,
+    private subCategoryService: SubCategoryService
+  ) {}
 
   ngOnInit(): void {
-    this.loadParentCategories();
-  }
-
-  loadParentCategories(): void {
-    this.categoriesService.getParentCategories().subscribe(
-      (categories: CategoriesProduct[]) => {
-        this.parentCategories = categories.filter(category => category.idCategories !== undefined);
-        this.loadSubCategoriesForParents();
-      },
-      
-    );
-  }
-
-  loadSubCategoriesForParents(): void {
-    this.parentCategories.forEach(parentCategory => {
-      const parentId = parentCategory.idCategories;
-      if (parentId !== undefined) {
-        this.categoriesService.getSubCategories(parentId).subscribe(
-          (subCategories: CategoriesProduct[]) => {
-            if (subCategories && subCategories.length > 0) {
-              this.subCategoriesMap.set(parentId, subCategories);
-            }
-          },
-          (error) => {
-            this.errorMessage = 'Une erreur s\'est produite lors du chargement des sous-catégories.';
-            console.error('Error loading subcategories:', error);
-          }
-        );
-      }
-    });
-  }
-
-  addSubcategory(parentCategoryId: number): void {
-    const newSubcategoryName = prompt('Entrez le nom de la nouvelle sous-catégorie:');
-    if (newSubcategoryName) {
-      this.categoriesService.addSubcategoriesToParent(parentCategoryId, [newSubcategoryName]).subscribe(
-        () => {
-          this.refreshSubCategories(parentCategoryId);
+    this.parentCategoryService.getAllParentCategoriesWithSubCategories()
+      .subscribe(
+        (data: ParentCategory[]) => {
+          this.parentCategories = data;
         },
         (error) => {
-          this.errorMessage = 'Une erreur s\'est produite lors de l\'ajout de la sous-catégorie.';
-          console.error('Error adding subcategory:', error);
+          console.error('Error fetching parent categories:', error);
         }
       );
-    }
   }
 
-  refreshSubCategories(parentCategoryId: number): void {
-    this.categoriesService.getSubCategories(parentCategoryId).subscribe(
-      (subCategories: CategoriesProduct[]) => {
-        if (subCategories && subCategories.length > 0) {
-          this.subCategoriesMap.set(parentCategoryId, subCategories);
+  selectSubCategory(subCategory: SubCategory): void {
+    this.selectedSubCategory = subCategory;
+  }
+
+  addSubCategory(category: ParentCategory): void {
+    if (this.newSubCategoryType.trim() === '') {
+      console.error('New subcategory type is required.');
+      return;
+    }
+
+    const newSubCategory: SubCategory = new SubCategory(0, this.newSubCategoryType);
+
+    this.subCategoryService.addSubCategoryToParent(category.id, newSubCategory)
+      .subscribe(
+        (data: SubCategory) => {
+          category.subCategories.push(data);
+          this.newSubCategoryType = '';
+        },
+        (error) => {
+          console.error('Error adding subcategory to parent category:', error);
         }
-      },
-      (error) => {
-        this.errorMessage = 'Une erreur s\'est produite lors du rafraîchissement des sous-catégories.';
-        console.error('Error refreshing subcategories:', error);
-      }
-    );
+      );
+  }
+
+  deleteSubCategory(category: ParentCategory): void {
+    if (!this.selectedSubCategory) {
+      console.error('No subcategory selected.');
+      return;
+    }
+
+    this.subCategoryService.deleteSubCategoryByParentCategoryId(category.id, this.selectedSubCategory.id)
+      .subscribe(
+        () => {
+          category.subCategories = category.subCategories.filter(item => item.id !== this.selectedSubCategory!.id);
+          this.selectedSubCategory = null;
+        },
+        (error) => {
+          console.error('Error deleting subcategory from parent category:', error);
+        }
+      );
+  }
+
+  toggleNewSubCategoryInput(category: ParentCategory): void { // Passer la catégorie parent sélectionnée comme argument
+    this.selectedParentCategory = category; // Mettre à jour la catégorie parent sélectionnée
+    this.showNewSubCategoryInput = !this.showNewSubCategoryInput;
   }
 }

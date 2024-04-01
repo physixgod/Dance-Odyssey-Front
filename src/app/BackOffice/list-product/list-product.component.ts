@@ -21,7 +21,7 @@ export class ListProductComponent implements OnInit {
   }
 
   loadProducts(): void {
-    this.productService.getAllProducts().subscribe(products => {
+    this.productService.showAllProducts().subscribe(products => {
       this.products = products.filter(product => !product.archived);
     });
   }
@@ -64,7 +64,7 @@ export class ListProductComponent implements OnInit {
     if (this.searchName.trim() === '') {
       this.loadProducts();
     } else {
-      this.productService.searchProductsByName(this.searchName).subscribe(
+      this.productService.searchByName(this.searchName).subscribe(
         (data: Product[]) => {
           this.products = data;
         },

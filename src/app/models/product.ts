@@ -1,84 +1,78 @@
+import {SubCategory} from "src/app/models/subcategories_product"
+import { ParentCategory } from "./parentcategories_product";
 export class Product {
-  idProduct!: number;
-  refProduct!: number;
-  productName!: string;
-  price!: number;
-  pointsPrice!: number;
-  archived!: boolean;
-  description!: string;
-  productState!: boolean;
-  model!: string;
-  datePublication!: Date;
-  quantity!: number;
-  ratingProductsP: RatingProduct[] = [];
-  categoriesProduct?: CategoriesProduct | null;
-  images: Image[] = [];
-  today!: string; // Ajoutez la propriété today
-  isFlashSale: boolean; // Ajout de la propriété isFlashSale
-  isPromotion: boolean; // Ajout de la propriété isPromotion
-  prixPromotion: number; // Ajout de la propriété prixPromotion
-  pourcentagePromotion: number; // Ajout de la propriété pourcentagePromotion
+  idProduct: number; 
+  refProduct: number; 
+  productName: string; 
+  price: number; 
+  pointsPrice: number; 
+  description: string; 
+  productState: boolean; 
+  model: string; 
+  quantity: number; 
+  archived: boolean; 
+  datePublication: Date; 
+  isPromotion: boolean; 
+  pricePromotion: number; 
+  pourcentagePromotion: number; 
+  quantiteVendue: number; 
+  images: Image[]; 
+  ratingProductsP: RatingProduct[]; 
+  parentCategory: ParentCategory; // Ajoutez cette propriété pour la relation avec ParentCategory
+  subCategories: SubCategory[] = []; // Propriété pour stocker les sous-catégories associées au produit
 
-  constructor(options: {
-    idProduct: number;
-    refProduct: number;
-    productName: string;
-    price: number;
-    pointsPrice: number;
-    archived: boolean;
-    description: string;
-    productState: boolean;
-    model: string;
-    datePublication: Date;
-    quantity: number;
-    quantiteVendue: number;
-    pourcentagePromotion: number;
-    isFlashSale: boolean; // Ajout de la propriété isFlashSale
-    isPromotion: boolean; // Ajout de la propriété isPromotion
-    prixPromotion: number; // Ajout de la propriété prixPromotion
-    ratingProductsP: RatingProduct[];
-    categoriesProduct?: CategoriesProduct | null;
-    images: Image[];
-
-  }) {
-    this.idProduct = options.idProduct;
-    this.refProduct = options.refProduct;
-    this.productName = options.productName;
-    this.price = options.price;
-    this.pointsPrice = options.pointsPrice;
-    this.archived = options.archived;
-    this.description = options.description;
-    this.productState = options.productState;
-    this.model = options.model;
-    this.datePublication = options.datePublication;
-    this.quantity = options.quantity;
-    this.ratingProductsP = options.ratingProductsP;
-    this.categoriesProduct = options.categoriesProduct || null;
-    this.images = options.images;
-    this.pourcentagePromotion = options.pourcentagePromotion; // Initialisation de la propriété pourcentagePromotion
-    this.isFlashSale = options.isFlashSale; // Initialisation de la propriété isFlashSale
-    this.isPromotion = options.isPromotion; // Initialisation de la propriété isPromotion
-    this.prixPromotion = options.prixPromotion; // Initialisation de la propriété prixPromotion
-  }
-}
-
-export class CategoriesProduct {
-  idCategories?: number;
-  type!: string;
-  subCategories: CategoriesProduct[] = [];
-  productsSS_C: Product[] = [];
-
-  constructor(type: string, idCategories?: number) {
-    this.type = type;
-    this.idCategories = idCategories || undefined;
+  constructor(
+    idProduct: number,
+    refProduct: number,
+    productName: string,
+    price: number,
+    pointsPrice: number,
+    description: string,
+    productState: boolean,
+    model: string,
+    quantity: number,
+    archived: boolean,
+    datePublication: Date,
+    isPromotion: boolean,
+    pricePromotion: number,
+    pourcentagePromotion: number,
+    quantiteVendue: number,
+    images: Image[],
+    ratingProductsP: RatingProduct[],
+    parentCategory: ParentCategory // Ajoutez ce paramètre dans le constructeur
+  ) {
+    this.idProduct = idProduct;
+    this.refProduct = refProduct;
+    this.productName = productName;
+    this.price = price;
+    this.pointsPrice = pointsPrice;
+    this.description = description;
+    this.productState = productState;
+    this.model = model;
+    this.quantity = quantity;
+    this.archived = archived;
+    this.datePublication = datePublication;
+    this.isPromotion = isPromotion;
+    this.pricePromotion = pricePromotion;
+    this.pourcentagePromotion = pourcentagePromotion;
+    this.quantiteVendue = quantiteVendue;
+    this.images = images;
+    this.ratingProductsP = ratingProductsP;
+    this.parentCategory = parentCategory; // Initialisez la propriété parentCategory
   }
 }
 
 
 export class RatingProduct {
-  id!: number;
-  feedback!: string;
-  score!: number;
+  id: number;
+  feedback: string;
+  score: number;
+
+  constructor(id: number, feedback: string, score: number) {
+    this.id = id;
+    this.feedback = feedback;
+    this.score = score;
+  }
 }
 
 export class Image {
@@ -93,10 +87,10 @@ export class Image {
   }
 
 }
-export class Catalogue {
-  id!: number;
-  nom!: string;
-  description!: string;
-  img!: string;
- }
+
+
+
+
+
+
 

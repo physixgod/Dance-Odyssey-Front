@@ -1,10 +1,7 @@
 import { Component } from '@angular/core';
-import { ProductService } from 'src/app/services/product.service';
-import { CategoriesProduct } from 'src/app/models/categorie-product';
-import { ActivatedRoute } from '@angular/router';
-import { Router } from '@angular/router';
-import { CategoriesService } from 'src/app/services/categories.service';
-
+import { ActivatedRoute, Router } from '@angular/router';
+import { ParentCategory,SubCategory } from './../../models/parentcategories_product';
+import { ParentCategoryService } from './../../services/parentcategories.service';
 
 @Component({
   selector: 'app-categorie-product',
@@ -12,39 +9,39 @@ import { CategoriesService } from 'src/app/services/categories.service';
   styleUrls: ['./categorie-product.component.css']
 })
 export class CategorieProductComponent {
-  category: CategoriesProduct = new CategoriesProduct();
-  subCategories: string[] = []; // Définissez la propriété subCategories comme un tableau de chaînes
-  newSubCategory: string = ''; // Déclarez la propriété newSubCategory pour stocker la nouvelle sous-catégorie entrée par l'utilisateur
+  category: ParentCategory = new ParentCategory(0, '', [], []); // Initialisez la catégorie parent
+  newSubCategory: string = ''; // Variable pour stocker la nouvelle sous-catégorie temporairement
+  subCategories: string[] = []; // Tableau pour stocker les sous-catégories ajoutées
 
   constructor(
     private route: ActivatedRoute,
-    private productService: ProductService,
-    private categoriesService: CategoriesService, // Injectez le service ici
-
-    private router: Router
+    private router: Router,
+    private parentCategoryService: ParentCategoryService,
   ) {}
 
   createCategoryWithSubcategories() {
+    // Ajoutez les sous-catégories au modèle de la catégorie parent
+    this.category.subCategories = this.subCategories.map(subCategory => new SubCategory(0, subCategory));
+
     // Utilisez la méthode du service pour créer la catégorie avec les sous-catégories
-    this.categoriesService.createCategoryWithSubcategories(this.category.type, this.subCategories)
+    this.parentCategoryService.addParentCategory(this.category)
       .subscribe(
         data => {
           console.log('Catégorie ajoutée avec succès :', data);
           // Traitez la réponse selon vos besoins
+          this.router.navigate(['/admin/list_Categories']);
         },
         error => {
           console.error('Erreur lors de l\'ajout de la catégorie :', error);
           // Gérez l'erreur selon vos besoins
         }
       );
-      this.router.navigate(['/admin/list_Categories']);
-
   }
 
   addSubCategory() {
     if (this.newSubCategory.trim() !== '') {
-      this.subCategories.push(this.newSubCategory); // Ajoutez la nouvelle sous-catégorie à la liste
-      this.newSubCategory = ''; // Réinitialisez le champ de saisie pour la nouvelle sous-catégorie
+      this.subCategories.push(this.newSubCategory); 
+      this.newSubCategory = ''; 
     }
   }
 }

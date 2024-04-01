@@ -77,6 +77,7 @@ import { TestComponent } from './FrontProduct/test/test.component';
     HttpClientModule,
     RouterModule,
     
+    
   ],
   providers: [],
   bootstrap: [AppComponent]

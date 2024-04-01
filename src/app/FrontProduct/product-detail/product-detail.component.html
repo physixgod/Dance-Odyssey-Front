@@ -31,7 +31,6 @@
           <img *ngIf="product.images.length > 0" [src]="product.images[0].imageUrl" alt="Product Image" class="product-image">
         </div>
         <div class="product-body">
-          <p class="product-category">{{ product.categoriesProduct?.type }}</p>
           <h3 class="product-name">{{ product.productName }}</h3>
           <h4 class="product-price">{{ product.price }}</h4>
           <div class="product-rating">
