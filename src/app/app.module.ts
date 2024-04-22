@@ -25,7 +25,8 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { RecaptchaModule, RECAPTCHA_V3_SITE_KEY } from 'ng-recaptcha';
 import { UsereditComponent } from './FrontOffice/useredit/useredit.component';
 import { ForgotpasswordComponent } from './FrontOffice/forgotpassword/forgotpassword.component';
-
+import { SubscribeComponent } from './FrontOffice/subscribe/subscribe.component';
+import { PaymentPageComponent } from './FrontOffice/payment-page/payment-page.component';
 
 
 @NgModule({
@@ -48,6 +49,8 @@ import { ForgotpasswordComponent } from './FrontOffice/forgotpassword/forgotpass
     UserLoginComponent,
     UsereditComponent,
     ForgotpasswordComponent,
+    SubscribeComponent,
+    PaymentPageComponent,
    
   ],
   imports: [

@@ -8,4 +8,5 @@ export class User {
     password!: string;
     confpassword!: string;
     role!:Role;
+    
 }

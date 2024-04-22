@@ -14,6 +14,8 @@ import { config } from 'rxjs';
 import { AuthGuardService } from './services/AuthGuardService';
 import { UsereditComponent } from './FrontOffice/useredit/useredit.component';
 import { ForgotpasswordComponent } from './FrontOffice/forgotpassword/forgotpassword.component';
+import { SubscribeComponent } from './FrontOffice/subscribe/subscribe.component';
+import { PaymentPageComponent } from './FrontOffice/payment-page/payment-page.component';
 
 
 
@@ -24,6 +26,7 @@ const routes: Routes = [
     {path:'homepage', component: HomeComponent, canActivate:[AuthGuardService] },
     {path:'competitions', component:ListCompetitionsComponent,canActivate:[AuthGuardService]},
     {path:'addevent', component:AddEventComponent,canActivate:[AuthGuardService]},
+    
  
     
   ]
@@ -31,6 +34,8 @@ const routes: Routes = [
 { path: 'login', component: UserLoginComponent }, // Ad
 { path: 'forgotpassword', component: ForgotpasswordComponent },
 {path:'useredit',component:UsereditComponent},
+{path:'subscribe',component:SubscribeComponent},
+{path:'payment-page',component:PaymentPageComponent},
 
 
 {

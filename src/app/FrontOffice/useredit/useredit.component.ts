@@ -42,6 +42,7 @@ export class UsereditComponent implements OnInit {
     }
   }
   addUser(): void {
+    this.user.role.id =1;
     this.user.email == this.email;
     console.log('User object:', this.user); // Log the user object before making the request
     this.userService.addNewUser(this.user).subscribe(

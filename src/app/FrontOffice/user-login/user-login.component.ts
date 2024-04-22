@@ -20,16 +20,23 @@ export class UserLoginComponent {
       (response) => {
         alert('Login successful.');
         sessionStorage.setItem("loggedIn", "true");
-        sessionStorage.setItem("userName",response.userName);
-        sessionStorage.setItem("email",response.email);
-        sessionStorage.setItem("lastName",response.lastName);
-        sessionStorage.setItem("token",response.token);
-        sessionStorage.setItem("role",JSON.stringify(response.role));
+        sessionStorage.setItem("userName", response.userName); // Set the username
+        sessionStorage.setItem("userID", response.userID); // Set the userID
+        console.log('Response from backend:', response);
+        sessionStorage.setItem("email", response.email);
+        sessionStorage.setItem("lastName", response.lastName);
+        sessionStorage.setItem("token", response.token);
+        sessionStorage.setItem("role", JSON.stringify(response.role));
+        console.log('Username stored:', response.userName);
+      
         if(response.role.id==1){
           this.router.navigate(['/admin']);
         }
         else if(response.role.id ==2){
+    
           this.router.navigate(['/homepage']);
+          console.log('Username stored:', response);
+
 
         }
         
