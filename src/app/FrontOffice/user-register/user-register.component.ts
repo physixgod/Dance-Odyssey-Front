@@ -31,6 +31,8 @@ export class UserRegisterComponent {
     password: '',
     confpassword: '',
     role: new Role,
+    status: false,
+    userCV: '',
   };
   jury: Jury = {
     juryID: 0,
@@ -83,7 +85,10 @@ export class UserRegisterComponent {
       (data) => {
         alert("User Added  :) !!");
         this.router.navigate(['/login']);
-        this.userService.executeApi("http://localhost:8086/user/updateJuryCV/image/8")
+        const addedUserId = data.userID; // Assuming the user ID property in the returned data is userId
+        sessionStorage.setItem("addedUserId", addedUserId.toString()); // Store the added user ID
+        console.log(addedUserId);
+        this.uploadJuryCV(addedUserId);
       },
       (error) => {
         console.error(error);
@@ -156,9 +161,10 @@ export class UserRegisterComponent {
 
 
   }
-  uploadJuryCV() {
+  uploadJuryCV(id: number) {
+    console.log(this.juryCV);
     if (this.juryCV) {
-      this.userService.updateJuryCV(5, this.juryCV).subscribe(
+      this.userService.updateJuryCV(id, this.juryCV).subscribe(
         (data) => {
           console.log("Jury CV Uploaded:", data);
           alert("Jury CV Uploaded Successfully");

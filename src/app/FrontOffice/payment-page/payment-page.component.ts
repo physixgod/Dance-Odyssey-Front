@@ -1,8 +1,8 @@
 import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
 import { PaymentInfo } from 'src/app/models/payment';
 import { UserService } from 'src/app/services/user.service';
+import { ActivatedRoute, Router } from '@angular/router'; // Import Route
 
 @Component({
   selector: 'app-payment-page',
@@ -16,10 +16,12 @@ export class PaymentPageComponent implements OnInit {
   email: string | null = null;
   userID: any;
   code: string = '';
+  imgUrl:string='';
 
   constructor(
     private userService: UserService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private router: Router
   ) {}
 
   ngOnInit() {
@@ -30,7 +32,19 @@ export class PaymentPageComponent implements OnInit {
     console.log(this.email);
     this.userID = sessionStorage.getItem('userID');
     console.log(this.userID);
-    this.code = "Thank you for your " + this.subscriptionType + " payment"; // Assign code value here
+    this.code = "Thank you for your " + this.subscriptionType + " payments"; // Assign code value here
+   
+    if (  this.userID) {
+      this.userService.getJuryCV(  this.userID).subscribe(
+        (url) => {
+          url= this.imgUrl;
+        },
+        (error) => {
+          console.error('Error fetching jury CV URL:', error);
+          // Handle error, e.g., display error message
+        }
+      );
+    }
   }
 
   onSubmitPayment() {
@@ -43,6 +57,8 @@ export class PaymentPageComponent implements OnInit {
       // Verify that userID exists
 
       console.log('Payment submitted:', this.PaymentInfo);
+      this.router.navigate(['/homepage']);
+
       alert('Payment submitted');
 
       // Mask sensitive payment information
@@ -61,7 +77,29 @@ export class PaymentPageComponent implements OnInit {
         response => {
           console.log('Payment saved successfully:', response);
           this.paymentDone = true;
-          this.SendEmail(); // Call SendEmail method after payment is saved
+
+          this.userService.updateUserStatus(Number(this.userID), true).subscribe(
+            () => {
+              console.log('First user status update successfully');
+              console.log('User status update response:', response);
+                alert('Second user status updated successfully');
+
+              this.SendEmail(); // Call SendEmail method after user status is updated
+
+              // Schedule the second updateUserStatus call after one minute
+              setTimeout(() => {
+                this.userService.updateUserStatus(Number(this.userID), false).subscribe(
+                  () => {
+                    console.log('Second user status updated successfully');
+                    alert('Second user status updated successfully');
+                  },
+                  error => {
+                    console.error('Error updating user status:', error);
+                  }
+                );
+              },1000);
+            },
+          );
         },
         error => {
           console.error('Error saving payment:', error);
@@ -73,7 +111,31 @@ export class PaymentPageComponent implements OnInit {
 
   isValidPayment(): boolean {
     // Validation logic
-    return true; // Placeholder, replace with your actual validation logic
+    if (!this.PaymentInfo.nameOnCard) {
+      alert('Name on Card is required');
+      return false;
+    }
+
+    if (!/^\d{16}$/.test(this.PaymentInfo.cardNumber)) {
+      alert('Invalid Card Number. It should be 16 digits.');
+      return false;
+    }
+
+    const [month, year] = this.PaymentInfo.expirationDate.split('/');
+    const currentDate = new Date();
+    const expirationDate = new Date(2020 + parseInt(year), parseInt(month) - 1);
+
+    if (expirationDate < currentDate) {
+      alert('Invalid Expiration Date. It should be after the current date.');
+      return false;
+    }
+
+    if (!/^\d{3}$/.test(this.PaymentInfo.cvv)) {
+      alert('Invalid CVV. It should be 3 digits.');
+      return false;
+    }
+
+    return true;
   }
 
   maskCardNumber(cardNumber: string): string {

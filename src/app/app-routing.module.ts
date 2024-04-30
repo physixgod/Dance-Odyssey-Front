@@ -16,6 +16,8 @@ import { UsereditComponent } from './FrontOffice/useredit/useredit.component';
 import { ForgotpasswordComponent } from './FrontOffice/forgotpassword/forgotpassword.component';
 import { SubscribeComponent } from './FrontOffice/subscribe/subscribe.component';
 import { PaymentPageComponent } from './FrontOffice/payment-page/payment-page.component';
+import { TestComponent } from './test/test.component';
+import { UserstatComponent } from './BackOffice/userstat/userstat.component';
 
 
 
@@ -31,6 +33,7 @@ const routes: Routes = [
     
   ]
 },
+{path:'test',component:TestComponent},
 { path: 'login', component: UserLoginComponent }, // Ad
 { path: 'forgotpassword', component: ForgotpasswordComponent },
 {path:'useredit',component:UsereditComponent},
@@ -54,7 +57,8 @@ const routes: Routes = [
     { path: 'add-competition', component: AddCompetitionComponent },
     { path: 'list-event', component: AddCompetitionComponent },
     {path: 'usersList', component: TableadminComponent},
-    {path:'useredit',component:UsereditComponent}
+    {path:'useredit',component:UsereditComponent},
+    {path:'Userstat',component:UserstatComponent},
 
     
   ]

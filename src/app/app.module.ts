@@ -27,6 +27,8 @@ import { UsereditComponent } from './FrontOffice/useredit/useredit.component';
 import { ForgotpasswordComponent } from './FrontOffice/forgotpassword/forgotpassword.component';
 import { SubscribeComponent } from './FrontOffice/subscribe/subscribe.component';
 import { PaymentPageComponent } from './FrontOffice/payment-page/payment-page.component';
+import { TestComponent } from './test/test.component';
+import { UserstatComponent } from './BackOffice/userstat/userstat.component';
 
 
 @NgModule({
@@ -51,6 +53,8 @@ import { PaymentPageComponent } from './FrontOffice/payment-page/payment-page.co
     ForgotpasswordComponent,
     SubscribeComponent,
     PaymentPageComponent,
+    TestComponent,
+    UserstatComponent,
    
   ],
   imports: [
@@ -60,6 +64,7 @@ import { PaymentPageComponent } from './FrontOffice/payment-page/payment-page.co
     FormsModule,
     ReactiveFormsModule,
     RecaptchaModule 
+    
     
 
   ],

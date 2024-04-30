@@ -11,12 +11,17 @@ export class SubscribeComponent {
   lastName!:any;
   email!:any
   userID!:any
+  status!: boolean | null;
 
   constructor(private router: Router) {}
   redirectToPayment(subscriptionOption: string) {
     this.userID=sessionStorage.getItem('userID')
   console.log(this.userID)
     this.router.navigate(['/payment-page'], { queryParams: { subscription: subscriptionOption } });
+    const statusStr = sessionStorage.getItem('status');
+  this.status = statusStr === 'true'; // Convert string to boolean
+
+  console.log(this.status);
     
   }
   ngOnInit() {
@@ -26,11 +31,12 @@ export class SubscribeComponent {
     alert(this.email)
     this.userID=sessionStorage.getItem('userID')
   console.log(this.userID)
-
+  
+}
   
 
   }
 
 
 
-}
+

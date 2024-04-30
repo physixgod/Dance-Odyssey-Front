@@ -62,7 +62,7 @@ import { tap } from 'rxjs/operators';
       console.log(5);
       const formData: FormData = new FormData();
       formData.append('image', juryCV, juryCV.name);
-    
+  
       return this.http.post<any>(`${this.baseURL}updateJuryCV/image/${juryID}`, formData);
     }
     
@@ -70,12 +70,43 @@ import { tap } from 'rxjs/operators';
       return this.http.get<Jury>(`${this.baseURL}/findjurybyid/${id}`);
     }
     getJuryCV(juryID: number): Observable<string> {
-      return this.http.get<string>(`${this.baseURL}getJuryCV/${juryID}`);
+      console.log(juryID);
+      return this.http.get(`${this.baseURL}getJuryCV/${juryID}`, { responseType: 'text' });
     }
+
     savePaymentInfo(paymentInfo: PaymentInfo): Observable<any> {
       const apiUrl = `${this.baseURL}payment`; // Update this with your actual backend API URL for saving payment information
       return this.http.post<any>(apiUrl, paymentInfo);
     }
+      
+    updateUserStatus(userID: number, status: boolean): Observable<any> {
+      const url = `${this.baseURL}updateUserStatus/${userID}`;
+      return this.http.put<any>(url, status);
+    }
+    getUserById(userID: number): Observable<User> {
+      return this.http.get<User>(`${this.baseURL}getUserById/${userID}`);
+    }
+    updateUser(u : User):Observable<User>{
+      return this.http.post<User>(this.baseURL+'updateuser' , u);
+    }
+    getUserCV(userID: number): Observable<string> {
+      return this.http.get(`${this.baseURL}getUserCV/${userID}`, { responseType: 'text' });
+    }
+  
+    updateUserCV(  userID: number, userCV: File): Observable<User> {
+      const formData: FormData = new FormData();
+      formData.append('image', userCV, userCV.name);
+  
+      return this.http.post<User>(`${this.baseURL}updateUserCV/image/${  userID}`, formData);
+    }
+  
+    findUserById(userID: number): Observable<User> {
+      return this.http.get<User>(`${this.baseURL}findUserById/${userID}`);
+    }
+    countUsersByRole(): Observable<any> {
+      return this.http.get<any>(`${this.baseURL}countUsersByRole`);
+    }
   }
+  
   
 

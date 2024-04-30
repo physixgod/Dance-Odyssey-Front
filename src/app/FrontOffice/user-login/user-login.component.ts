@@ -21,29 +21,23 @@ export class UserLoginComponent {
         alert('Login successful.');
         sessionStorage.setItem("loggedIn", "true");
         sessionStorage.setItem("userName", response.userName); // Set the username
-        sessionStorage.setItem("userID", response.userID); // Set the userID
+        sessionStorage.setItem("userID", response.userID);
+        sessionStorage.setItem("status", response.status); // Store status as string
+  
         console.log('Response from backend:', response);
         sessionStorage.setItem("email", response.email);
         sessionStorage.setItem("lastName", response.lastName);
         sessionStorage.setItem("token", response.token);
         sessionStorage.setItem("role", JSON.stringify(response.role));
-        console.log('Username stored:', response.userName);
-      
-        if(response.role.id==1){
+  
+        console.log('Status stored:', response.status);
+  
+        if (response.role.id == 1) {
           this.router.navigate(['/admin']);
-        }
-        else if(response.role.id ==2){
-    
+        } else if (response.role.id == 2) {
           this.router.navigate(['/homepage']);
-          console.log('Username stored:', response);
-
-
-        }
-        
-
-        else {
+        } else {
           this.router.navigate(['/homepage']);
-
         }
       },
       (error) => {
@@ -53,9 +47,11 @@ export class UserLoginComponent {
       }
     );
   }
+  
   navigateToSignUp() {
     this.router.navigate(['/register']); 
   }
+
   navigateToForgotPassword() {
     this.router.navigate(['/forgotpassword']);
   }
