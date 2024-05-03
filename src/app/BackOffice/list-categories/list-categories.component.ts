@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ParentCategory,SubCategory } from './../../models/parentcategories_product';
+import { ParentCategory, SubCategory } from './../../models/parentcategories_product';
 import { ParentCategoryService } from 'src/app/services/parentcategories.service';
 import { SubCategoryService } from 'src/app/services/subcategories.service';
 
@@ -77,5 +77,38 @@ export class ListCategoriesComponent implements OnInit {
   toggleNewSubCategoryInput(category: ParentCategory): void { // Passer la catégorie parent sélectionnée comme argument
     this.selectedParentCategory = category; // Mettre à jour la catégorie parent sélectionnée
     this.showNewSubCategoryInput = !this.showNewSubCategoryInput;
+  }
+
+  updateCategoryImage(event: any, category: ParentCategory): void {
+    const file: File = event.target.files[0]; // Récupérer le fichier à partir de l'événement
+    if (!file) {
+      console.error('No file selected.');
+      return;
+    }
+
+    this.parentCategoryService.updateParentCategoryWithImage(category.id, file)
+      .subscribe(
+        () => {
+          console.log('Category image updated successfully.');
+          // Mettre à jour l'image de la catégorie dans la liste si nécessaire
+        },
+        (error) => {
+          console.error('Error updating category image:', error);
+        }
+      );
+  }
+  // Supprimer une catégorie parente par ID
+  deleteParentCategory(parentId: number): void {
+    this.parentCategoryService.deleteParentCategory(parentId)
+      .subscribe(
+        () => {
+          // Mettre à jour la liste des catégories après la suppression
+          this.parentCategories = this.parentCategories.filter(category => category.id !== parentId);
+          console.log('Parent category deleted successfully.');
+        },
+        (error) => {
+          console.error('Error deleting parent category:', error);
+        }
+      );
   }
 }

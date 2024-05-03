@@ -131,22 +131,19 @@
 								<div><strong>TOTAL</strong></div>
 							</div>
 							<div class="order-products">
-								<div class="order-col">
-									<div>1x Product Name Goes Here</div>
-									<div>$980.00</div>
-								</div>
-								<div class="order-col">
-									<div>2x Product Name Goes Here</div>
-									<div>$980.00</div>
-								</div>
+								<div class="order-col"*ngFor="let orderLine of orderLines">
+									<div> {{orderLine.description}}</div>
+									<div>{{orderLine.totalPrice}} DT</div>
+								</div> 
+								
 							</div>
 							<div class="order-col">
 								<div>Shiping</div>
 								<div><strong>FREE</strong></div>
 							</div>
-							<div class="order-col">
+							<div class="order-col"*ngIf="cart">
 								<div><strong>TOTAL</strong></div>
-								<div><strong class="order-total">$2940.00</strong></div>
+								<div><strong class="order-total">{{cart.totPrice}} DT</strong></div>
 							</div>
 						</div>
 						<div class="payment-method">
@@ -173,8 +170,6 @@
 							<div class="input-radio">
 								<input type="radio" name="payment" id="payment-3">
 								<label for="payment-3">
-									<span></span>
-									Paypal System
 								</label>
 								<div class="caption">
 									<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>

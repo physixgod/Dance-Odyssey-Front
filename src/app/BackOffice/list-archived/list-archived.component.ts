@@ -42,13 +42,13 @@ export class ListArchivedComponent implements OnInit {
   }
 
   unarchiveProduct(productId: number): void {
-    this.router.navigate(['/admin/list-product']);
 
-    this.productService.UnarchiveProduct(productId).subscribe(
+    this.productService.unarchiveProduct(productId).subscribe(
       (response) => {
         console.log('Product unarchived successfully:', response);
       
-        this.loadArchivedProducts();
+        this.loadArchivedProducts();    this.router.navigate(['/admin/list-product']);
+
       },
       error => {
         console.error('Error unarchiving product:', error);

@@ -10,48 +10,61 @@
                     <h5 class="card-title">Edit Product</h5>
                     <form *ngIf="product" (ngSubmit)="saveChanges()" #editForm="ngForm">
                       <!-- Product Name -->
-                      <div class="mb-3">
-                        <label for="productName">Product Name</label>
-                        <input type="text" class="form-control" [(ngModel)]="product.productName" name="productName" id="productName" />
-                      </div>
-                      <!-- Price -->
-                      <div class="mb-3">
-                        <label for="price">Price</label>
-                        <input type="number" class="form-control" [(ngModel)]="product.price" name="price" id="price" />
-                      </div>
-                      <!-- Description -->
-                      <div class="mb-3">
-                        <label for="description">Description</label>
-                        <textarea class="form-control" [(ngModel)]="product.description" name="description" id="description"></textarea>
-                      </div>
-                      <!-- Quantity -->
-                      <div class="mb-3">
-                        <label for="quantity">Quantity</label>
-                        <input type="number" class="form-control" [(ngModel)]="product.quantity" name="quantity" id="quantity" />
-                      </div>
-                      <!-- Date Publication -->
-                      <div class="mb-3">
-                        <label for="datePublication">Date Publication</label>
-                        <input type="date" class="form-control" [(ngModel)]="product.datePublication" name="datePublication" id="datePublication" />
-                      </div>
-                      <!-- Points Price -->
-                      <div class="mb-3">
-                        <label for="pointsPrice">Points Price</label>
-                        <input type="number" class="form-control" [(ngModel)]="product.pointsPrice" name="pointsPrice" id="pointsPrice" />
-                      </div>
-                      <!-- Model -->
-                      <div class="mb-3">
-                        <label for="model">Model</label>
-                        <input type="text" class="form-control" [(ngModel)]="product.model" name="model" id="model" />
-                      </div>
+<div class="mb-3">
+  <label for="productName">Product Name</label>
+  <input type="text" class="form-control" [(ngModel)]="product.productName" name="productName" id="productName" required />
+  <div *ngIf="editForm.controls['productName'].errors?.['required']" class="text-danger"></div>
+</div>
+
+<!-- Price -->
+<div class="mb-3">
+  <label for="price">Price</label>
+  <input type="number" class="form-control" [(ngModel)]="product.price" name="price" id="price" required min="0" />
+  <div *ngIf="editForm.controls['price'].errors?.['required']" class="text-danger"></div>
+  <div *ngIf="editForm.controls['price'].errors?.['min']" class="text-danger">Price cannot be negative.</div>
+</div>
+
+<!-- Description -->
+<div class="mb-3">
+  <label for="description">Description</label>
+  <textarea class="form-control" [(ngModel)]="product.description" name="description" id="description" required></textarea>
+  <div *ngIf="editForm.controls['description'].errors?.['required']" class="text-danger"></div>
+</div>
+
+<!-- Quantity -->
+<div class="mb-3">
+  <label for="quantity">Quantity</label>
+  <input type="number" class="form-control" [(ngModel)]="product.quantity" name="quantity" id="quantity" required min="0" />
+  <div *ngIf="editForm.controls['quantity'].errors?.['required']" class="text-danger"></div>
+  <div *ngIf="editForm.controls['quantity'].errors?.['min']" class="text-danger">Quantity cannot be negative.</div>
+</div>
+
+<!-- Points Price -->
+<div class="mb-3">
+  <label for="pointsPrice">Points Price</label>
+  <input type="number" class="form-control" [(ngModel)]="product.pointsPrice" name="pointsPrice" id="pointsPrice" required min="0" />
+  <div *ngIf="editForm.controls['pointsPrice'].errors?.['required']" class="text-danger"></div>
+  <div *ngIf="editForm.controls['pointsPrice'].errors?.['min']" class="text-danger">Points Price cannot be negative.</div>
+</div>
+
+<!-- Model -->
+<div class="mb-3">
+  <label for="model">Model</label>
+  <input type="text" class="form-control" [(ngModel)]="product.model" name="model" id="model" required />
+  <div *ngIf="editForm.controls['model'].errors?.['required']" class="text-danger">.</div>
+</div>
                      
                       <!-- Product Images -->
                       <div class="mb-3">
                         <label>Product Images</label>
                         <div class="image-container">
                           <div class="image-item" *ngFor="let image of product?.images" (click)="onImageSelected(image)" [class.selected]="image === selectedImage">
-                            <img [src]="image.imageUrl" alt="Product Image" class="img-thumbnail">
-                          </div>
+                            <img *ngIf="isImage(image.imageUrl)" [src]="image.imageUrl" alt="">
+                            <!-- Afficher la vidéo si c'est une vidéo -->
+                            <video *ngIf="isVideo(image.imageUrl)" controls>
+                                <source [src]="image.imageUrl" type="video/mp4">
+                                Your browser does not support the video tag.
+                            </video>                          </div>
                         </div>
                       </div>
                        <!-- Select Image -->

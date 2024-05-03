@@ -30,19 +30,27 @@
                             </a>
                         </div>
                     </div>
-                    <!-- /LOGO -->
                     <div class="col-md-6">
                         <div class="header-search">
                             <form>
-                       
-                                
-                                <input class="input" placeholder="Search DanceOdyssey">
-                                <button class="search-btn">Search</button>
+                                <select class="input-select" (change)="onCategoryChange($event)">
+                                    <option value="0">All categories</option>
+                                    <!-- Boucle pour afficher les catégories parentes et leurs sous-catégories -->
+                                    <ng-container *ngFor="let parentCategory of parentCategories">
+                                        <option [value]="parentCategory.id">{{ parentCategory.type }}</option>
+                                        <!-- Boucle imbriquée pour afficher les sous-catégories -->
+                                        <ng-container *ngFor="let subCategory of parentCategory.subCategories">
+                                            <option [value]="subCategory.id">- {{ subCategory.type }}</option>
+                                        </ng-container>
+                                    </ng-container>
+                                </select>
+                                <input class="input" placeholder="Search DanceOdyssey" [(ngModel)]="searchTerm" name="searchTerm">
+                                <button class="search-btn" (click)="searchProducts()">Search</button>
+
                             </form>
                         </div>
                     </div>
                     
-
 
 <!-- /SEARCH BAR -->
 
@@ -67,10 +75,10 @@
 
                             <!-- Cart -->
                             <div class="dropdown">
-                                <a class="dropdown-toggle" data-toggle="dropdown" aria-expanded="true">
+                                <a class="dropdown-toggle" data-toggle="dropdown" aria-expanded="true" [routerLink]="['/product/cart']">
                                     <i class="fa fa-shopping-cart"></i>
                                     <span>Your Cart</span>
-                                    <div class="qty">3</div>
+                                    <div class="qty"*ngFor="let orderLine of orderLines">{{orderLine.nbProdO}}</div>
                                 </a>
                                 <div class="cart-dropdown">
                                     <div class="cart-list">
@@ -150,12 +158,10 @@
 <ul class="main-nav nav navbar-nav">
 
 <li><a [routerLink]="['/product/homeproduct']">Home</a></li>
-<li><a href="#">Top Categories</a></li>
-<li><a href="#">Top Selling</a></li>
-<li><a href="#">Top Raiting</a></li>
-<li><a href="#">Services Client</a></li>
-
-
+<li><a [routerLink]="['/product/latestProducts']">Latest Products</a></li>
+<li><a [routerLink]="['/product/bestsellers']">Best Sellers</a></li>
+<li><a [routerLink]="['/product/topRanking']">Top Ranking Products</a></li>
+<li><a [routerLink]="['/product/most']"> Offered Products</a></li>
 </ul>
 
                 <!-- /NAV -->

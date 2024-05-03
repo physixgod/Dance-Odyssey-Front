@@ -1,31 +1,34 @@
-import {SubCategory} from "src/app/models/subcategories_product"
-import { ParentCategory } from "./parentcategories_product";
+import { SubCategory } from 'src/app/models/subcategories_product';
+import { ParentCategory } from './parentcategories_product';
+
 export class Product {
-  idProduct: number; 
-  refProduct: number; 
-  productName: string; 
-  price: number; 
-  pointsPrice: number; 
-  description: string; 
-  productState: boolean; 
-  model: string; 
-  quantity: number; 
-  archived: boolean; 
-  datePublication: Date; 
-  isPromotion: boolean; 
-  pricePromotion: number; 
-  pourcentagePromotion: number; 
-  quantiteVendue: number; 
-  images: Image[]; 
-  ratingProductsP: RatingProduct[]; 
-  parentCategory: ParentCategory; // Ajoutez cette propriété pour la relation avec ParentCategory
-  subCategories: SubCategory[] = []; // Propriété pour stocker les sous-catégories associées au produit
+  idProduct: number;
+  productName: string;
+  price: number;
+  pointsPrice: number;
+  description: string;
+  productState: boolean;
+  model: string;
+  avreageScore:number;
+  quantity: number;
+  archived: boolean;
+  datePublication: Date;
+  isPromotion: boolean;
+  pricePromotion: number;
+  pourcentagePromotion: number;
+  quantiteVendue: number;
+  images: Image[];
+  promotionEndDate: Date;   // Date de fin de la promotion
+
+  ratingProductsP: RatingProduct[];
+  parentCategory: ParentCategory;
+  subCategories: SubCategory[];
 
   constructor(
     idProduct: number,
-    refProduct: number,
     productName: string,
     price: number,
+    avreageScore:number,
     pointsPrice: number,
     description: string,
     productState: boolean,
@@ -37,12 +40,14 @@ export class Product {
     pricePromotion: number,
     pourcentagePromotion: number,
     quantiteVendue: number,
+    promotionEndDate: Date,   // Date de fin de la promotion
+
     images: Image[],
     ratingProductsP: RatingProduct[],
-    parentCategory: ParentCategory // Ajoutez ce paramètre dans le constructeur
+    parentCategory: ParentCategory,
+    subCategories: SubCategory[] = []
   ) {
     this.idProduct = idProduct;
-    this.refProduct = refProduct;
     this.productName = productName;
     this.price = price;
     this.pointsPrice = pointsPrice;
@@ -58,39 +63,33 @@ export class Product {
     this.quantiteVendue = quantiteVendue;
     this.images = images;
     this.ratingProductsP = ratingProductsP;
-    this.parentCategory = parentCategory; // Initialisez la propriété parentCategory
+    this.parentCategory = parentCategory;
+    this.subCategories = subCategories;
+    this.promotionEndDate = promotionEndDate;
+    this.avreageScore = avreageScore;
+
   }
 }
 
-
 export class RatingProduct {
   id: number;
-  feedback: string;
+  feedBack: string;
   score: number;
 
-  constructor(id: number, feedback: string, score: number) {
+  constructor(id: number, feedBack: string, score: number) {
     this.id = id;
-    this.feedback = feedback;
+    this.feedBack = feedBack;
     this.score = score;
   }
 }
 
 export class Image {
-  id!: number;
-  imageUrl!: string;
+  id: number;
+  imageUrl: string;
   isSelected?: boolean;
 
   constructor(id: number, imageUrl: string) {
     this.id = id;
     this.imageUrl = imageUrl;
-   
   }
-
 }
-
-
-
-
-
-
-

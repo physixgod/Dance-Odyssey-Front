@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ProductService } from 'src/app/services/product.service';
 import { Product, Image } from 'src/app/models/product';
-import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-edit-product',
@@ -35,6 +34,7 @@ export class EditProductComponent implements OnInit {
         if (data && data.length > 0) {
           this.product = { ...data[0] };
         } else {
+          console.error('Le produit avec l\'ID spécifié n\'a pas été trouvé.');
         }
       },
       (error) => {
@@ -44,24 +44,32 @@ export class EditProductComponent implements OnInit {
   }
 
   saveChanges(): void {
-    const productId = this.product ? this.product.idProduct : undefined;
+    if (!this.product) {
+      console.error('Erreur: Le produit est undefined.');
+      return;
+    }
   
+    const productId = this.product.idProduct;
+    
     if (productId !== undefined) {
-      this.productService.updateProductById(productId, this.product!).subscribe(
+      this.productService.updateProductById(productId, this.product).subscribe(
         (updatedProduct: Product) => {
           console.log('Détails du produit mis à jour avec succès:', updatedProduct);
-  
-          if (this.selectedFile && this.selectedImage) {
-            this.productService.updateImageUrl(
+
+          const mediaId = this.selectedImage ? this.selectedImage.id : undefined;
+
+          if (productId !== undefined && mediaId !== undefined && this.selectedFile) {
+            this.productService.updateMediaForProduct(
               productId,
-              this.selectedImage.id,
-              this.selectedFile!
+              mediaId,
+              [this.selectedFile]
             ).subscribe(
-              (updatedImageUrl) => {
-                console.log('URL de l\'image mise à jour avec succès. Nouvelle URL:', updatedImageUrl);
+              (newMediaFiles: string[]) => {
+                console.log('URL de l\'image mise à jour avec succès. Nouvelle URL:', newMediaFiles);
                 if (this.selectedImage) {
-                  this.selectedImage.imageUrl = updatedImageUrl;
-                }
+                  this.selectedImage.imageUrl = newMediaFiles[0];
+                }    
+                this.router.navigate(['/admin/list-product']);
               },
               (error) => {
                 console.error('Erreur lors de la mise à jour de l\'URL de l\'image:', error);
@@ -69,21 +77,26 @@ export class EditProductComponent implements OnInit {
                 console.error('Statut:', error.status);
               }
             );
+          } else {
+            console.error('Erreur: Informations insuffisantes pour mettre à jour l\'image.');
           }
         },
         (error) => {
-          console.error('Erreur lors de la mise à jour du produit:', error);
-          console.error('Message d\'erreur du serveur:', error.error);
-          console.error('Statut:', error.status);
+          console.error('Erreur lors de la mise à jour des détails du produit:', error);
         }
       );
     } else {
-      console.error('Erreur: Le produit est undefined ou idProduct est undefined.');
+      console.error('Erreur: Impossible de mettre à jour le produit car l\'ID est indéfini.');
     }
-    this.router.navigate(['/admin/list-product']);
+  }
 
+  isImage(url: string): boolean {
+    return url.match(/\.(jpeg|jpg|gif|png)$/) != null;
   }
   
+  isVideo(url: string): boolean {
+    return url.match(/\.(mp4|ogg|webm)$/) != null;
+  } 
 
   onImageSelected(image: Image): void {
     this.selectedImage = image;

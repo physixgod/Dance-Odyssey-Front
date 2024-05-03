@@ -1,50 +1,60 @@
 <div class="container">
-    <div class="row">
-      <div class="col-md-12">
-        <div class="table-responsive">
-          <table class="table table-hover">
-            <thead>
-              <tr>
-                <th>Category</th>
-                <th>Subcategories</th>
-                <th>Actions</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr *ngFor="let category of parentCategories">
-                <td>{{ category.type }}</td>
-                <td>
-                  <ul class="list-unstyled">
-                    <li *ngFor="let subCategory of category.subCategories" (click)="selectSubCategory(subCategory)" [class.selected]="subCategory === selectedSubCategory">{{ subCategory.type }}</li>
-                  </ul>
-                </td>
-                <td>
-                  <div class="text-center">
-                    <button class="btn btn-sm btn-primary mb-2" (click)="toggleNewSubCategoryInput(category)">
-                      <i class="fas fa-plus"></i> Add Subcategory
-                    </button>
-                    <br>
-                    <div class="input-group mb-2" *ngIf="showNewSubCategoryInput && selectedParentCategory === category">
-                      <input type="text" class="form-control" [(ngModel)]="newSubCategoryType" placeholder="New Subcategory Name">
-                      <div class="input-group-append">
-                        <button class="btn btn-success" [disabled]="!newSubCategoryType" (click)="addSubCategory(category)">
-                          <i class="fas fa-check"></i> Save
-                        </button>
-                        <button class="btn btn-danger" (click)="toggleNewSubCategoryInput(category)">
-                          <i class="fas fa-times"></i> Cancel
-                        </button>
-                      </div>
+  <div class="row">
+    <div class="col-md-12">
+      <div class="table-responsive">
+        <table class="table table-hover">
+          <thead>
+            <tr>
+              <th>Image</th>
+              <th>Category</th>
+              <th>Subcategories</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let category of parentCategories">
+              <td>
+                <img *ngIf="category.imgUrl" [src]="category.imgUrl" alt="Category Image" class="category-img">
+              </td>
+              <td>{{ category.type }}</td>
+              <td>
+                <ul class="subcategories-list">
+                  <li *ngFor="let subCategory of category.subCategories" (click)="selectSubCategory(subCategory)" [class.selected]="subCategory === selectedSubCategory">{{ subCategory.type }}</li>
+                </ul>
+              </td>
+              <td>
+                <div class="actions-buttons">
+                  <button class="btn btn-sm btn-primary mb-2" (click)="toggleNewSubCategoryInput(category)">
+                    <i class="fas fa-plus"></i> Add Subcategory
+                  </button>
+                  <div class="input-group mb-2" *ngIf="showNewSubCategoryInput && selectedParentCategory === category">
+                    <input type="text" class="form-control" [(ngModel)]="newSubCategoryType" placeholder="New Subcategory Name">
+                    <div class="input-group-append">
+                      <button class="btn btn-success" [disabled]="!newSubCategoryType" (click)="addSubCategory(category)">
+                        <i class="fas fa-check"></i> Save
+                      </button>
+                      <button class="btn btn-danger" (click)="toggleNewSubCategoryInput(category)">
+                        <i class="fas fa-times"></i> Cancel
+                      </button>
                     </div>
-                    <button class="btn btn-sm btn-danger" [disabled]="!selectedSubCategory" (click)="deleteSubCategory(category)">
-                      <i class="fas fa-trash"></i> Delete Subcategory
-                    </button>
                   </div>
-                </td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
+                  <button class="btn btn-sm btn-danger" [disabled]="!selectedSubCategory" (click)="deleteSubCategory(category)">
+                    <i class="fas fa-trash"></i> Delete Subcategory
+                  </button>
+                    <button class="btn btn-sm btn-danger" (click)="deleteParentCategory(category.id)">
+                      <i class="fas fa-trash"></i> Delete Category
+                    </button>
+                  <!-- Bouton pour mettre à jour l'image de la catégorie -->
+                  <label class="btn btn-sm btn-info">
+                    <i class="fas fa-upload"></i> Update Image
+                    <input type="file" style="display:none;" (change)="updateCategoryImage($event, category)">
+                  </label>
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
       </div>
     </div>
   </div>
-  
+</div>

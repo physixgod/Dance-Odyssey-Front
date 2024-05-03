@@ -1,4 +1,49 @@
-.selected {
-    color: red; /* Changez la couleur selon vos besoins */
-    transition: color 0.3s ease; /* Ajoutez une transition pour la couleur */
-  }
+/* Style pour l'image de la catégorie */
+.category-img {
+  width: 60px; /* Augmentation de la taille de l'image */
+  height: 60px; /* Augmentation de la taille de l'image */
+  border-radius: 50%; /* Ajout d'un arrondi pour un aspect plus agréable */
+  object-fit: cover; /* Assurez-vous que l'image est entièrement couverte */
+}
+
+/* Style pour la liste des sous-catégories */
+.subcategories-list {
+  padding: 0; /* Suppression du padding par défaut */
+  list-style: none; /* Suppression des puces */
+}
+
+.subcategories-list li {
+  cursor: pointer; /* Curseur pointeur au survol */
+  margin-bottom: 5px; /* Ajout d'un espace entre les éléments de la liste */
+  border: auto solid #f5c6cb; /* Bordure pour indiquer la sélection */
+
+}
+.subcategories-list li.selected {
+  font-weight: bold; /* Texte en gras pour la sous-catégorie sélectionnée */
+  background-color: #f8d7da; /* Couleur de fond pour indiquer la sélection */
+  border: auto solid #f5c6cb; /* Bordure pour indiquer la sélection */
+  padding: 5px; /* Ajout de rembourrage pour plus de visibilité */
+}
+/* Style pour les boutons d'action */
+.actions-buttons {
+  display: flex; /* Affichage en ligne des boutons */
+  flex-direction: column; /* Alignement des boutons en colonne */
+}
+
+.actions-buttons button {
+  margin-bottom: 10px; /* Augmentation de l'espace entre les boutons */
+  width: 50%; /* Réglage de la largeur des boutons à 100% */
+}
+
+.actions-buttons button i {
+  margin-right: 8px; /* Ajustement de l'espace entre l'icône et le texte */
+}
+
+/* Style pour le bouton de mise à jour de l'image */
+.actions-buttons label.btn {
+  width: 50%; /* Réglage de la largeur du label à 100% */
+}
+
+.actions-buttons label.btn i {
+  margin-right: 8px; /* Ajustement de l'espace entre l'icône et le texte */
+}

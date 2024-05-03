@@ -1,0 +1,25 @@
+/* Styles pour les boutons */
+.actions-buttons button {
+    margin-right: 5px; /* Espacement entre les boutons */
+    padding: 8px 12px; /* Remplissage des boutons */
+    font-size: 14px; /* Taille de la police */
+    border: none; /* Suppression de la bordure */
+    border-radius: 4px; /* Arrondi des coins */
+    cursor: pointer; /* Curseur pointeur au survol */
+  }
+  
+  .actions-buttons button:hover {
+    opacity: 0.8; /* Réduire légèrement l'opacité au survol */
+  }
+  
+  /* Styles spécifiques pour chaque type de bouton */
+  .actions-buttons .refuse-button {
+    background-color: #dc3545; /* Couleur de fond pour le bouton Refuser */
+    color: #fff; /* Couleur du texte */
+  }
+  
+  .actions-buttons .accept-button {
+    background-color: #28a745; /* Couleur de fond pour le bouton Accepter */
+    color: #fff; /* Couleur du texte */
+  }
+  

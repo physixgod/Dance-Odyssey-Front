@@ -7,6 +7,16 @@
 <!-- Slick -->
 <link type="text/css" rel="stylesheet" href="/assets/FrontShop/css/slick.css"/>
 <link type="text/css" rel="stylesheet" href="/assets/FrontShop/css/slick-theme.css"/>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+<!-- Include Slick CSS -->
+<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.css"/>
+
+<!-- Include Slick theme CSS -->
+<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick-theme.min.css"/>
+
+<!-- Include Slick JavaScript -->
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.js"></script>
 
 <!-- nouislider -->
 <link type="text/css" rel="stylesheet" href="/assets/FrontShop/css/nouislider.min.css"/>
@@ -17,8 +27,30 @@
 <!-- Custom stlylesheet -->
 <link type="text/css" rel="stylesheet" href="/assets/FrontShop/css/style.css"/>
 
+		<!-- SECTION -->
+		<div class="section">
+			<!-- container -->
+			<div class="container">
+				<!-- row -->
+				<div class="row">
+					<!-- shop -->
+					<div class="col-md-4 col-xs-6" *ngFor="let category of parentCategories">
+						<div class="shop">
+							<div class="">
+								<img class="custom-image" [src]="category.imgUrl" alt="">
+							</div>
+							<div class="shop-body">
+								<h3>{{ category.type }}<br></h3>
+								<a [routerLink]="['/product//store', category.id]" class="cta-btn">Shop now <i class="fa fa-arrow-circle-right"></i></a>
+							</div>
+						</div>
+					</div>
+					<!-- /shop -->
+			
 		<!-- /SECTION -->
-<!-- SECTION -->
+<div class="section">
+
+				  
 <div class="section">
 	<!-- container -->
 	<div class="container">
@@ -37,52 +69,56 @@
 			<!-- /section title -->
 
 			<!-- Products tab & slick -->
-			<div class="col-md-12">
-				<div class="row">
-					<div class="products-tabs">
-						<!-- tab -->
-						<div id="tab1" class="tab-pane active">
-							<div class="products-slick" data-nav="#slick-nav-1">
-							
-								<!-- product -->
-								<div class="product" *ngFor="let product of last5Products">
-									<div class="product-img">
-										<img *ngIf="product.images.length > 0" [src]="product.images[0].imageUrl" alt="Product Image" class="product-image">
-									</div>
-									<div class="product-body">
-										<h3 class="product-name"><a href="#">{{ product.productName }}</a></h3>
-										<h4 class="product-price">{{ product.price }}</h4>
-										<div class="product-rating">
-											<i class="fa fa-star"></i>
-											<i class="fa fa-star"></i>
-											<i class="fa fa-star"></i>
-											<i class="fa fa-star"></i>
-											<i class="fa fa-star"></i>
-										</div>
-										<div class="product-btns">
-											<button class="add-to-wishlist"><i class="fa fa-heart-o"></i><span class="tooltipp">add to wishlist</span></button>
-											<button class="add-to-compare"><i class="fa fa-exchange"></i><span class="tooltipp">add to compare</span></button>
-											<button class="quick-view" [routerLink]="['/product/viewproduct', product.idProduct]"><i class="fa fa-eye"></i><span class="tooltipp">quick view</span></button>
-										</div>
-									</div>
-									<div class="add-to-cart">
-										<button class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i> add to cart</button>
-									</div>
+<div class="col-md-12">
+    <div class="row">
+        <div class="products-tabs">
+            <!-- tab -->
+            <div id="tab1" class="tab-pane active">
+                <div class="products-slick" data-nav="#slick-nav-1">
+                    <!-- product -->
+                    <div class="product" *ngFor="let product of last5Products">
+                        <div class="product-img">
+                            <img *ngIf="product.images.length > 0" [src]="product.images[1].imageUrl" alt="Product Image" class="product-image">
+                            <div class="product-label">
+                                <span class="new">NEW</span>
+                        
+                            </div>
+                        </div>
+                        <div class="product-body">
+                            <h3 class="product-name"><a href="#">{{ product.productName }}</a></h3>
+                            <!-- Vérifier si le produit est en promotion -->
+                            <ng-container *ngIf="product.pricePromotion">
+                                <h4 class="product-price">{{ product.pricePromotion }} DT <del class="product-old-price">{{ product.price }} DT</del></h4>
+                            </ng-container>
+                            <ng-container *ngIf="!product.pricePromotion">
+                                <h4 class="product-price">{{ product.price }} DT</h4>
+                            </ng-container>
+								<div class="product-rating">
+									<ng-container *ngFor="let star of generateStars(product.avreageScore)">
+										<i class="{{ star }}"></i>
+									</ng-container>
 								</div>
-								<!-- /product -->
-							</div>
-					 
-						</div>
-						<!-- /tab -->
-					</div>
-			  
-				</div>
-				<div id="slick-nav-1" class="products-slick-nav">
-					<button id="slick-prev-1" class="slick-prev" onclick="slickPrev()"><i class="fa fa-chevron-left"></i> Previous</button>
-					<button id="slick-next-1" class="slick-next" onclick="slickNext()">Next <i class="fa fa-chevron-right"></i></button>
-				</div>
-			</div>
-			<!-- Products tab & slick -->
+                            <div class="product-btns">
+                                <button class="quick-view" [routerLink]="['/product/viewproduct', product.idProduct]"><i class="fa fa-eye"></i><span class="tooltipp">quick view</span></button>
+                            </div>
+                        </div>
+                        <div class="add-to-cart">
+							<button class="add-to-cart-btn" (click)="addProductToOrderAndCreateCart(product.idProduct)"> <i class="fa fa-shopping-cart"></i> add to cart</button>
+                        </div>
+                    </div>
+                    <!-- /product -->
+                </div>
+            </div>
+            <!-- /tab -->
+        </div>
+        <div id="slick-nav-1" class="products-slick-nav">
+            <button id="slick-prev-1" class="slick-prev" onclick="slickPrev()"><i class="fa fa-chevron-left"></i> Previous</button>
+            <button id="slick-next-1" class="slick-next" onclick="slickNext()">Next <i class="fa fa-chevron-right"></i></button>
+        </div>
+    </div>
+    <!-- Products tab & slick -->
+</div>
+
 		</div>
 	 
 		<!-- /row -->
@@ -124,26 +160,33 @@
 								<!-- product -->
 								<div class="product" *ngFor="let product of PromotionalProducts">
 									<div class="product-img">
-										<img *ngIf="product.images.length > 0" [src]="product.images[0].imageUrl" alt="Product Image" class="product-image">
+										<img *ngIf="product.images.length > 0 && isValidImage(product.images[0].imageUrl)" 
+										[src]="product.images[1].imageUrl" 
+										alt="Product Image" 
+										class="product-image">
+																		   <div class="product-label">
+											<span class="sale">-{{ product.pourcentagePromotion }}%</span>
+											
+										</div>
+									
 									</div>
 									<div class="product-body">
 										<h3 class="product-name"><a href="#">{{ product.productName }}</a></h3>
-										<h4 class="product-price">{{ product.price }}</h4>
+										<h4 class="product-price">{{ product.pricePromotion }} DT   <del class="product-old-price">{{ product.price }} DT</del></h4>
+										promotionEndDate <br>{{ product.promotionEndDate }}
 										<div class="product-rating">
-											<i class="fa fa-star"></i>
-											<i class="fa fa-star"></i>
-											<i class="fa fa-star"></i>
-											<i class="fa fa-star"></i>
-											<i class="fa fa-star"></i>
+											<ng-container *ngFor="let star of generateStars(product.avreageScore)">
+												<i class="{{ star }}"></i>
+											</ng-container>
 										</div>
+		  
 										<div class="product-btns">
-											<button class="add-to-wishlist"><i class="fa fa-heart-o"></i><span class="tooltipp">add to wishlist</span></button>
-											<button class="add-to-compare"><i class="fa fa-exchange"></i><span class="tooltipp">add to compare</span></button>
 											<button class="quick-view" [routerLink]="['/product/viewproduct', product.idProduct]"><i class="fa fa-eye"></i><span class="tooltipp">quick view</span></button>
 										</div>
 									</div>
 									<div class="add-to-cart">
-										<button class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i> add to cart</button>
+										<button class="add-to-cart-btn" (click)="addProductToOrderAndCreateCart(product.idProduct)">
+											<i class="fa fa-shopping-cart"></i> add to cart</button>
 									</div>
 								</div>
 								<!-- /product -->
@@ -193,20 +236,27 @@
 										<!-- Affichage des produits du catalogue "Top Rated" -->
 										<div class="product"*ngFor="let product of topRatingProducts">
 											<div class="product-img">
-												<img *ngIf="product.images.length > 0" [src]="product.images[0].imageUrl" alt="Product Image" class="product-image">
+												<img *ngIf="product.images.length > 0" [src]="product.images[1].imageUrl" alt="Product Image" class="product-image">
 											</div>
 											<div class="product-body">
+
 												<h3 class="product-name"><a href="#">{{ product.productName }}</a></h3>
-												<h4 class="product-price">{{ product.price }}</h4>
-												<div class="product-btns">
-													<button class="add-to-wishlist"><i class="fa fa-heart-o"></i><span class="tooltipp">add to wishlist</span></button>
-													<button class="add-to-compare"><i class="fa fa-exchange"></i><span class="tooltipp">add to compare</span></button>
+ <ng-container *ngIf="product.pricePromotion">
+                                <h4 class="product-price">{{ product.pricePromotion }} DT <del class="product-old-price">{{ product.price }} DT</del></h4>
+                            </ng-container>
+                            <ng-container *ngIf="!product.pricePromotion">
+                                <h4 class="product-price">{{ product.price }} DT</h4>
+                            </ng-container>												<div class="product-btns">
+													<div class="product-rating">
+														<ng-container *ngFor="let star of generateStars(product.avreageScore)">
+															<i class="{{ star }}"></i>
+														</ng-container>
+													</div>
 													<button class="quick-view" [routerLink]="['/product/viewproduct', product.idProduct]"><i class="fa fa-eye"></i><span class="tooltipp">quick view</span></button>
 												</div>											</div>
-											<div class="add-to-cart">
-												<button class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i> add to cart</button>
-
-											</div>
+												<div class="add-to-cart">
+													<button class="add-to-cart-btn" (click)="addProductToOrderAndCreateCart(product.idProduct)"> <i class="fa fa-shopping-cart"></i> add to cart</button>
+												</div>
 										</div>
 										<!-- /product -->
 

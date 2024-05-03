@@ -13,13 +13,13 @@
             <table class="table table-striped table-bordered">
               <thead>
                 <tr>
-                  <th>Picture</th>
+                  <th>Pictures</th>
                   <th>Product Name</th>
-                  <th>Reference</th>
-                  <th>Price</th>
                   <th>Points Price</th>
+                  <th>Price</th>
+                  <th>PoPromo</th>
+                  <th>Price Promotion</th>
                   <th>Model</th>
-                  <th>Publication date</th>
                   <th>Quantity</th>
                   <th>Actions</th>
                 </tr>
@@ -31,11 +31,11 @@
                     <img *ngIf="product.images.length > 0" [src]="product.images[0].imageUrl" alt="Image du produit" class="product-image">
                   </td>
                   <td>{{ product.productName }}</td>
-                  <td>{{ product.refProduct }}</td>
-                  <td>{{ product.price }}</td>
                   <td>{{ product.pointsPrice }}</td>
+                  <td>{{ product.price }}</td>
+                  <td>{{ product.pourcentagePromotion }}</td>
+                  <td>{{ product.pricePromotion }}</td>
                   <td>{{ product.model }}</td>
-                  <td>{{ product.datePublication | date: 'short' }}</td>
                   <td>{{ product.quantity }}</td>
                   <td>
                     <div class="button-group">

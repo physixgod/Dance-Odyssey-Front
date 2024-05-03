@@ -8,11 +8,17 @@
               <div class="card text-center">
                 <div class="card-body">
                   <h5 class="card-title">Add a category with subcategories</h5>
-                  <form (ngSubmit)="createCategoryWithSubcategories()">
+                  <form>
                     <!-- Type de Catégorie -->
                     <div class="mb-3">
                       <label for="categoryType">Category type:</label>
                       <input type="text" class="form-control" id="categoryType" name="categoryType" [(ngModel)]="category.type" required>
+                    </div>
+
+                    <!-- Champ pour sélectionner une image (affiché uniquement si le type de catégorie est défini) -->
+                    <div class="mb-3" *ngIf="category.type">
+                      <label for="categoryImage">Category Image:</label>
+                      <input type="file" class="form-control" id="categoryImage" name="categoryImage" (change)="onFileSelected($event)" accept="image/*">
                     </div>
 
                     <!-- Sous-catégories -->
@@ -20,7 +26,7 @@
                       <label for="subCategoryInput">Add a subcategory:</label>
                       <div class="input-group">
                         <input type="text" class="form-control" id="subCategoryInput" name="subCategoryInput" [(ngModel)]="newSubCategory" required>
-                       <button type="button" class="btn btn-primary" (click)="addSubCategory()">Add Subcategories</button>
+                        <button type="button" class="btn btn-primary" (click)="addSubCategory()">Add Subcategories</button>
                       </div>
                     </div>
                     
@@ -32,10 +38,9 @@
                     </div>
 
                     <!-- Bouton Ajouter Catégorie -->
-                    <div class="row justify-content-center"> <!-- Utilisez justify-content-center pour centrer horizontalement -->
+                    <div class="row justify-content-center">
                       <div class="col-sm-10">
-                        <button type="submit" class="btn btn-primary">
-                          Add a category</button>
+                        <button type="button" class="btn btn-primary" (click)="addCategoryWithImage()">Save category Add a category</button>
                       </div>
                     </div>
                   </form>

@@ -1,10 +1,14 @@
-import { TestComponent } from './FrontProduct/test/test.component';
+import { TopRankingComponent } from './FrontProduct/top-ranking/top-ranking.component';
+import { MostofferedComponent } from './FrontProduct/mostoffered/mostoffered.component';
+import { BestSellersComponent } from './FrontProduct/best-sellers/best-sellers.component';
+import { LatestProductsComponent } from './FrontProduct/latest-products/latest-products.component';
+import { StoreComponent } from './FrontProduct/store/store.component';
+import { ManageOrdersComponent } from './BackOffice/manage-orders/manage-orders.component';
 import { HomeProductComponent } from './FrontProduct/home-product/home-product.component';
 import { SidebarBackComponent } from './BackOffice/sidebar-back/sidebar-back.component';
 import { CheckoutComponent } from './FrontProduct/checkout/checkout.component';
 import { CartComponent } from './FrontProduct/cart/cart.component';
 import { ViewProductComponent } from './FrontProduct/view-product/view-product.component';
-import { ProductDetailComponent } from './FrontProduct/product-detail/product-detail.component';
 import { AlltemplateFrontProductComponent } from './FrontProduct/alltemplate-front-product/alltemplate-front-product.component';
 import { Component, NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
@@ -29,19 +33,23 @@ const routes: Routes = [
     {path:'homepage', component: HomeComponent },
     {path:'competitions', component:ListCompetitionsComponent},
 
+
   ]
 },
 {
   path:"product",
   component: AlltemplateFrontProductComponent,
   children: [
-    {path:'detailproduct',component:ProductDetailComponent},
     {path:'viewproduct/:id',component:ViewProductComponent},
     {path:'cart',component:CartComponent},
     {path:'checkout',component:CheckoutComponent},
     {path:'homeproduct',component:HomeProductComponent},
+    {path:'store/:id',component:StoreComponent},
+    {path:'latestProducts',component:LatestProductsComponent},
+    {path:'bestsellers',component:BestSellersComponent},
+    {path:'most',component:MostofferedComponent},
+    {path:'topRanking',component:TopRankingComponent},
 
-    {path:'test',component:TestComponent},
 
 
 
@@ -63,6 +71,8 @@ const routes: Routes = [
     { path: 'list-event', component: AddCompetitionComponent },
     {path:'add-product',component:AddProductComponent},
     { path:'list-product',component:ListProductComponent},
+    {path:'orderslist', component:ManageOrdersComponent},
+
     
 {path:'edit-product/:id',component:EditProductComponent},
 {path:'add-Categoriesproduct',component:CategorieProductComponent},

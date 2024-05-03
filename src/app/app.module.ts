@@ -27,12 +27,17 @@ import { HeaderComponent } from './FrontProduct/header/header.component';
 import { FooterComponent } from './FrontProduct/footer/footer.component';
 import { AlltemplateFrontProductComponent } from './FrontProduct/alltemplate-front-product/alltemplate-front-product.component';
 
-import { ProductDetailComponent } from './FrontProduct/product-detail/product-detail.component';
 import { ViewProductComponent } from './FrontProduct/view-product/view-product.component';
 import { CartComponent } from './FrontProduct/cart/cart.component';
 import { CheckoutComponent } from './FrontProduct/checkout/checkout.component';
 import { HomeProductComponent } from './FrontProduct/home-product/home-product.component';
-import { TestComponent } from './FrontProduct/test/test.component';
+import { ManageOrdersComponent } from './BackOffice/manage-orders/manage-orders.component';
+import { StoreComponent } from './FrontProduct/store/store.component';
+import { LatestProductsComponent } from './FrontProduct/latest-products/latest-products.component';
+import { BestSellersComponent } from './FrontProduct/best-sellers/best-sellers.component';
+import { MusicComponent } from './FrontProduct/music/music.component';
+import { MostofferedComponent } from './FrontProduct/mostoffered/mostoffered.component';
+import { TopRankingComponent } from './FrontProduct/top-ranking/top-ranking.component';
 
 @NgModule({
   declarations: [
@@ -59,12 +64,17 @@ import { TestComponent } from './FrontProduct/test/test.component';
     FooterComponent,
     AlltemplateFrontProductComponent,
    
-    ProductDetailComponent,
     ViewProductComponent,
     CartComponent,
     CheckoutComponent,
     HomeProductComponent,
-    TestComponent,
+    ManageOrdersComponent,
+    StoreComponent,
+    LatestProductsComponent,
+    BestSellersComponent,
+    MusicComponent,
+    MostofferedComponent,
+    TopRankingComponent,
 
    
   ],
