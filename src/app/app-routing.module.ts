@@ -7,6 +7,12 @@ import { AddCompetitionComponent } from './BackOffice/add-competition/add-compet
 import { HomeComponent } from './FrontOffice/home/home.component';
 import { ListCompetitionsComponent } from './FrontOffice/list-competitions/list-competitions.component';
 import { AddEventComponent } from './FrontOffice/add-event/add-event.component';
+import { UserRegisterComponent } from './FrontOffice/user-register/user-register.component';
+import { TableadminComponent } from './BackOffice/tableadmin/tableadmin.component';
+import { UserLoginComponent } from './FrontOffice/user-login/user-login.component';
+import { config } from 'rxjs';
+import { AuthGuardService } from './services/AuthGuardService';
+import { UsereditComponent } from './FrontOffice/useredit/useredit.component';
 import { EventsListComponent } from './FrontOffice/events-list/events-list.component';
 import { TestComponent } from './test/test.component';
 import { ArchiveCompetitionsComponent } from './BackOffice/archive-competitions/archive-competitions.component';
@@ -28,13 +34,15 @@ import { ResultsComponent } from './FrontOffice/results/results.component';
 
 
 
+
 const routes: Routes = [
 { path:"",
   component: AllTemplateFrontComponent,
   children:[
-    {path:'homepage', component: HomeComponent },
-    {path:'competitions', component:ListCompetitionsComponent},
-    {path:'addevent', component:AddEventComponent},
+
+    {path:'homepage', component: HomeComponent, canActivate:[AuthGuardService] },
+    {path:'competitions', component:ListCompetitionsComponent,canActivate:[AuthGuardService]},
+    {path:'addevent', component:AddEventComponent,canActivate:[AuthGuardService]},
     {path:'listevents', component:EventsListComponent},
     {path:'competition/:id',component:ReadmoreCompetitionsComponent},
     {path:'myCompetitions/:id',component:MyCompetitionsComponent},
@@ -50,20 +58,31 @@ const routes: Routes = [
 
 
 
-    
-
+  
   ]
 },{
   path:'eventFlyer',component:EventFlyerComponent
   
 },
+{ path: 'login', component: UserLoginComponent }, // Ad
+{
+  path:'register',component:UserRegisterComponent
+},
+{
+  path: 'profile',
+  component: UsereditComponent
+},
 {
   path:"admin",
   component: AllTemplateBackComponent,
+  canActivate:[AuthGuardService],
   children: [
     { path: 'list-competition', component: ListCompetitionComponent },
     { path: 'add-competition', component: AddCompetitionComponent },
     { path: 'list-event', component: AddCompetitionComponent },
+
+    {path: 'usersList', component: TableadminComponent},
+    {path:'useredit',component:UsereditComponent},
     { path: 'archivecometitions',component:ArchiveCompetitionsComponent},
     { path: 'leaderboard/:id', component: CompetitionRanksComponent },
     {path:'competitionDancers/:id', component:ShowCompetitionsDancersComponent},
@@ -71,13 +90,15 @@ const routes: Routes = [
     {path:'CompetitionPDF/:id',component:CompetitionPDFComponent},
     
     
-    
   ]
-}
+},
+{path:'**', redirectTo : 'homepage'},
+
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  imports: [RouterModule.forRoot(routes), RouterModule.forRoot(routes,{useHash:true})],
+  exports: [RouterModule],
+  providers: [AuthGuardService]
 })
 export class AppRoutingModule { }

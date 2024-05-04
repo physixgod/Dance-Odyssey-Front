@@ -13,11 +13,20 @@ import { FooterFrontComponent } from './FrontOffice/footer-front/footer-front.co
 import { HeaderFrontComponent } from './FrontOffice/header-front/header-front.component';
 import { HomeComponent } from './FrontOffice/home/home.component';
 import { ListCompetitionComponent } from './BackOffice/list-competition/list-competition.component';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule,HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AddCompetitionComponent } from './BackOffice/add-competition/add-competition.component';
 import { FormsModule } from '@angular/forms';
 
 import { AddEventComponent } from './FrontOffice/add-event/add-event.component';
+
+import { UserRegisterComponent } from './FrontOffice/user-register/user-register.component';
+import { TableadminComponent } from './BackOffice/tableadmin/tableadmin.component';
+import { UserLoginComponent } from './FrontOffice/user-login/user-login.component';
+import { TokenInterceptor } from './services/token.interceptor';
+import { ReactiveFormsModule } from '@angular/forms';
+import { RecaptchaModule, RECAPTCHA_V3_SITE_KEY } from 'ng-recaptcha';
+import { UsereditComponent } from './FrontOffice/useredit/useredit.component'; 
+
 import { EventsListComponent } from './FrontOffice/events-list/events-list.component';
 import { TestComponent } from './test/test.component';
 import { ArchiveCompetitionsComponent } from './BackOffice/archive-competitions/archive-competitions.component';
@@ -39,6 +48,7 @@ import { RockGameComponent } from './FrontOffice/rock-game/rock-game.component';
 import { ResultsComponent } from './FrontOffice/results/results.component';
 
 
+
 @NgModule({
   declarations: [
     
@@ -53,8 +63,11 @@ import { ResultsComponent } from './FrontOffice/results/results.component';
     HomeComponent,
     ListCompetitionComponent,
     AddCompetitionComponent,
-    ListCompetitionsComponent,
     AddEventComponent,
+    UserRegisterComponent,
+    TableadminComponent,
+    UserLoginComponent,
+    UsereditComponent,
     EventsListComponent,
     TestComponent,
     ArchiveCompetitionsComponent,
@@ -73,17 +86,28 @@ import { ResultsComponent } from './FrontOffice/results/results.component';
     ShowEventsAccComponent,
     RockGameComponent,
     ResultsComponent,
-
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
     FormsModule,
+    ReactiveFormsModule,
+    RecaptchaModule  
     WebcamModule
 
   ],
-  providers: [],
-  bootstrap: [AppComponent]
+  providers: [
+    {
+      provide: RECAPTCHA_V3_SITE_KEY, // Provide RECAPTCHA_V3_SITE_KEY token
+      useValue: '6LdCdJMpAAAAAKltrUz-qET2XZVRliujyOkTXmvy' // Replace with your actual reCAPTCHA site key
+    },
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: TokenInterceptor,
+      multi: true
+    }
+  ],
+  bootstrap: [AppComponent] 
 })
 export class AppModule { }
