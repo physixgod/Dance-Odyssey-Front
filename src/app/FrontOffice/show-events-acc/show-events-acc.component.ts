@@ -20,6 +20,7 @@ reservationStatus: string = '';
     breakfast: boolean = false;
     lunch: boolean = false;
     dinner: boolean = false;
+    userID:any;
     @ViewChild('breakfast') breakfastCheckbox!: ElementRef<HTMLInputElement>;
     @ViewChild('lunch') lunchCheckbox!: ElementRef<HTMLInputElement>;
     @ViewChild('dinner') dinnerCheckbox!: ElementRef<HTMLInputElement>;
@@ -42,6 +43,8 @@ reservationStatus: string = '';
                 }
             );
         });
+        this.userID = sessionStorage.getItem('userID');
+    console.log(this.userID);
     }
 
     showReservationForm(accommodation: Accommodation): void {
@@ -83,7 +86,7 @@ reservationStatus: string = '';
       const idAcc = this.selectedAccommodation.idAcc;
       const nbPersonnesInt: number = parseInt(nbPersonnes.toString(), 10);
   
-      this.eventService.registerAcc(idDancer, idAcc, nbPersonnesInt)
+      this.eventService.registerAcc(this.userID, idAcc, nbPersonnesInt)
           .subscribe((response: string) => {
               console.log('Accommodation reserved successfully:', response);
               this.reservationStatus = response; 

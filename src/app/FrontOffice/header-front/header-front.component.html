@@ -16,7 +16,7 @@
                 <a href="javascript:void(0)" class="nav-link">Competitons</a>
                 <ul class="dropdown">
                   <li><a [routerLink]="['/competitions']">Open Competitons</a></li>
-                  <li><a [routerLink]="['/myCompetitions', userId]">My Competitions</a></li>
+                  <li><a [routerLink]="['/myCompetitions', userID]">My Competitions</a></li>
                   <li><a [routerLink]="['/trivia']">Trivia</a></li>
                   <li><a [routerLink]="['/rockGame']">Mini Game</a></li>
                 </ul>
@@ -42,4 +42,19 @@
       </div>
     </div>
   </div>
+  <style>
+    .site-menu .dropdown li a {
+      color: white;
+      background-color: rgba(12, 24, 97, 0.8);
+      padding: 6px 10px; /* Adjust the padding for a smaller size */
+      display: block;
+      transition: background-color 0.3s ease;
+      border: 0px solid rgba(255, 255, 255, 0.2); /* Border with transparent white color */
+
+    }
+  
+    .site-menu .dropdown li a:hover {
+      background-color: #EA0167;
+    }
+  </style>
 </header>

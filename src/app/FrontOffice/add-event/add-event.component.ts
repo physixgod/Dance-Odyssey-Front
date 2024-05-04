@@ -21,6 +21,7 @@ export class AddEventComponent {
     eventImage: '',
     currentParticipants: 0
   };
+  userID:any;
   uploadedImage: File | null = null;
   eventAdded: boolean = false;
   eventId: number = 0; 
@@ -34,6 +35,8 @@ export class AddEventComponent {
     private eventService: EventService
   ) {}
   ngAfterViewInit(): void {
+    this.userID = sessionStorage.getItem('userID');
+    console.log(this.userID);
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition((position) => {
         const userLocation = [position.coords.latitude, position.coords.longitude];
@@ -138,7 +141,7 @@ export class AddEventComponent {
     const street = locationParts.slice(1).join(', '); 
     console.log('City:', city);
     console.log('Street:', street);
-    this.eventService.addEventByDancer(this.dancerId, this.event).subscribe(
+    this.eventService.addEventByDancer(this.userID, this.event).subscribe(
       (data) => {
         console.log("Event Added Successfully:", data);
         this.eventId = data.eventID;

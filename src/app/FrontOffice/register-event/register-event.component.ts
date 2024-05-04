@@ -3,6 +3,8 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Event } from 'src/app/models/event';
 import { EventService } from 'src/app/services/event.service';
 import { FlaskService } from 'src/app/services/flask.services';
+import { UserService } from 'src/app/services/user.service';
+
 
 @Component({
   selector: 'app-register-event',
@@ -13,16 +15,18 @@ export class RegisterEventComponent implements OnInit {
 
   event!: Event;
   registrationMessage: string = '';
-
+  userID: any;
   constructor(
     private flaskService: FlaskService ,
     private route: ActivatedRoute,
     private router: Router, // Inject Router service
-    private eventService: EventService
+    private eventService: EventService,
+    
   ) {}
 
   ngOnInit(): void {
-    
+    this.userID = sessionStorage.getItem('userID');
+    console.log(this.userID);
     
     this.route.params.subscribe(params => {
       const eventID = +params['id'];
@@ -40,7 +44,7 @@ export class RegisterEventComponent implements OnInit {
   registerForEvent(): void {
     const dancerID = 3; 
 
-    this.eventService.registerDancerEvent(dancerID, this.event.eventID).subscribe(
+    this.eventService.registerDancerEvent(this.userID, this.event.eventID).subscribe(
       (response) => {
         if (response) {
           this.registrationMessage = 'You have been registered for this event';

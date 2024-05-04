@@ -17,11 +17,11 @@ import { UsereditComponent } from './FrontOffice/useredit/useredit.component';
 import { ForgotpasswordComponent } from './FrontOffice/forgotpassword/forgotpassword.component';
 import { SubscribeComponent } from './FrontOffice/subscribe/subscribe.component';
 import { PaymentPageComponent } from './FrontOffice/payment-page/payment-page.component';
-import { TestComponent } from './test/test.component';
+
 import { UserstatComponent } from './BackOffice/userstat/userstat.component';
 
 import { EventsListComponent } from './FrontOffice/events-list/events-list.component';
-import { TestComponent } from './test/test.component';
+
 import { ArchiveCompetitionsComponent } from './BackOffice/archive-competitions/archive-competitions.component';
 import { CompetitionRanksComponent } from './competition-ranks/competition-ranks.component';
 import { ReadmoreCompetitionsComponent } from './FrontOffice/readmore-competitions/readmore-competitions.component';
@@ -42,10 +42,9 @@ const routes: Routes = [
 { path:"",
   component: AllTemplateFrontComponent,
   children:[
-
-    {path:'homepage', component: HomeComponent, canActivate:[AuthGuardService] },
-    {path:'competitions', component:ListCompetitionsComponent,canActivate:[AuthGuardService]},
-    {path:'addevent', component:AddEventComponent,canActivate:[AuthGuardService]},
+    {path:'homepage', component: HomeComponent },
+    {path:'competitions', component:ListCompetitionsComponent},
+    {path:'addevent', component:AddEventComponent},
     {path:'listevents', component:EventsListComponent},
     {path:'competition/:id',component:ReadmoreCompetitionsComponent},
     {path:'myCompetitions/:id',component:MyCompetitionsComponent},
@@ -57,13 +56,13 @@ const routes: Routes = [
     {path:'showEventsAcc/:id',component:ShowEventsAccComponent},
     {path:'rockGame',component:RockGameComponent},
     {path: 'results/:updatedScore', component: ResultsComponent },
-    {path:'pro',component:TestComponent},
+    
   ]
 },{
   path:'eventFlyer',component:EventFlyerComponent
   
 },
-{path:'test',component:TestComponent},
+
 { path: 'login', component: UserLoginComponent }, // Ad
 { path: 'forgotpassword', component: ForgotpasswordComponent },
 {path:'useredit',component:UsereditComponent},
@@ -110,5 +109,6 @@ const routes: Routes = [
   imports: [RouterModule.forRoot(routes), RouterModule.forRoot(routes,{useHash:true})],
   exports: [RouterModule],
   providers: [AuthGuardService]
+
 })
 export class AppRoutingModule { }

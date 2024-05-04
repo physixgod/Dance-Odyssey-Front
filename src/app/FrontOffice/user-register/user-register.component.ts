@@ -61,11 +61,8 @@ export class UserRegisterComponent {
   }
 
   addUser() {
-    if (!this.captchaResolved) {
-      alert("Please complete the ReCaptcha before submitting the form.");
-      return; 
-    }
-    
+  
+  
     if (this.user.password !== this.user.confpassword) {
       alert("Password and confirmation password do not match.");
       return;

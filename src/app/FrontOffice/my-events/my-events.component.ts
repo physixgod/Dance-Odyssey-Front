@@ -5,13 +5,16 @@ import { Event } from 'src/app/models/event';
 import { jsPDF } from "jspdf";
 import html2canvas from 'html2canvas';
 
+
 @Component({
   selector: 'app-my-events',
   templateUrl: './my-events.component.html',
   styleUrls: ['./my-events.component.css']
 })
 export class MyEventsComponent implements OnInit {
+  
   myCreatedEvents: Event[] = [];
+  userID: any;
   dancerId: number = 1; 
   backgroundImageUrl: string = ''; 
   showImageSelection: boolean = false;
@@ -25,10 +28,12 @@ export class MyEventsComponent implements OnInit {
 
   ngOnInit(): void {
     this.fetchMyCreatedEvents();
+    this.userID = sessionStorage.getItem('userID');
+    console.log(this.userID);
   }
 
   fetchMyCreatedEvents() {
-    this.eventService.showMyCreatedEvents(this.dancerId).subscribe(
+    this.eventService.showMyCreatedEvents(this.userID).subscribe(
       (data) => {
         this.myCreatedEvents = data;
       },

@@ -12,6 +12,7 @@ export class ReadmoreCompetitionsComponent implements OnInit {
 
   competition!: Competition;
   registrationSuccess: boolean = false;
+  userID:any;
 
   constructor(
     private route: ActivatedRoute,
@@ -30,11 +31,13 @@ export class ReadmoreCompetitionsComponent implements OnInit {
         }
       );
     });
+    this.userID = sessionStorage.getItem('userID');
+    console.log(this.userID);
   }
 registerForCompetition(): void {
     const dancerID = 1; 
 
-    this.competitionService.affecterDancerCompetition(this.competition.competitionID, dancerID).subscribe(
+    this.competitionService.affecterDancerCompetition(this.competition.competitionID, this.userID).subscribe(
       (response) => {
         console.log('Successfully registered for the competition', response);
         this.registrationSuccess = true;
