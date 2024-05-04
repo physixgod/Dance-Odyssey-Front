@@ -1,1 +1,44 @@
-<p>userstat works!</p>
+<div style="display: flex; justify-content: center;">
+    <ngx-charts-bar-vertical
+      [view]="[800, 600]"
+      [results]="transformedRoleCounts"
+      [gradient]="true"
+      [xAxis]="true"
+      [yAxis]="true"
+      [legend]="true"
+      [showXAxisLabel]="true"
+      [showYAxisLabel]="true"
+      xAxisLabel="Roles"
+      yAxisLabel="Count"
+      [barPadding]="8"
+      [showGridLines]="true"
+      [roundEdges]="false"
+      [animations]="true"
+      [tooltipDisabled]="false"
+    ></ngx-charts-bar-vertical>
+  </div>
+  <div class="chart-container-alt">
+    <ngx-charts-bar-horizontal
+      [view]="[800, 600]"
+      [results]="transformedStatusCounts"
+      [gradient]="false"
+      [xAxis]="true"
+      [yAxis]="true"
+      [legend]="true"
+      [showXAxisLabel]="true"
+      [showYAxisLabel]="true"
+      xAxisLabel="Status"
+      yAxisLabel="Count"
+      [barPadding]="8"
+      [showGridLines]="true"
+      [roundEdges]="false"
+      [animations]="true"
+      [tooltipDisabled]="false"
+      style="--series-color: blue">
+    </ngx-charts-bar-horizontal>
+  </div>
+  
+  
+  
+  
+  

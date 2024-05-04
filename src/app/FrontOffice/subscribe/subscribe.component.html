@@ -11,8 +11,6 @@
             background-image: url('../../../assets/images/ffff.jpg');
             background-size: cover;
             background-position: center;
-            background-repeat: no-repeat;
-            background-attachment: fixed;
             background-color: #212529;
             color: #fff;
             margin: 0;
@@ -20,9 +18,9 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            height: 100vh; 
+            min-height: 100vh; /* Utilisation de min-height au lieu de height pour permettre l'expansion de l'image */
         }
-
+        
         .container {
             background-color: rgba(0, 0, 0, 0.5);
             border-radius: 10px;
@@ -30,7 +28,7 @@
             text-align: center;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
         }
-
+        
         .subscription {
             display: flex;
             justify-content: space-between;

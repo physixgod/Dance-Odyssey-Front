@@ -106,6 +106,10 @@ import { tap } from 'rxjs/operators';
     countUsersByRole(): Observable<any> {
       return this.http.get<any>(`${this.baseURL}countUsersByRole`);
     }
+    countUsersByStatus(): Observable<any> {
+      return this.http.get<any>(`${this.baseURL}countUsersByStatus`);
+    }
+    
   }
   
   
