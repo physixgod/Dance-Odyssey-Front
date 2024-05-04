@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Event } from 'src/app/models/event';
 import { EventService } from 'src/app/services/event.service';
+import { FlaskService } from 'src/app/services/flask.services';
 
 @Component({
   selector: 'app-register-event',
@@ -14,11 +15,15 @@ export class RegisterEventComponent implements OnInit {
   registrationMessage: string = '';
 
   constructor(
+    private flaskService: FlaskService ,
     private route: ActivatedRoute,
+    private router: Router, // Inject Router service
     private eventService: EventService
   ) {}
 
   ngOnInit(): void {
+    
+    
     this.route.params.subscribe(params => {
       const eventID = +params['id'];
       this.eventService.getEventById(eventID).subscribe(
@@ -45,4 +50,13 @@ export class RegisterEventComponent implements OnInit {
       }
     );
   }
+
+  navigateToAddAccommodation(): void {
+    
+    this.router.navigate(['/addAcc', this.event.eventID]);
+  }
+  navigateToAccommodationList():void{
+    this.router.navigate(['/showEventsAcc',this.event.eventID]);
+  }
+
 }

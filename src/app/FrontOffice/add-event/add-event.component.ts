@@ -33,7 +33,6 @@ export class AddEventComponent {
     @Inject(PLATFORM_ID) private platformId: Object,
     private eventService: EventService
   ) {}
-
   ngAfterViewInit(): void {
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition((position) => {
@@ -48,8 +47,6 @@ export class AddEventComponent {
           .catch(error => {
             console.error('Error fetching city:', error);
           });
-        
-       
       }, (error) => {
         console.error('Error getting current location:', error);
       });
@@ -104,7 +101,6 @@ export class AddEventComponent {
       this.watchPosition();
     }
   }
-
   watchPosition() {
     let desLat = 0;
     let desLon = 0;
@@ -121,7 +117,6 @@ export class AddEventComponent {
       maximumAge: 0
     });
   }
-
   async getAddressFromCoords(latitude: number, longitude: number): Promise<any> {
     const response = await fetch(`https://nominatim.openstreetmap.org/reverse?format=json&lat=${latitude}&lon=${longitude}&zoom=18&addressdetails=1`);
     const data = await response.json();
@@ -132,9 +127,6 @@ export class AddEventComponent {
       road: data.address?.road
     };
   }
-
-
-
   onFileSelected(event: any) {
     this.uploadedImage = event.target.files[0];
   }
@@ -146,14 +138,11 @@ export class AddEventComponent {
     const street = locationParts.slice(1).join(', '); 
     console.log('City:', city);
     console.log('Street:', street);
-    
     this.eventService.addEventByDancer(this.dancerId, this.event).subscribe(
       (data) => {
         console.log("Event Added Successfully:", data);
         this.eventId = data.eventID;
         this.eventAdded = true;
-
-        // Upload event image after event addition
         this.uploadEventImage();
       },
       (error) => {
@@ -161,8 +150,6 @@ export class AddEventComponent {
       }
     );
   }
-
-  // Method to upload event image
   uploadEventImage() {
     if (this.uploadedImage) {
       this.eventService.updateEventImage(this.eventId, this.uploadedImage).subscribe(

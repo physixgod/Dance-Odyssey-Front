@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Competition } from '../models/competition';
 import { Dancer } from '../models/competition';
@@ -54,4 +54,13 @@ updateCompetitionImage(id: number, image: File): Observable<Competition> {
 
   return this.http.post<Competition>(`${this.baseURL}uploadCompetitionImage/image/${id}`, formData);
 }
+gainPoints(myScore: number, pcScore: number, idDancer: number): Observable<number> {
+  const url = `${this.baseURL}gainPoints/${idDancer}`;
+  let params = new HttpParams()
+    .set('myScore', myScore.toString())
+    .set('pcScore', pcScore.toString());
+  return this.http.post<number>(url, {}, { params });
+}
+
+
 }

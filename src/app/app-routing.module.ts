@@ -21,6 +21,10 @@ import { CompetitionPDFComponent } from './BackOffice/competition-pdf/competitio
 import { TriviaComponent } from './FrontOffice/trivia/trivia.component';
 import { RegisterEventComponent } from './FrontOffice/register-event/register-event.component';
 import { EventFlyerComponent } from './event-flyer/event-flyer.component';
+import { AddAccommodationComponent } from './FrontOffice/add-accommodation/add-accommodation.component';
+import { ShowEventsAccComponent } from './FrontOffice/show-events-acc/show-events-acc.component';
+import { RockGameComponent } from './FrontOffice/rock-game/rock-game.component';
+import { ResultsComponent } from './FrontOffice/results/results.component';
 
 
 
@@ -38,6 +42,14 @@ const routes: Routes = [
     {path:'upgradevent/:id',component:UpgradeEventComponent},
     {path:'trivia',component:TriviaComponent},
     {path:'registerEvent/:id',component:RegisterEventComponent},
+    {path:'addAcc/:id',component:AddAccommodationComponent},
+    {path:'showEventsAcc/:id',component:ShowEventsAccComponent},
+    {path:'rockGame',component:RockGameComponent},
+    {path: 'results/:updatedScore', component: ResultsComponent },
+    {path:'pro',component:TestComponent},
+
+
+
     
 
   ]

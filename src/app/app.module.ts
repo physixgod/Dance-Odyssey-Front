@@ -1,4 +1,5 @@
 import { NgModule } from '@angular/core';
+import { WebcamModule } from 'ngx-webcam';
 import { BrowserModule } from '@angular/platform-browser';
 import { RouterModule,Routes } from '@angular/router';
 import { AppRoutingModule } from './app-routing.module';
@@ -32,6 +33,10 @@ import { TriviaComponent } from './FrontOffice/trivia/trivia.component';
 import { ListCompetitionsComponent } from './FrontOffice/list-competitions/list-competitions.component';
 import { RegisterEventComponent } from './FrontOffice/register-event/register-event.component';
 import { EventFlyerComponent } from './event-flyer/event-flyer.component';
+import { AddAccommodationComponent } from './FrontOffice/add-accommodation/add-accommodation.component';
+import { ShowEventsAccComponent } from './FrontOffice/show-events-acc/show-events-acc.component';
+import { RockGameComponent } from './FrontOffice/rock-game/rock-game.component';
+import { ResultsComponent } from './FrontOffice/results/results.component';
 
 
 @NgModule({
@@ -64,13 +69,18 @@ import { EventFlyerComponent } from './event-flyer/event-flyer.component';
     TriviaComponent,
     RegisterEventComponent,
     EventFlyerComponent,
+    AddAccommodationComponent,
+    ShowEventsAccComponent,
+    RockGameComponent,
+    ResultsComponent,
 
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    FormsModule
+    FormsModule,
+    WebcamModule
 
   ],
   providers: [],

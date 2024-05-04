@@ -1,14 +1,16 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Competition } from '../models/competition';
 import { Event } from '../models/event';
+import { Accommodation } from '../models/accommodation';
 
 @Injectable({
   providedIn: 'root'
 })
 export class EventService{
     private baseURL = "http://localhost:8086/event/"
+  
     constructor(private http : HttpClient) { }
     addEvent(e:Event):Observable<Event[]>{
         return this.http.post<Event[]>(this.baseURL+"AddEvent",e)
@@ -43,7 +45,33 @@ export class EventService{
       }
       registerDancerEvent(idDancer: number, idEvent: number): Observable<boolean> {
         return this.http.post<boolean>(`${this.baseURL}registerDancerEvent/${idDancer}/${idEvent}`, null);
+  
       }
+      addAcc(idDancer: number, idEvent: number, accommodation: Accommodation): Observable<Accommodation> {
+        return this.http.post<Accommodation>(`${this.baseURL}AddACC/${idDancer}/${idEvent}`, accommodation);
+      }
+      getAccommodationsForEvent(eventId: number): Observable<Accommodation[]> {
+        return this.http.get<Accommodation[]>(`${this.baseURL}ShowAcc/${eventId}`);
+      }
+
+
+    showAccPrice(idAcc: number, nbPersonnes: number, br: boolean, lunch: boolean, dinner: boolean): Observable<string> {
+        const url = `${this.baseURL}GetPrice/${idAcc}`;
+        let params = new HttpParams()
+            .set('nbPersonnes', nbPersonnes.toString())
+            .set('br', br.toString())
+            .set('lunch', lunch.toString())
+            .set('dinner', dinner.toString());
+        return this.http.get<string>(url, { params });
+    }
+    registerAcc(idDancer: number, idAcc: number, nbPersonnes: number): Observable<string> {
+      const url = `${this.baseURL}register/${idDancer}/${idAcc}`;
+      let params = new HttpParams().set('nbPersonnes', nbPersonnes.toString());
+      console.log(params);
+      return this.http.post(url, null, { params, responseType: 'text' });
+    }
+    
+    
       
 
   }
