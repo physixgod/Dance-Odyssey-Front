@@ -1,0 +1,81 @@
+
+<!-- SECTION -->
+<div class="section" >
+	<!-- container -->
+	<div class="container">
+		<!-- row -->
+		<div class="row">
+
+			<!-- /section title -->
+
+			<!-- Products tab & slick -->
+			<div class="col-md-12" *ngFor="let parentCategory of parentCategories">
+				<div class="row" >
+					<div class="products-tabs">
+						<!-- tab -->
+						<div id="tab1" class="tab-pane active">
+							<div class="products-slick" data-nav="#slick-nav-1">
+							
+
+			<!-- section title -->
+			<div class="col-md-12">
+				<div class="section-title">
+					<h3 class="title">Offred Products in {{ parentCategory.type }}</h3>
+					<div class="section-nav">
+			
+					</div>
+				</div>
+			</div>
+
+			
+								<!-- product -->
+								<div class="product" *ngFor="let product of topPromotionalProductsMap.get(parentCategory.id)">
+									<div class="product-img" >
+										<img *ngIf="product.images.length > 0" [src]="product.images[0].imageUrl" alt="Product Image" class="product-image">
+										<div class="product-label">
+											<span class="sale">-{{ product.pourcentagePromotion }}%</span>
+											
+										</div>
+									
+									</div>
+									<div class="product-body">
+										<h3 class="product-name"><a href="#">{{ product.productName }}</a></h3>
+										<h4 class="product-price">{{ product.pricePromotion }} DT   <del class="product-old-price">{{ product.price }} DT</del></h4>
+										promotionEndDate <br>{{ product.promotionEndDate }}
+										<div class="product-rating">
+											<ng-container *ngFor="let star of generateStars(product.avreageScore)">
+												<i class="{{ star }}"></i>
+											</ng-container>
+										</div>
+										<div class="product-btns">
+											<button class="add-to-wishlist"><i class="fa fa-heart-o"></i><span class="tooltipp">add to wishlist</span></button>
+											<button class="add-to-compare"><i class="fa fa-exchange"></i><span class="tooltipp">add to compare</span></button>
+											<button class="quick-view" [routerLink]="['/product/viewproduct', product.idProduct]"><i class="fa fa-eye"></i><span class="tooltipp">quick view</span></button>
+										</div>
+									</div>
+									<div class="add-to-cart">
+										<button class="add-to-cart-btn" (click)="addProductToOrderAndCreateCart(product.idProduct)"> <i class="fa fa-shopping-cart"></i> add to cart</button>
+
+									</div>
+								</div>
+								<!-- /product -->
+							</div>
+					 
+						</div>
+						<!-- /tab -->
+					</div>
+			  
+				</div>
+				<div id="slick-nav-1" class="products-slick-nav">
+					<button id="slick-prev-1" class="slick-prev" onclick="slickPrev()"><i class="fa fa-chevron-left"></i> Previous</button>
+					<button id="slick-next-1" class="slick-next" onclick="slickNext()">Next <i class="fa fa-chevron-right"></i></button>
+				</div>
+			</div>
+			<!-- Products tab & slick -->
+		</div>
+	 
+		<!-- /row -->
+	</div>
+
+	<!-- /container -->
+</div>
