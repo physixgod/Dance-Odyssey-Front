@@ -46,6 +46,7 @@ import { AddAccommodationComponent } from './FrontOffice/add-accommodation/add-a
 import { ShowEventsAccComponent } from './FrontOffice/show-events-acc/show-events-acc.component';
 import { RockGameComponent } from './FrontOffice/rock-game/rock-game.component';
 import { ResultsComponent } from './FrontOffice/results/results.component';
+import { DatePipe } from '@angular/common';
 
 
 
@@ -86,16 +87,16 @@ import { ResultsComponent } from './FrontOffice/results/results.component';
     ShowEventsAccComponent,
     RockGameComponent,
     ResultsComponent,
+    ListCompetitionsComponent
+   
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
     FormsModule,
-    ReactiveFormsModule,
-    RecaptchaModule  
+    ReactiveFormsModule, 
     WebcamModule
-
   ],
   providers: [
     {

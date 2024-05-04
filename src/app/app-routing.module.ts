@@ -35,14 +35,14 @@ import { ResultsComponent } from './FrontOffice/results/results.component';
 
 
 
+
 const routes: Routes = [
 { path:"",
   component: AllTemplateFrontComponent,
   children:[
-
-    {path:'homepage', component: HomeComponent, canActivate:[AuthGuardService] },
-    {path:'competitions', component:ListCompetitionsComponent,canActivate:[AuthGuardService]},
-    {path:'addevent', component:AddEventComponent,canActivate:[AuthGuardService]},
+    {path:'homepage', component: HomeComponent },
+    {path:'competitions', component:ListCompetitionsComponent},
+    {path:'addevent', component:AddEventComponent},
     {path:'listevents', component:EventsListComponent},
     {path:'competition/:id',component:ReadmoreCompetitionsComponent},
     {path:'myCompetitions/:id',component:MyCompetitionsComponent},
@@ -100,5 +100,6 @@ const routes: Routes = [
   imports: [RouterModule.forRoot(routes), RouterModule.forRoot(routes,{useHash:true})],
   exports: [RouterModule],
   providers: [AuthGuardService]
+
 })
 export class AppRoutingModule { }
