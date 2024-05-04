@@ -6,11 +6,13 @@ export class Competition {
     endDate!: Date;
     location!: string;
     rating!: number;
+    description!:string;
     prize!: string;
     maxParticipants!: number;
     status!: string;
     participations!: Participate[];
     jurymanagers!: JuryManager[];
+    competitionImage!: string;
   }
   
   export class Participate {
@@ -30,5 +32,32 @@ export class Competition {
     password!: string;
     telNumber!: string;
     competitionsManagedByJuries!: Competition[];
+  }
+  export enum DanceStyle {
+    ZOMBA,
+    SALSA,
+    Ballet,
+    HIPHOP,
+    TANGO,
+  }
+  
+  export enum ExperienceLevel {
+    BEGINNER,
+    AMATEUR,
+    ADVANCED,
+    EXPERT
+  }
+  
+  export class Dancer {
+    dancerId!: number;
+    firstName!: string;
+    lastName!: string;
+    password!: string;
+    points!: number;
+    danceStyle!: DanceStyle;
+    experienceLevel!: ExperienceLevel;
+    email!: string;
+    telNum!: string;
+
   }
   

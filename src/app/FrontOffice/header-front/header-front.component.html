@@ -5,42 +5,40 @@
       <div class="site-logo">
         <a href="index.html">
           <img src="/assets/images/logo.png" alt="Logo" width="150" height="150">
-
         </a>
       </div>
       <div class="ml-auto">
         <nav class="site-navigation position-relative text-right" role="navigation">
           <ul class="site-menu main-menu js-clone-nav mr-auto d-none d-lg-block">
-            <li ><a [routerLink]="['/homepage']" class="nav-link">Home</a></li>
+            <li class="active"><a [routerLink]="['/homepage']" class="nav-link">Home</a></li>
             <li><a  class="nav-link">About</a></li>
-            <li class="has-children">
-              <a href="javascript:void(0)" class="nav-link">Competitons</a>
-              <ul class="dropdown">
-                <li><a [routerLink]="['/competitions']">Open Competitons</a></li>
-                <li><a [routerLink]="['/myCompetitions', userId]">My Competitions</a></li>
-              </ul>
-            </li>
-            <li class="has-children">
+            <li class="has-children"*ngIf="isPaidUser()">
+                <a href="javascript:void(0)" class="nav-link">Competitons</a>
+                <ul class="dropdown">
+                  <li><a [routerLink]="['/competitions']">Open Competitons</a></li>
+                  <li><a [routerLink]="['/myCompetitions', userID]">My Competitions</a></li>
+                  <li><a [routerLink]="['/trivia']">Trivia</a></li>
+                  <li><a [routerLink]="['/rockGame']">Mini Game</a></li>
+                </ul>
+              </li>
+            <li class="has-children" *ngIf="isPaidUser()">
               <a href="javascript:void(0)" class="nav-link">Events</a>
               <ul class="dropdown">
-                <li><a [routerLink]="['/addevent']">Create Event</a></li>
-                <li><a [routerLink]="['/listevents']">Events List</a></li>
-                <li><a [routerLink]="['/MyEvents']">My Events</a></li>
+                  <li><a [routerLink]="['/addevent']">Create Event</a></li>
+                  <li><a [routerLink]="['/listevents']">Events List</a></li>
+                  <li><a [routerLink]="['/MyEvents']">My Events</a></li>
               </ul>
             </li>
-
-         
             <li><<a [routerLink]="['/product/homeproduct']" class="nav-link">Products</a></li>
-
-
-            
-            <li><a href="contact.html" class="nav-link">Community</a></li>
-            <li><a href="contact.html" class="nav-link">Sign Out</a></li>
+            <li><a class="nav-link">Community</a></li>
+            <li><a [routerLink]="['/profile']">Profile</a></li>
+            <li><a [routerLink]="['//subscribe']">subscribe</a></li>
+            <li><a  class="nav-link" (click)="signOut()">Sign Out</a></li>
           </ul>
         </nav>
-
-        <a href="#" class="d-inline-block d-lg-none site-menu-toggle js-menu-toggle text-black float-right text-white"><span
-            class="icon-menu h3 text-white"></span></a>
+        <a href="#" class="d-inline-block d-lg-none site-menu-toggle js-menu-toggle text-black float-right text-white">
+          <span class="icon-menu h3 text-white"></span>
+        </a>
       </div>
     </div>
   </div>
@@ -59,6 +57,4 @@
       background-color: #EA0167;
     }
   </style>
-  
-
 </header>
