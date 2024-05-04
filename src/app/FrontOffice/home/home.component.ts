@@ -7,15 +7,21 @@ import { ActivatedRoute, Router } from '@angular/router';
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
-  username!: any;
+  userName!: any;
   lastName!:any;
+  email!:any
+  userID!:any
 
   constructor(private route: Router) {
   
   }
   ngOnInit() {
 
-    this.username = sessionStorage.getItem('userName');
+    this. userName = sessionStorage.getItem('userName');
+    this.email=sessionStorage.getItem('email')
+    alert(this.email)
+    this.userID=sessionStorage.getItem('userID')
+
   
     this.lastName=sessionStorage.getItem("lastName");
     console.log(this.lastName);
