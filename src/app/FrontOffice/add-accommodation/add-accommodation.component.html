@@ -1,0 +1,66 @@
+<div class="hero overlay" style="background-image: url('/assets/images/addEvent.jpg');">
+    <div class="container">
+      <div class="row align-items-center">
+        <div class="col-lg-5 mx-auto text-center">
+          <h1 class="text-white">Add Accommodation</h1>
+          <p>Find the perfect place to stay during your event.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="site-section">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-7">
+            <form (submit)="addAccommodation()">
+                <div class="form-group">
+                  <label for="pricePerNight">Price Per Night:</label>
+                  <input type="text" class="form-control" [(ngModel)]="accommodation.pricePerNight" name="pricePerNight">
+                </div>
+                <div class="form-group">
+                  <label for="availableSlots">Available Slots:</label>
+                  <input type="number" class="form-control" [(ngModel)]="accommodation.availableSlots" name="availableSlots">
+                </div>
+                <div class="form-group">
+                  <label for="location">Location Description :</label>
+                  <input type="text" class="form-control" [(ngModel)]="accommodation.location"  name="location">
+                </div>
+                <div class="form-group">
+                  <label for="contact">Contact:</label>
+                  <input type="text" class="form-control" [(ngModel)]="accommodation.contact" name="contact">
+                </div>
+                <div class="form-group">
+                  <label for="breakfast">Breakfast:</label>
+                  <input type="checkbox" [(ngModel)]="accommodation.breakfeast" name="breakfast">
+                </div>
+                <div *ngIf="accommodation.breakfeast" class="form-group">
+                    <label for="breakfastPrice">Breakfast Price:</label>
+                    <input type="text" class="form-control" [(ngModel)]="accommodation.breakfeastPrice" name="breakfeastPrice">
+                </div>
+                <div class="form-group">
+                  <label for="lunch">Lunch:</label>
+                  <input type="checkbox" [(ngModel)]="accommodation.lunch" name="lunch">
+                </div>
+                <div *ngIf="accommodation.lunch" class="form-group">
+                    <label for="lunchPrice">Lunch Price:</label>
+                    <input type="text" class="form-control" [(ngModel)]="accommodation.lunchPrice" name="lunchPrice">
+                </div>
+                <div class="form-group">
+                  <label for="dinner">Dinner:</label>
+                  <input type="checkbox" [(ngModel)]="accommodation.dinner" name="dinner">
+                </div>
+                <div *ngIf="accommodation.dinner" class="form-group">
+                    <label for="dinnerPrice">Dinner Price:</label>
+                    <input type="text" class="form-control" [(ngModel)]="accommodation.dinnerPrice" name="dinnerPrice">
+                </div>
+
+                                
+                <div class="form-group">
+                  <input type="submit" class="btn btn-primary py-3 px-5 center-btn" value="Add Accommodation">
+                </div>
+              </form>
+              
+        </div>
+      </div>
+    </div>
+  </div>

@@ -1,4 +1,5 @@
 import { NgModule } from '@angular/core';
+import { WebcamModule } from 'ngx-webcam';
 import { BrowserModule } from '@angular/platform-browser';
 import { RouterModule, Routes } from '@angular/router';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
@@ -17,6 +18,7 @@ import { HomeComponent } from './FrontOffice/home/home.component';
 import { ListCompetitionComponent } from './BackOffice/list-competition/list-competition.component';
 import { AddCompetitionComponent } from './BackOffice/add-competition/add-competition.component';
 import { ListCompetitionsComponent } from './FrontOffice/list-competitions/list-competitions.component';
+import { FormsModule } from '@angular/forms';
 import { AddEventComponent } from './FrontOffice/add-event/add-event.component';
 import { UserRegisterComponent } from './FrontOffice/user-register/user-register.component';
 import { TableadminComponent } from './BackOffice/tableadmin/tableadmin.component';
@@ -30,9 +32,32 @@ import { TestComponent } from './test/test.component';
 import { UserstatComponent } from './BackOffice/userstat/userstat.component';
 import { NgxChartsModule } from '@swimlane/ngx-charts';
 import { SubstatComponent } from './BackOffice/substat/substat.component';
+import { ReactiveFormsModule } from '@angular/forms';
+import { RecaptchaModule, RECAPTCHA_V3_SITE_KEY } from 'ng-recaptcha';
+import { UsereditComponent } from './FrontOffice/useredit/useredit.component'; 
+import { EventsListComponent } from './FrontOffice/events-list/events-list.component';
+import { TestComponent } from './test/test.component';
+import { ArchiveCompetitionsComponent } from './BackOffice/archive-competitions/archive-competitions.component';
+import { CompetitionRanksComponent } from './competition-ranks/competition-ranks.component';
+import { ReadmoreCompetitionsComponent } from './FrontOffice/readmore-competitions/readmore-competitions.component';
+import { ShowCompetitionsDancersComponent } from './BackOffice/show-competitions-dancers/show-competitions-dancers.component';
+import { UpdateCompetitionComponent } from './BackOffice/update-competition/update-competition.component';
+import { MyCompetitionsComponent } from './FrontOffice/my-competitions/my-competitions.component';
+import { MyEventsComponent } from './FrontOffice/my-events/my-events.component';
+import { UpgradeEventComponent } from './FrontOffice/upgrade-event/upgrade-event.component';
+import { CompetitionPDFComponent } from './BackOffice/competition-pdf/competition-pdf.component';
+import { TriviaComponent } from './FrontOffice/trivia/trivia.component';
+import { ListCompetitionsComponent } from './FrontOffice/list-competitions/list-competitions.component';
+import { RegisterEventComponent } from './FrontOffice/register-event/register-event.component';
+import { EventFlyerComponent } from './event-flyer/event-flyer.component';
+import { AddAccommodationComponent } from './FrontOffice/add-accommodation/add-accommodation.component';
+import { ShowEventsAccComponent } from './FrontOffice/show-events-acc/show-events-acc.component';
+import { RockGameComponent } from './FrontOffice/rock-game/rock-game.component';
+import { ResultsComponent } from './FrontOffice/results/results.component';
 
 @NgModule({
   declarations: [
+    
     AppComponent,
     AllTemplateBackComponent,
     FooterBackComponent,
@@ -44,7 +69,6 @@ import { SubstatComponent } from './BackOffice/substat/substat.component';
     HomeComponent,
     ListCompetitionComponent,
     AddCompetitionComponent,
-    ListCompetitionsComponent,
     AddEventComponent,
     UserRegisterComponent,
     TableadminComponent,
@@ -56,6 +80,24 @@ import { SubstatComponent } from './BackOffice/substat/substat.component';
     TestComponent,
     UserstatComponent,
     SubstatComponent,
+    EventsListComponent,
+    TestComponent,
+    ArchiveCompetitionsComponent,
+    CompetitionRanksComponent,
+    ReadmoreCompetitionsComponent,
+    ShowCompetitionsDancersComponent,
+    UpdateCompetitionComponent,
+    MyCompetitionsComponent,
+    MyEventsComponent,
+    UpgradeEventComponent,
+    CompetitionPDFComponent,
+    TriviaComponent,
+    RegisterEventComponent,
+    EventFlyerComponent,
+    AddAccommodationComponent,
+    ShowEventsAccComponent,
+    RockGameComponent,
+    ResultsComponent,
   ],
   imports: [
     BrowserModule,
@@ -65,6 +107,8 @@ import { SubstatComponent } from './BackOffice/substat/substat.component';
     ReactiveFormsModule,
     RecaptchaModule,
     NgxChartsModule // Import NgxChartsModule here
+    WebcamModule
+
   ],
   providers: [
     {

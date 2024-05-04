@@ -8,7 +8,10 @@ export class Event {
     users?: User[];
     dancers?: Dancer[];
     eventsMakers?: Dancer[];
-    
+    latitude? :number;  
+    longitude?:number;   
+    eventImage!:string;
+    currentParticipants!:number;
   }
   
   export class User {

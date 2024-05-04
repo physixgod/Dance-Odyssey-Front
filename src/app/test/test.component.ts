@@ -1,12 +1,15 @@
+<
 import { Component } from '@angular/core';
 import { UserService } from '../services/user.service';
 import { Router } from '@angular/router';
+
 
 @Component({
   selector: 'app-test',
   templateUrl: './test.component.html',
   styleUrls: ['./test.component.css']
 })
+
 export class TestComponent {
 
   imgUrl: string = '';
@@ -28,5 +31,4 @@ export class TestComponent {
 
   }
   
-
 }
