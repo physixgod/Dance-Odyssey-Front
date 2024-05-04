@@ -15,8 +15,13 @@ import { ShowaffectedjuriesComponent } from './BackOffice/showaffectedjuries/sho
 import { ShowAprrovedJuriesComponent } from './BackOffice/show-aprroved-juries/show-aprroved-juries.component';
 import { FilterPipe } from './filter.pipe';
 import { RegisterjuryComponent } from './registerjury/registerjury.component';
-
-
+import {NoteComponent} from './FrontOffice/note/note.component';
+import {ParticipantScoreComponent} from './FrontOffice/participant-score/participant-score.component';
+import {GroupCreationComponent} from './FrontOffice/group-creation/group-creation.component';
+import {AllGroupsComponent} from './FrontOffice/all-groups/all-groups.component';
+import{MyGroupComponent} from './FrontOffice/my-group/my-group.component';
+import { GroupsQuizComponent } from './FrontOffice/groups-quiz/groups-quiz.component';
+import { SuggestedGroupsComponent } from './FrontOffice/suggested-groups/suggested-groups.component';
 
 const routes: Routes = [
 { path:"",
@@ -25,14 +30,21 @@ const routes: Routes = [
     {path:'homepage', component: HomeComponent },
     {path:'competitions', component:ListCompetitionsComponent},
     {path:'addevent', component:AddEventComponent},
-    
-
+    {path:'uploading-score', component:NoteComponent},
+    {path:'participant-score', component:ParticipantScoreComponent},
+    {path:'group-creation', component:GroupCreationComponent},
+    {path:'all-groups', component:AllGroupsComponent},//
+    {path:'my-group', component:MyGroupComponent},
+    {path:'groupsQuiz',component:GroupsQuizComponent},
+    {path:'suggestedgroups',component:SuggestedGroupsComponent}//
 
   ]
 },
 {
   path:"registerjury",component:RegisterjuryComponent
+  
 },
+
 {
   path:"admin",
   component: AllTemplateBackComponent,

@@ -22,7 +22,8 @@ export class AddCompetitionComponent {
     status: '',
     competitionID: 0,
     participations: [],
-    jurymanagers: []
+    jurymanagers: [],
+    file: undefined
   };
 
   constructor(private competitionService : CompetitionService){

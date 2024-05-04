@@ -24,6 +24,15 @@ import { JudgingCriteriaComponent } from './BackOffice/judging-criteria/judging-
 import { ShowaffectedjuriesComponent } from './BackOffice/showaffectedjuries/showaffectedjuries.component';
 import { ShowAprrovedJuriesComponent } from './BackOffice/show-aprroved-juries/show-aprroved-juries.component';
 import { RegisterjuryComponent } from './registerjury/registerjury.component';
+import { NoteComponent } from './FrontOffice/note/note.component';
+import { ParticipantScoreComponent } from './FrontOffice/participant-score/participant-score.component';
+import { GroupCreationComponent } from './FrontOffice/group-creation/group-creation.component';
+import { AllGroupsComponent } from './FrontOffice/all-groups/all-groups.component';
+import { MyGroupComponent } from './FrontOffice/my-group/my-group.component';
+import { GroupsQuizComponent } from './FrontOffice/groups-quiz/groups-quiz.component';
+import { SuggestedGroupsComponent } from './FrontOffice/suggested-groups/suggested-groups.component';
+
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -46,6 +55,14 @@ import { RegisterjuryComponent } from './registerjury/registerjury.component';
     ShowaffectedjuriesComponent,
     ShowAprrovedJuriesComponent,
     RegisterjuryComponent,
+    NoteComponent,
+    ParticipantScoreComponent,
+    GroupCreationComponent,
+    AllGroupsComponent,
+    MyGroupComponent,
+    GroupsQuizComponent,
+    SuggestedGroupsComponent,
+  
   ],
   imports: [
     BrowserModule,

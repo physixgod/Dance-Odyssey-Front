@@ -1,0 +1,38 @@
+<div class="hero overlay" style="background-image: url('/assets/images/addEvent.jpg');">
+  <div class="container">
+    <div class="row align-items-center">
+      <div class="col-lg-5 mx-auto text-center">
+        <h1 class="text-white">All Groups Available</h1>
+        <p>Step into the spotlight! Join your group now and meet other dancers.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Main Content Section -->
+<div class="site-section">
+  <div class="container">
+    <div class="row">
+      <!-- Group Cards -->
+      <div class="col-md-4" *ngFor="let group of groups">
+        <div class="card mb-4 shadow-sm">
+          <!-- Group Image (if available) -->
+          <!-- <img src="{{ group.imageUrl }}" class="card-img-top" alt="Group Image"> -->
+          <div class="card-body">
+            <!-- Group Name -->
+            <h5 class="card-title">{{ group.groupName }}</h5>
+            <hr>
+            <!-- Group Description -->
+            <p class="card-text">{{ group.groupDescription }}</p>
+            <!-- Dance Style -->
+            <p class="card-text">Dance Style: {{ group.danceStyle }}</p>
+            <!-- Join Button -->
+            <p class="card-text">Dance Style: {{ group.groupID }}</p>
+            <!-- Join Button -->
+            <button class="btn btn-primary" (click)="group.groupID && joinGroup(group.groupID)">Join</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

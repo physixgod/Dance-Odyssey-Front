@@ -2,9 +2,11 @@ import { Injectable } from '@angular/core';
 import { Observable, throwError } from 'rxjs';
 import { JuryManager } from '../models/jury';
 import { Competition } from '../models/competition';
+import { Group } from '../models/group';
 import { catchError,map } from 'rxjs/operators';
-import { HttpClient, HttpErrorResponse } from '@angular/common/http';
-
+import { HttpClient, HttpErrorResponse, HttpParams } from '@angular/common/http';
+import * as XLSX from 'xlsx';
+import { Dancer } from '../models/dancer';
 @Injectable({
   providedIn: 'root'
 })
@@ -94,4 +96,91 @@ export class JuryService {
 
     return this.http.post<Competition>(`${this.baseURL}${competitionId}/uploadExcel`, formData);
   }
+
+   /*getParticipantScores(file: File): Observable<Map<string, number>> {
+    return new Observable(observer => {
+      const reader: FileReader = new FileReader();
+      reader.onload = (e: any) => {
+        const data: ArrayBuffer = e.target.result;
+        const workbook: XLSX.WorkBook = XLSX.read(data, { type: 'array' });
+        const sheetName: string = workbook.SheetNames[0];
+        const sheet: XLSX.WorkSheet = workbook.Sheets[sheetName];
+        const participantScores: Map<string, number> = new Map<string, number>();
+
+        XLSX.utils.sheet_to_json(sheet, { header: 1 }).forEach((row: unknown) => {
+          const [participantName, score] = row as [string, number];
+      
+          // Now you can safely use participantName and score
+      });
+
+        observer.next(participantScores);
+        observer.complete();
+      };
+      reader.onerror = (error) => observer.error(error);
+      reader.readAsArrayBuffer(file);
+    });
+  }*/
+  uploadScoreFile(file: File): Observable<Map<string, number>> {
+    const formData = new FormData();
+    formData.append('file', file);
+  
+    return this.http.post<Map<string, number>>(`${this.baseURL}Noteparticipants`, formData);
+  }
+
+  getMyJuryCompetitions(idJury: number): Observable<Competition[]> {
+    return this.http.get<Competition[]>(`${this.baseURL}MyJuryCompetition/${idJury}`);
+  }
+  downloadExcel(competitionId: number): Observable<Blob> {
+    const url = `${this.baseURL}${competitionId}/downloadExcel`;
+
+    return this.http.get(url, { responseType: 'blob' })
+      .pipe(
+        catchError((error: any) => {
+          console.error(`An error occurred: ${error.message}`);
+          return throwError('Excel file retrieval failed');
+        })
+      );
+  }
+  
+  getParticipantDetails(participantId: number): Observable<any> {
+    console.log("gg");
+    return this.http.get(`${this.baseURL}participants/${participantId}/details`);
+  }
+  getCompetitionName(competitionId: number): Observable<string> {
+    const url = `${this.baseURL}participants/getCompetitionName/${competitionId}`;
+    return this.http.get<string>(url, { responseType: 'text' as 'json' });
+  }
+
+  createGroup(group: Group): Observable<Group> {
+    return this.http.post<Group>(this.baseURL + "createGroup", group); // Adjust the URL as needed
+  }
+
+  getAllGroups(): Observable<Group[]> {
+    return this.http.get<Group[]>(this.baseURL+"Allgroups");
+  }
+
+  joinGroup(groupId: number, dancerId: number): Observable<Dancer> {
+    return this.http.post<Dancer>(`${this.baseURL}join-groups/${groupId}/${dancerId}`, null);
+  }
+
+  getDancersInGroup(groupId: number): Observable<Dancer[]> {
+    return this.http.get<Dancer[]>(`${this.baseURL}GroupMembers/${groupId}`);
+  }
+
+  leaveGroup(groupId: number, dancerId: number): Observable<Dancer> {
+    const url = `${this.baseURL}leaveGroups/${groupId}/${dancerId}`;
+    return this.http.delete<Dancer>(url);
+  }
+  suggestGroupsBasedOnAnswers(ageRange: string, danceStyles: string, diverseAgeRepresentation: boolean, beginnerFriendly: boolean, mentorshipProgram: boolean): Observable<Group[]> {
+    const url = `${this.baseURL}getDesiredGroups`;
+    const params = new HttpParams()
+      .set('ageRange', ageRange)
+      .set('danceStyles', danceStyles)
+      .set('diverseAgeRepresentation', diverseAgeRepresentation.toString())
+      .set('beginnerFriendly', beginnerFriendly.toString())
+      .set('mentorshipProgram', mentorshipProgram.toString());
+  
+    return this.http.get<Group[]>(url, { params });
+  
 }
+} 
