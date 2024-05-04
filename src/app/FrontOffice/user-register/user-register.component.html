@@ -50,6 +50,13 @@
       </ng-container>
       </select>
     </div> 
+    <div *ngIf="user.role  &&  user.role.id === 4">
+      <div class="form-group">
+        <label for="juryPhoto">Upload Jury Photo:</label>
+        <input type="file" id="juryPhoto" name="juryPhoto" (change)="onJuryCVSelected($event)">
+
+      </div>
+    </div>
     <div class="form-group">
       <re-captcha
         siteKey="6LdCdJMpAAAAAMRccPNgWv9TZxrXSlrlz017C7A2"
@@ -59,7 +66,8 @@
     </div>
     
     <button type="submit" [disabled]="userForm.invalid || !captchaResolved">Register</button>
-    <button type="submit" [disabled]="userForm.invalid || !captchaResolved">Register</button>
+ 
+    
   </form>
   
   

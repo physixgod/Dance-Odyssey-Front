@@ -4,6 +4,7 @@ import { UserService } from 'src/app/services/user.service';
 import { Router } from '@angular/router';
 import { RoleService } from 'src/app/services/role-services.service';
 import { Role } from 'src/app/models/Role';
+import { Jury } from 'src/app/models/Jury';
 
 @Component({
   selector: 'app-user-register',
@@ -19,7 +20,9 @@ export class UserRegisterComponent {
     this.captchaResolved = true;
     
   }
-
+  juryCV: File | undefined; // Declare JuryCV variable
+  juryID: number = 0; 
+  
   user: User = {
     userID: 0,
     userName: '',
@@ -28,6 +31,22 @@ export class UserRegisterComponent {
     password: '',
     confpassword: '',
     role: new Role,
+    status: false,
+    userCV: '',
+  };
+  jury: Jury = {
+    juryID: 0,
+    expertiseArea: '',
+    diploma: '',
+    firstName: '',
+    lastName: '',
+    email: '',
+    password: '',
+    telNumber: '',
+    juryCV: '',
+    approved: false,
+    rejected: false,
+    competitionsManagedByJuries: [],
   };
 
   passwordStrength: string = '';
@@ -38,8 +57,7 @@ export class UserRegisterComponent {
 
   ngOnInit(): void {
     this.getAllRoles();
-
-
+    this.userService.executeApi("http://localhost:8086/user/updateJuryCV/image/8")
   }
 
   addUser() {
@@ -67,12 +85,18 @@ export class UserRegisterComponent {
       (data) => {
         alert("User Added  :) !!");
         this.router.navigate(['/login']);
+        const addedUserId = data.userID; // Assuming the user ID property in the returned data is userId
+        sessionStorage.setItem("addedUserId", addedUserId.toString()); // Store the added user ID
+        console.log(addedUserId);
+        this.uploadJuryCV(addedUserId);
       },
       (error) => {
         console.error(error);
         alert("Error occurred while adding user. Please try again later.");
       }
     );
+   
+    
   }
 
   calculatePasswordStrength(password: string): string {
@@ -136,5 +160,40 @@ export class UserRegisterComponent {
 
 
 
+  }
+  uploadJuryCV(id: number) {
+    console.log(this.juryCV);
+    if (this.juryCV) {
+      this.userService.updateJuryCV(id, this.juryCV).subscribe(
+        (data) => {
+          console.log("Jury CV Uploaded:", data);
+          alert("Jury CV Uploaded Successfully");
+          // Optionally, perform any additional actions after successful upload
+        },
+        (error) => {
+          console.error("Error uploading jury CV:", error);
+          // Optionally, handle the error accordingly
+        }
+      );
+    } else {
+      alert("Please select a file to upload.");
+    }
+  }
+  
+  onJuryCVSelected(event: any) {
+    this.juryCV = event.target.files[0]; // Assign selected file to juryCV variable
+  }
+  
+  loadJuryCV() {
+    this.userService.getJuryCV(this.user.userID).subscribe(
+      (juryCV) => {
+        console.log("Jury CV URL:", juryCV);
+        // Optionally, perform any actions with the URL, such as displaying the image
+      },
+      (error) => {
+        console.error("Error fetching jury CV:", error);
+        // Optionally, handle the error accordingly
+      }
+    );
   }
 }
