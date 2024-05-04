@@ -1,0 +1,12 @@
+<div *ngIf="products">
+    <h2>Products</h2>
+    <ul>
+      <li *ngFor="let product of products">
+        <h3>{{ product.productName }}</h3>
+        <p>Price: {{ product.price }}</p>
+        <p>Description: {{ product.description }}</p>
+        <!-- Add other product details here -->
+      </li>
+    </ul>
+  </div>
+  

@@ -11,15 +11,24 @@
         <div class="ml-auto">
           <nav class="site-navigation position-relative text-right" role="navigation">
             <ul class="site-menu main-menu js-clone-nav mr-auto d-none d-lg-block">
-              <li class="active"><a [routerLink]="['/homepage']" class="nav-link">Home</a></li>
+              <li ><a [routerLink]="['/homepage']" class="nav-link">Home</a></li>
               <li><a  class="nav-link">About</a></li>
-              <li><a [routerLink]="['/competitions']">Competitons</a></li>
+              <li class="has-children">
+                <a href="javascript:void(0)" class="nav-link">Competitons</a>
+                <ul class="dropdown">
+                  <li><a [routerLink]="['/competitions']">Open Competitons</a></li>
+                  <li><a [routerLink]="['/myCompetitions', userId]">My Competitions</a></li>
+                  <li><a [routerLink]="['/trivia']">Trivia</a></li>
+                  <li><a [routerLink]="['/rockGame']">Mini Game</a></li>
+
+                </ul>
+              </li>
               <li class="has-children">
                 <a href="javascript:void(0)" class="nav-link">Events</a>
                 <ul class="dropdown">
-                  <li><a [routerLink]="['/add-event']">Create Event</a></li>
-                  <li><a [routerLink]="['/events-list']">Events List</a></li>
-                
+                  <li><a [routerLink]="['/addevent']">Create Event</a></li>
+                  <li><a [routerLink]="['/listevents']">Events List</a></li>
+                  <li><a [routerLink]="['/MyEvents']">My Events</a></li>
                 </ul>
               </li>
               <li><a  class="nav-link">Products</a></li>

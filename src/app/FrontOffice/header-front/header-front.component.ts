@@ -7,12 +7,14 @@ import { ActivatedRoute, Route, Router } from '@angular/router';
   styleUrls: ['./header-front.component.css']
 })
 export class HeaderFrontComponent {
-  constructor(private router: Router){
 
+  constructor(private router: Router){
   }
 signOut(){
   sessionStorage.clear;
   this.router.navigate(['/login']);
-
 }
+
+  userId: number = 1;
+
 }
