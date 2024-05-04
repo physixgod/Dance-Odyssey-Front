@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+
+    <!-- Google font -->
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,500,700" rel="stylesheet">
+
+    <!-- Bootstrap -->
+    <link type="text/css" rel="stylesheet" href="/assets/FrontShop/css/bootstrap.min.css"/>
+
+    <!-- Slick -->
+    <link type="text/css" rel="stylesheet" href="/assets/FrontShop/css/slick.css"/>
+    <link type="text/css" rel="stylesheet" href="/assets/FrontShop/css/slick-theme.css"/>
+
+    <!-- nouislider -->
+    <link type="text/css" rel="stylesheet" href="/assets/FrontShop/css/nouislider.min.css"/>
+
+    <!-- Font Awesome Icon -->
+    <link rel="stylesheet" href="/assets/FrontShop/css/font-awesome.min.css">
+
+    <!-- Custom stylesheet -->
+    <link type="text/css" rel="stylesheet" href="/assets/FrontShop/css/style.css"/>
+</head>
+<body>
+<!-- SECTION -->
+<div class="section" *ngIf="product">
+    <!-- container -->
+    <div class="container">
+        <!-- row -->
+        <div class="row">
+            <!-- Product main img -->
+            <div class="col-md-5 col-md-push-2">
+                <div id="product-main-img" class="slick-initialized slick-slider">
+                    <div class="product-preview">
+                        <button class="slick-prev slick-arrow" aria-label="Previous" type="button" style="display: block;" (click)="showPreviousImage()">Previous</button>
+                        <img *ngIf="selectedImage && isImage(selectedImage.imageUrl)" [src]="selectedImage.imageUrl" alt="">
+                        <video *ngIf="selectedImage && isVideo(selectedImage.imageUrl)" controls>
+                            <source [src]="selectedImage.imageUrl" type="video/mp4">
+                            Your browser does not support the video tag.
+                        </video>
+                        <button class="slick-next slick-arrow" aria-label="Next" type="button" style="display: block;" (click)="showNextImage()">Next</button>
+                    </div>
+                </div>
+            </div>
+            <!-- /Product main img -->
+
+            <!-- Product thumb imgs -->
+            <div class="col-md-2 col-md-pull-5">
+                <div class="product-preview" *ngFor="let image of product?.images" (click)="selectImage(image)" [ngStyle]="{'border': image === selectedImage ? '2px solid red' : 'none'}">
+                    <img *ngIf="isImage(image.imageUrl)" [src]="image.imageUrl" alt="">
+                    <video *ngIf="isVideo(image.imageUrl)" controls>
+                        <source [src]="image.imageUrl" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                </div>
+            </div>
+            <!-- /Product thumb imgs -->
+<!-- Product details -->
+<div class="col-md-5">
+    <div class="product-details">
+        <h2 class="product-name">{{ product.productName }}</h2>
+        <div>
+            <div class="product-rating">
+                <ng-container *ngFor="let star of generateStars(product.avreageScore)">
+                    <i class="{{ star }}"></i>
+                </ng-container>
+            </div>
+            <a class="review-link" href="#">10 Review(s) | Add your review</a>
+        </div>
+        <div>
+            <h3 class="product-price">{{ product.price }}</h3>
+            <span class="product-available">{{ product.productState ? 'Out of stock' : 'In stock' }}</span>
+        </div>
+        <p>{{ product.description }}.</p>
+        <div class="product-options">
+            <p> Model <br>{{ product.model }}</p>
+        </div>
+        <div class="add-to-cart">
+            <div class="qty-label">
+                Qty
+                <div class="input-number">
+                    <!-- Utilisation de [(ngModel)] avec nbrProduct -->
+                    <input type="number" [(ngModel)]="nbrProduct">
+                    <span class="qty-up" (click)="incrementQuantity()">+</span>
+                    <span class="qty-down" (click)="decrementQuantity()">-</span>
+                </div>
+                
+            </div>
+            <button class="add-to-cart-btn" (click)="addProductToOrderAndCreateCart(product.idProduct)">
+                <i class="fa fa-shopping-cart"></i> add to cart
+            </button>
+        </div>
+        <ul class="product-btns">
+        </ul>
+        <ul class="product-links">
+        </ul>
+    </div>
+</div>
+<!-- /Product details -->
+
+
+            <!-- Product tab -->
+            <div class="col-md-12">
+                <div id="product-tab">
+                    <!-- product tab nav -->
+                    <ul class="tab-nav">
+                        <li><a data-toggle="tab" href="#tab3">Reviews (3)</a></li>
+                    </ul>
+                    <!-- /product tab nav -->
+<!-- product tab content -->
+ 
+    <!-- /tab1  -->
+
+
+                    <!-- tab3  -->
+                    <div id="tab3" class="tab-pane fade in">
+                        <div class="row">
+                            <div class="col-md-6" *ngIf="product.ratingProductsP && product.ratingProductsP.length > 0">
+                                <div id="reviews">
+                                    <ul class="reviews" *ngFor="let rating of product.ratingProductsP">
+                                        <li>
+                                            <div class="review-heading">
+                                                <h5 class="name">Name User</h5>
+                                                <div class="review-rating">
+                                                    <ng-container *ngFor="let star of generateStars(rating.score)">
+                                                        <i class="{{ star }}"></i>
+                                                    </ng-container>
+                                                </div>
+                                            </div>
+                                            <div class="review-body">
+                                                <p>{{rating.feedBack}}</p>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                            
+                            <div class="col-md-3">
+                                <div id="review-form">
+                                    <form class="review-form">
+                                        <input class="input" type="number" placeholder="Your User ID" [(ngModel)]="userId" name="userId">
+                                        <textarea class="input" placeholder="Your Feedback" [(ngModel)]="feedback" name="feedback"></textarea>
+                                        <div class="input-rating">
+                                            <span>Your Rating: </span>
+                                            <div class="stars">
+                                                <input id="star5" name="rating" value="5" type="radio" [(ngModel)]="selectedRating"><label for="star5"></label>
+                                                <input id="star4" name="rating" value="4" type="radio" [(ngModel)]="selectedRating"><label for="star4"></label>
+                                                <input id="star3" name="rating" value="3" type="radio" [(ngModel)]="selectedRating"><label for="star3"></label>
+                                                <input id="star2" name="rating" value="2" type="radio" [(ngModel)]="selectedRating"><label for="star2"></label>
+                                                <input id="star1" name="rating" value="1" type="radio" [(ngModel)]="selectedRating"><label for="star1"></label>
+                                            </div>
+                                        </div>
+                                        <button class="primary-btn" (click)="addRatingToProduct()">Submit</button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- /tab3  -->
+                </div>
+            </div>
+            <!-- /product tab -->
+        </div>
+        <!-- /row -->
+    </div>
+    <!-- /container -->
+</div>
+<!-- /SECTION -->
+<!-- Section -->
+<div class="section">
+    <!-- container -->
+    <div class="container">
+        <!-- row -->
+        <div class="row">
+            <div class="col-md-12">
+                <div class="section-title text-center">
+                    <h3 class="title">Related Products</h3>
+                    
+                </div>
+            </div>
+            <div class="clearfix visible-sm visible-xs"></div>
+            <!-- product -->
+            <div class="col-md-3 col-xs-6" *ngFor="let product  of relatedProducts" class="related-product">
+                <div class="product">
+
+                    <div class="product-img">
+                        </div>
+                    <div class="product-body">
+                        <h3 class="product-name">{{ product.productName }}</h3>
+                        <div class="product-rating">
+                            <!-- Ajoutez ici la notation du produit si nécessaire -->
+                        </div>
+                        <div class="product-btns">
+                            <button class="add-to-wishlist"><i class="fa fa-heart-o"></i><span class="tooltipp">add to wishlist</span></button>
+                            <button class="add-to-compare"><i class="fa fa-exchange"></i><span class="tooltipp">add to compare</span></button>
+                            <button class="quick-view"><i class="fa fa-eye"></i><span class="tooltipp">quick view</span></button>
+                        </div>
+                    </div>
+                    <div class="add-to-cart">
+                        <button class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i> add to cart</button>
+                    </div>
+                </div>
+            </div>
+            <!-- /product -->
+        </div>
+        <!-- /row -->
+    </div>
+    <!-- /container -->
+</div>
+<!-- /Section -->
+

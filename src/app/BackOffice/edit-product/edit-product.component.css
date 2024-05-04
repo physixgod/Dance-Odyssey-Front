@@ -1,0 +1,98 @@
+/* Style pour mettre en surbrillance l'image sélectionnée */
+.image-item.selected img {
+  transform: scale(1.1); /* Agrandit légèrement l'image sélectionnée */
+}
+
+/* Style pour le cadre de sélection */
+.image-item.selected {
+  border: 2px solid #007bff; /* Couleur bleue pour le cadre de sélection */
+  box-shadow: 0 0 5px rgba(0, 123, 255, 0.5); /* Ombre douce pour le cadre de sélection */
+}
+
+/* Conteneur des images */
+.image-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+/* Style pour chaque élément image */
+.image-item {
+  position: relative;
+  margin: 10px;
+  width: 180px; /* Réduire la largeur des images */
+  height: 180px; /* Définir une hauteur fixe pour maintenir l'aspect ratio */
+  overflow: hidden;
+  border-radius: 5px; /* Coins arrondis */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Ombre légère */
+  transition: transform 0.3s ease;
+}
+
+/* Style pour l'image */
+.image-item img {
+  width: 100%; /* Remplir l'espace disponible */
+  height: 100%; /* Remplir l'espace disponible */
+  object-fit: cover; /* Redimensionner l'image pour remplir l'élément parent */
+}
+
+/* Style pour l'image */
+.image-item img, .image-item video {
+  width: 100%;
+  height: auto;
+  display: block;
+  transition: transform 0.3s ease; /* Ajouter une transition fluide */
+}
+
+/* Effet d'ombre et de mise en évidence au survol */
+.image-item:hover {
+  transform: scale(1.05); /* Agrandit légèrement l'élément au survol */
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Ombre plus prononcée */
+}
+
+/* Style pour la vidéo */
+.image-item video {
+  width: 100%; /* Remplir l'espace disponible */
+  height: 100%; /* Remplir l'espace disponible */
+  object-fit: cover; /* Redimensionner la vidéo pour remplir l'élément parent */
+  background-color: #000; /* Couleur de fond noire */
+}
+
+
+/* Style pour les détails au survol */
+.image-item .content-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5); /* Fond semi-transparent */
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
+
+/* Afficher les détails au survol */
+.image-item:hover .content-overlay {
+  opacity: 1;
+}
+
+/* Style pour le texte des détails */
+.image-item .content-details {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: #fff;
+  text-align: center;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
+
+/* Afficher le texte des détails au survol */
+.image-item:hover .content-details {
+  opacity: 1;
+}
+/* Afficher les détails au survol */
+.image-item:hover {
+  transform: scale(1.05); /* Agrandir légèrement l'élément au survol */
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Ombre plus prononcée */
+}

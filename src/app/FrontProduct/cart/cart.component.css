@@ -1,0 +1,58 @@
+.container {
+    display: inline-block; /* Utiliser Flexbox pour aligner les éléments sur une ligne */
+    flex-wrap: wrap; /* Pour permettre le retour à la ligne si l'espace est insuffisant */
+    width: 100%; /* Utiliser toute la largeur disponible */
+    margin-right: -20px; /* Compenser la marge négative des éléments internes */
+    position: center;
+
+}
+
+.shopping-cart {
+    float: left; /* Aligner le panier à gauche */
+    width: 80%; /* Largeur du panier */
+}
+
+.cart-totals {
+    float: right; /* Aligner le panier à gauche */
+    margin-right: -250px; /* Compenser la marge négative de la première colonne */
+
+    width:40%
+}
+.row {
+    flex-wrap: wrap; /* Permettre le retour à la ligne si nécessaire */
+    margin-left: -15px; /* Compenser la marge négative de la première colonne */
+    margin-right: -15px; /* Compenser la marge négative de la dernière colonne */
+    position: center;
+    width: 100%; /* Utiliser toute la largeur disponible */
+
+}
+
+/* Optionnel : si vous utilisez Bootstrap et souhaitez également gérer les colonnes */
+.row [class^="col-"] {
+    padding-left: 10px; /* Ajouter un espace entre les colonnes */
+    padding-right: 10px; /* Ajouter un espace entre les colonnes */
+    flex-grow: 1; /* Permettre aux colonnes de s'agrandir pour remplir l'espace disponible */
+    flex-basis: 0; /* Réinitialiser la base flex */
+}
+/* Mise en forme pour le panier lui-même */
+.table-shopping-cart {
+    
+    width: 100%; /* Occupe toute la largeur du conteneur */
+    border-collapse: collapse; /* Fusionner les bordures des cellules */
+}
+
+.table_head th {
+    text-align: left; /* Alignement du texte à gauche dans les en-têtes */
+}
+
+.table_row td {
+    padding: 15px 0; /* Ajouter un espacement entre les lignes */
+    border-bottom: 1px solid #ccc; /* Ajouter une bordure inférieure entre les lignes */
+}
+
+
+.column-2, .column-3, .column-4, .column-5,.column-6,.column-1  {
+    width: 20%; /* Répartir l'espace également entre les autres colonnes */
+}
+
+
