@@ -27,7 +27,7 @@ export class AddAccommodationComponent implements OnInit {
     lunchPrice: 0,
     dinnerPrice: 0
   };
-
+  userID:any;
   eventId!: number; // Define eventId variable
 
   constructor(
@@ -44,12 +44,14 @@ export class AddAccommodationComponent implements OnInit {
       // Here you can perform any logic that depends on this.eventId
       // For example, load accommodation data
     });
+    this.userID = sessionStorage.getItem('userID');
+    console.log(this.userID);
   }
 
   addAccommodation(): void {
     const dancerId = 3; // Define constant for dancer ID
     console.log(dancerId,this.eventId);
-    this.accommodationService.addAcc(dancerId,this.eventId, this.accommodation).subscribe(result => {
+    this.accommodationService.addAcc(this.userID,this.eventId, this.accommodation).subscribe(result => {
       // Handle success
       console.log('Accommodation added successfully:', result);
       

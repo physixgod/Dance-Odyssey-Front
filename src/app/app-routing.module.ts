@@ -13,8 +13,15 @@ import { UserLoginComponent } from './FrontOffice/user-login/user-login.componen
 import { config } from 'rxjs';
 import { AuthGuardService } from './services/AuthGuardService';
 import { UsereditComponent } from './FrontOffice/useredit/useredit.component';
+
+import { ForgotpasswordComponent } from './FrontOffice/forgotpassword/forgotpassword.component';
+import { SubscribeComponent } from './FrontOffice/subscribe/subscribe.component';
+import { PaymentPageComponent } from './FrontOffice/payment-page/payment-page.component';
+
+import { UserstatComponent } from './BackOffice/userstat/userstat.component';
+
 import { EventsListComponent } from './FrontOffice/events-list/events-list.component';
-import { TestComponent } from './test/test.component';
+
 import { ArchiveCompetitionsComponent } from './BackOffice/archive-competitions/archive-competitions.component';
 import { CompetitionRanksComponent } from './competition-ranks/competition-ranks.component';
 import { ReadmoreCompetitionsComponent } from './FrontOffice/readmore-competitions/readmore-competitions.component';
@@ -31,11 +38,6 @@ import { AddAccommodationComponent } from './FrontOffice/add-accommodation/add-a
 import { ShowEventsAccComponent } from './FrontOffice/show-events-acc/show-events-acc.component';
 import { RockGameComponent } from './FrontOffice/rock-game/rock-game.component';
 import { ResultsComponent } from './FrontOffice/results/results.component';
-
-
-
-
-
 const routes: Routes = [
 { path:"",
   component: AllTemplateFrontComponent,
@@ -54,17 +56,20 @@ const routes: Routes = [
     {path:'showEventsAcc/:id',component:ShowEventsAccComponent},
     {path:'rockGame',component:RockGameComponent},
     {path: 'results/:updatedScore', component: ResultsComponent },
-    {path:'pro',component:TestComponent},
-
-
-
-  
+    
   ]
 },{
   path:'eventFlyer',component:EventFlyerComponent
   
 },
+
 { path: 'login', component: UserLoginComponent }, // Ad
+{ path: 'forgotpassword', component: ForgotpasswordComponent },
+{path:'useredit',component:UsereditComponent},
+{path:'subscribe',component:SubscribeComponent},
+{path:'payment-page',component:PaymentPageComponent},
+
+
 {
   path:'register',component:UserRegisterComponent
 },
@@ -80,6 +85,10 @@ const routes: Routes = [
     { path: 'list-competition', component: ListCompetitionComponent },
     { path: 'add-competition', component: AddCompetitionComponent },
     { path: 'list-event', component: AddCompetitionComponent },
+    {path: 'usersList', component: TableadminComponent},
+    {path:'useredit',component:UsereditComponent},
+    {path:'Userstat',component:UserstatComponent},
+
 
     {path: 'usersList', component: TableadminComponent},
     {path:'useredit',component:UsereditComponent},

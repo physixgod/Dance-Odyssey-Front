@@ -1,26 +1,47 @@
-
 <div class="content-wrapper">
-  <div class="container-xl flex-grow-1 container-p-y d-flex justify-content-center align-items-center" style="background-color: #007bff;">
+  <div class="container-xl">
     <div class="card">
-      <h5 class="card-header">User Information</h5>
-      <div class="card-body">
-        <div>
-          <label for="username" class="form-label">Username:</label>
-          <input type="text" id="username" [(ngModel)]="username" class="form-control">
+      <h5 class="card-header text-center">User Information</h5>
+      <div class="card-body p-4">
+        <!-- Upload user picture section -->
+        <div class="text-center mb-3">
+          <label for="userPicture" class="form-label">Upload Picture:</label>
+          <input type="file" id="userPicture" (change)="  onUserCVSelected($event)" class="form-control">
+          <button (click)="uploadUserCV()" class="btn btn-primary mt-2">Change</button>
         </div>
-        <div>
+        
+        <!-- Display user picture -->
+        <div class="text-center mb-3">
+          <img [src]="imgUrl" 
+               alt="User Picture" 
+               class="img-fluid circular-image mb-3"
+               style="width: 150px; height: 150px;">
+        </div>
+        
+        <!-- Input fields for user information -->
+        <div class="mb-3">
+          <label for="userName" class="form-label">Username:</label>
+          <input type="text" id="userName" [(ngModel)]="user.userName" class="form-control" >
+        </div>
+        <div class="mb-3">
           <label for="lastName" class="form-label">Last Name:</label>
-          <input type="text" id="lastName" [(ngModel)]="lastName" class="form-control">
+          <input type="text" id="lastName" [(ngModel)]="user.lastName" class="form-control">
         </div>
-        <div>
+        <div class="mb-3">
           <label for="email" class="form-label">Email:</label>
-          <input type="email" id="email" [(ngModel)]="email" class="form-control">
+          <input type="email" id="email" [(ngModel)]="user.email" class="form-control">
         </div>
-        <div>
+        <div class="mb-3">
           <label for="confpassword" class="form-label">Confirm Password:</label>
-          <input type="password" id="confpassword" [(ngModel)]="confpassword" class="form-control">
+          <input type="password" id="confpassword" [(ngModel)]="user.confpassword" class="form-control">
         </div>
-        <button (click)="addUser()" class="btn btn-primary mt-3">Update User Info</button>
+        <div class="mb-3">
+          <label for="confpassword" class="form-label">Password:</label>
+          <input type="password" id="confpassword" [(ngModel)]="user.password" class="form-control">
+        </div>
+        
+        <!-- Button to update user information -->
+        <button (click)="updateUser()" class="btn btn-primary">Update User Info</button>
       </div>
     </div>
   </div>

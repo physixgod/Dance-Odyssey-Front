@@ -18,13 +18,15 @@ export class RockGameComponent {
   webcamImage: any;
   sysImage = '';
   videoSrc="";
+  userID:any;
   
 
   constructor(private videoStreamService: VideoStreamService,private http: HttpClient,private competitionService: CompetitionService,private router: Router) {}
 
   ngOnInit() {
     this.videoSrc = 'http://127.0.0.1:5000/video_feed';
-    
+    this.userID = sessionStorage.getItem('userID');
+    console.log(this.userID);
   
   }
 
@@ -63,7 +65,7 @@ export class RockGameComponent {
     const pcScoreInt: number = parseInt(pc_score);
     console.log('My Score:', myScoreInt);
     console.log('PC Score:', pcScoreInt);
-    this.competitionService.gainPoints(myScoreInt, pcScoreInt, 1).subscribe(updatedScore => {
+    this.competitionService.gainPoints(myScoreInt, pcScoreInt, this.userID).subscribe(updatedScore => {
       console.log('Updated Score:', updatedScore);
       this.router.navigate(['/results', updatedScore]);
     });

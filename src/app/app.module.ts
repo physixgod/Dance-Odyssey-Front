@@ -1,7 +1,10 @@
 import { NgModule } from '@angular/core';
 import { WebcamModule } from 'ngx-webcam';
 import { BrowserModule } from '@angular/platform-browser';
-import { RouterModule,Routes } from '@angular/router';
+import { RouterModule, Routes } from '@angular/router';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { FormsModule } from '@angular/forms';
+
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { AllTemplateBackComponent } from './BackOffice/all-template-back/all-template-back.component';
@@ -13,22 +16,27 @@ import { FooterFrontComponent } from './FrontOffice/footer-front/footer-front.co
 import { HeaderFrontComponent } from './FrontOffice/header-front/header-front.component';
 import { HomeComponent } from './FrontOffice/home/home.component';
 import { ListCompetitionComponent } from './BackOffice/list-competition/list-competition.component';
-import { HttpClientModule,HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AddCompetitionComponent } from './BackOffice/add-competition/add-competition.component';
-import { FormsModule } from '@angular/forms';
+import { ListCompetitionsComponent } from './FrontOffice/list-competitions/list-competitions.component';
 
 import { AddEventComponent } from './FrontOffice/add-event/add-event.component';
-
 import { UserRegisterComponent } from './FrontOffice/user-register/user-register.component';
 import { TableadminComponent } from './BackOffice/tableadmin/tableadmin.component';
 import { UserLoginComponent } from './FrontOffice/user-login/user-login.component';
 import { TokenInterceptor } from './services/token.interceptor';
+
+import { ForgotpasswordComponent } from './FrontOffice/forgotpassword/forgotpassword.component';
+import { SubscribeComponent } from './FrontOffice/subscribe/subscribe.component';
+import { PaymentPageComponent } from './FrontOffice/payment-page/payment-page.component';
+
+import { UserstatComponent } from './BackOffice/userstat/userstat.component';
+
+import { SubstatComponent } from './BackOffice/substat/substat.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { RecaptchaModule, RECAPTCHA_V3_SITE_KEY } from 'ng-recaptcha';
 import { UsereditComponent } from './FrontOffice/useredit/useredit.component'; 
-
 import { EventsListComponent } from './FrontOffice/events-list/events-list.component';
-import { TestComponent } from './test/test.component';
+
 import { ArchiveCompetitionsComponent } from './BackOffice/archive-competitions/archive-competitions.component';
 import { CompetitionRanksComponent } from './competition-ranks/competition-ranks.component';
 import { ReadmoreCompetitionsComponent } from './FrontOffice/readmore-competitions/readmore-competitions.component';
@@ -39,15 +47,15 @@ import { MyEventsComponent } from './FrontOffice/my-events/my-events.component';
 import { UpgradeEventComponent } from './FrontOffice/upgrade-event/upgrade-event.component';
 import { CompetitionPDFComponent } from './BackOffice/competition-pdf/competition-pdf.component';
 import { TriviaComponent } from './FrontOffice/trivia/trivia.component';
-import { ListCompetitionsComponent } from './FrontOffice/list-competitions/list-competitions.component';
+
 import { RegisterEventComponent } from './FrontOffice/register-event/register-event.component';
 import { EventFlyerComponent } from './event-flyer/event-flyer.component';
 import { AddAccommodationComponent } from './FrontOffice/add-accommodation/add-accommodation.component';
 import { ShowEventsAccComponent } from './FrontOffice/show-events-acc/show-events-acc.component';
 import { RockGameComponent } from './FrontOffice/rock-game/rock-game.component';
 import { ResultsComponent } from './FrontOffice/results/results.component';
-import { DatePipe } from '@angular/common';
 
+import { NgxChartsModule } from '@swimlane/ngx-charts';
 
 
 @NgModule({
@@ -69,8 +77,14 @@ import { DatePipe } from '@angular/common';
     TableadminComponent,
     UserLoginComponent,
     UsereditComponent,
+    ForgotpasswordComponent,
+    SubscribeComponent,
+    PaymentPageComponent,
+   
+    UserstatComponent,
+    SubstatComponent,
     EventsListComponent,
-    TestComponent,
+   
     ArchiveCompetitionsComponent,
     CompetitionRanksComponent,
     ReadmoreCompetitionsComponent,
@@ -96,12 +110,13 @@ import { DatePipe } from '@angular/common';
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule, 
-    WebcamModule
+    WebcamModule,
+    NgxChartsModule
   ],
   providers: [
     {
-      provide: RECAPTCHA_V3_SITE_KEY, // Provide RECAPTCHA_V3_SITE_KEY token
-      useValue: '6LdCdJMpAAAAAKltrUz-qET2XZVRliujyOkTXmvy' // Replace with your actual reCAPTCHA site key
+      provide: RECAPTCHA_V3_SITE_KEY,
+      useValue: '6LdCdJMpAAAAAKltrUz-qET2XZVRliujyOkTXmvy'
     },
     {
       provide: HTTP_INTERCEPTORS,
@@ -109,6 +124,6 @@ import { DatePipe } from '@angular/common';
       multi: true
     }
   ],
-  bootstrap: [AppComponent] 
+  bootstrap: [AppComponent]
 })
 export class AppModule { }

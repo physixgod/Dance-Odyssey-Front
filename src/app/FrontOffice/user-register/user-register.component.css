@@ -1,7 +1,7 @@
 
 .hero.overlay {
   background-image: url('../../../assets/images/dancepic.webp');
-  background-size: cover; /* Cover the entire container */
+  background-size: contain; /* Changed from cover to contain */
   background-position: center; /* Center the background image */
 }
 
