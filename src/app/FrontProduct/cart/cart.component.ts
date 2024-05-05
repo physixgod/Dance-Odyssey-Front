@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Cart } from 'src/app/models/cart';
 import { OrderLine } from 'src/app/models/orderLine';
 import { OrdersService } from 'src/app/services/orders.service';
+import { ProductService } from 'src/app/services/product.service';
 
 @Component({
   selector: 'app-cart',
@@ -9,12 +10,26 @@ import { OrdersService } from 'src/app/services/orders.service';
   styleUrls: ['./cart.component.css']
 })
 export class CartComponent implements OnInit {
+  userID:any;
   selectedCartId: number = 1; // ID du panier sélectionné
   orderLines: OrderLine[] = [];
   cart: Cart | null = null; // Cart est un objet unique, pas un tableau
-  constructor(private ordersService: OrdersService) { }
+  constructor(private ordersService: OrdersService,private productService: ProductService) { }
 
-  ngOnInit(): void {
+  ngOnInit(): void { 
+    this.userID = sessionStorage.getItem('userID');
+    console.log(this.userID);
+    this.productService.getCartID(this.userID).subscribe(
+      cartID => {
+        console.log('Cart ID:', cartID);
+        this.selectedCartId=cartID;
+      },
+      error => {
+        console.error('Error fetching cart ID:', error);
+        // Handle error...
+      }
+    );
+  
     this.fetchOrderLinesWithNullOrderId();
     this.fetchCartById(this.selectedCartId); // Appel pour récupérer les détails du panier avec l'ID spécifié
     this.calculateTotals(); // Appel pour calculer les totaux initiaux

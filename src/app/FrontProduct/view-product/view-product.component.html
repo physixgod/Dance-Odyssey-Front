@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <!-- The above 3 meta tags must come first in the head; any other head content must come after these tags -->
 
     <!-- Google font -->
     <link href="https://fonts.googleapis.com/css?family=Montserrat:400,500,700" rel="stylesheet">
@@ -124,7 +124,7 @@
                                     <ul class="reviews" *ngFor="let rating of product.ratingProductsP">
                                         <li>
                                             <div class="review-heading">
-                                                <h5 class="name">Name User</h5>
+                                                <h5 class="name"></h5>
                                                 <div class="review-rating">
                                                     <ng-container *ngFor="let star of generateStars(rating.score)">
                                                         <i class="{{ star }}"></i>
@@ -142,7 +142,7 @@
                             <div class="col-md-3">
                                 <div id="review-form">
                                     <form class="review-form">
-                                        <input class="input" type="number" placeholder="Your User ID" [(ngModel)]="userId" name="userId">
+                                      
                                         <textarea class="input" placeholder="Your Feedback" [(ngModel)]="feedback" name="feedback"></textarea>
                                         <div class="input-rating">
                                             <span>Your Rating: </span>
@@ -169,7 +169,6 @@
     </div>
     <!-- /container -->
 </div>
-<!-- /SECTION -->
 <!-- Section -->
 <div class="section">
     <!-- container -->
@@ -179,16 +178,15 @@
             <div class="col-md-12">
                 <div class="section-title text-center">
                     <h3 class="title">Related Products</h3>
-                    
                 </div>
             </div>
             <div class="clearfix visible-sm visible-xs"></div>
             <!-- product -->
-            <div class="col-md-3 col-xs-6" *ngFor="let product  of relatedProducts" class="related-product">
+            <div class="col-md-3 col-xs-6" *ngFor="let product of relatedProducts" class="related-product">
                 <div class="product">
-
                     <div class="product-img">
-                        </div>
+                        <img *ngIf="product.images && product.images.length > 0" [src]="product.images[0].imageUrl" alt="">
+                    </div>
                     <div class="product-body">
                         <h3 class="product-name">{{ product.productName }}</h3>
                         <div class="product-rating">
@@ -212,4 +210,3 @@
     <!-- /container -->
 </div>
 <!-- /Section -->
-

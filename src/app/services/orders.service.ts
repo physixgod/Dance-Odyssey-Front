@@ -12,7 +12,7 @@ import { Orders } from '../models/orders';
 })
 export class OrdersService {
 
-  private baseURL = 'http://localhost:8086/DanceOdyssey/order';
+  private baseURL = 'http://localhost:8086/order';
 
   constructor(private http: HttpClient) { }
   getCartById(cartId: number): Observable<Cart> {

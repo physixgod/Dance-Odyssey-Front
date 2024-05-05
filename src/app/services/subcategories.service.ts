@@ -9,7 +9,7 @@ import { ParentCategory ,SubCategory} from "src/app/models/parentcategories_prod
 })
 export class SubCategoryService {
 
-  private baseURL = 'http://localhost:8086/DanceOdyssey/subcategories';
+  private baseURL = 'http://localhost:8086/subcategories';
 
   constructor(private http: HttpClient) { }
 
