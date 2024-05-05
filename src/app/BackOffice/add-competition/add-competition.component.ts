@@ -23,7 +23,9 @@ export class AddCompetitionComponent {
     competitionID: 0,
     participations: [],
     jurymanagers: [],
+    file: undefined,
     competitionImage: ''
+
   };
 
   uploadedImage: File | null = null;
