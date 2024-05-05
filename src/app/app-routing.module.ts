@@ -89,7 +89,7 @@ const routes: Routes = [
     {path:'participant-score', component:ParticipantScoreComponent},
     {path:'group-creation', component:GroupCreationComponent},
     {path:'all-groups', component:AllGroupsComponent},//
-    {path:'my-group', component:MyGroupComponent},
+    {path: 'my-group/:groupId', component:MyGroupComponent},
     {path:'groupsQuiz',component:GroupsQuizComponent},
     {path:'suggestedgroups',component:SuggestedGroupsComponent},
 

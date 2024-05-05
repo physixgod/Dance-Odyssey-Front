@@ -11,11 +11,13 @@ import { Router } from '@angular/router'; // Import Router module
 })
 export class AllGroupsComponent implements OnInit {
   groups: Group[] = [];
-  dancerId: number = 3;
+  dancerId: any;
   constructor(private JuryService: JuryService, private router: Router) { }
 
   ngOnInit(): void {
     this.fetchGroups();
+    this.dancerId = sessionStorage.getItem('userID');
+    
   }
 
   fetchGroups(): void {
@@ -31,7 +33,7 @@ export class AllGroupsComponent implements OnInit {
       .subscribe(response => {
         console.log(response); // Log the response for now
         this.groups = this.groups.filter(group => group.groupID !== groupId);
-        this.router.navigate(['my-group']);
+        this.router.navigate(['/my-group', groupId]);
       });
   }
 }

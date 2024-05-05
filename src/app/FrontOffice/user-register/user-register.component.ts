@@ -47,6 +47,8 @@ export class UserRegisterComponent {
     approved: false,
     rejected: false,
     competitionsManagedByJuries: [],
+    imageUrl: '',
+    archived: false
   };
 
   passwordStrength: string = '';
@@ -57,7 +59,7 @@ export class UserRegisterComponent {
 
   ngOnInit(): void {
     this.getAllRoles();
-    this.userService.executeApi("http://localhost:8086/user/updateJuryCV/image/8")
+    
   }
 
   addUser() {

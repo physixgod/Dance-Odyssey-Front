@@ -92,7 +92,7 @@ import { MostofferedComponent } from './FrontProduct/mostoffered/mostoffered.com
 
 
 import { TopRankingComponent } from './FrontProduct/top-ranking/top-ranking.component';
-import { AddEventComponent } from './FrontOffice/add-event/add-event.component';
+
 @NgModule({
   declarations: [
     AppComponent,

@@ -12,6 +12,7 @@ export class NoteComponent implements OnInit {
   competitions: Competition[] = [];
   selectedFile: File | null = null;
   showUpload: boolean = false;
+  userID:any;
 
   toggleUpload(): void {
     this.showUpload = !this.showUpload;
@@ -19,10 +20,15 @@ export class NoteComponent implements OnInit {
   constructor(
     private competitionService: CompetitionService,
     private juryService: JuryService
+    
+    
   ) { }
 
   ngOnInit(): void {
+    this.userID = sessionStorage.getItem('userID');
+    console.log(this.userID);
     this.getMyJuryCompetitions();
+
   }
 
   onFileSelected(event: any): void {
@@ -55,7 +61,7 @@ export class NoteComponent implements OnInit {
   
   getMyJuryCompetitions(): void {
     const idJury = 1;
-    this.juryService.getMyJuryCompetitions(idJury).subscribe(
+    this.juryService.getMyJuryCompetitions(this.userID).subscribe(
       (competitions: Competition[]) => {
         this.competitions = competitions;
         console.log('Competitions:', this.competitions);

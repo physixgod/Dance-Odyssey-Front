@@ -10,6 +10,7 @@ import { Router } from '@angular/router';
 })
 
 export class GroupsQuizComponent {
+  userID:any;
   ageRange!: string;
   danceStyles!: string;
   diverseAgeRepresentation!: boolean;
@@ -18,7 +19,11 @@ export class GroupsQuizComponent {
   suggestedGroups: Group[] = []; // Initialize to an empty array
 
   constructor(private juryService: JuryService, private router: Router) { }
+  ngOnInit(): void {
+    this.userID = sessionStorage.getItem('userID');
+    console.log(this.userID);
 
+  }
   suggestGroups() {
     this.juryService.suggestGroupsBasedOnAnswers(
       this.ageRange,
@@ -33,14 +38,14 @@ export class GroupsQuizComponent {
   }
 
   joinGroup(groupId: number): void {
-    const dancerId = 3; // Replace with actual dancer ID
-    this.juryService.joinGroup(groupId, dancerId)
+  // Replace with actual dancer ID
+    this.juryService.joinGroup(groupId, this.userID)
       .subscribe(response => {
         console.log(response); // Log the response for now
         // Optionally, you can remove the joined group from the suggestedGroups array
         
         // Navigate to the appropriate route after joining the group
-        this.router.navigate(['my-group']);
+        this.router.navigate(['/my-group', groupId]);
       });
   }
 

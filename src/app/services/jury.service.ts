@@ -1,11 +1,11 @@
 import { Injectable } from '@angular/core';
 import { Observable, throwError } from 'rxjs';
-import { JuryManager } from '../models/jury';
+import { JuryManager } from 'src/app/models/jury1';
 import { Competition } from '../models/competition';
 import { Group } from '../models/group';
 import { catchError,map } from 'rxjs/operators';
 import { HttpClient, HttpErrorResponse, HttpParams } from '@angular/common/http';
-import * as XLSX from 'xlsx';
+
 import { Dancer } from '../models/dancer';
 @Injectable({
   providedIn: 'root'

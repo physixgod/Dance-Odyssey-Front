@@ -25,6 +25,9 @@
                 <td>{{ jury.diploma }}</td>
                 <td>{{ jury.email }}</td>   
                 <td>
+                  <button class="btn btn-primary me-2" (click)="getJuryCV(jury.juryID)">
+                    <i class="bx bx-file me-1"></i> Show CV
+                  </button>
                   <button class="btn btn-success me-2" (click)="approveJury(jury.juryID)">
                     <i class="bx bx-check me-1"></i> Approve
                   </button>
