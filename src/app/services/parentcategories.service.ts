@@ -9,7 +9,7 @@ import { ParentCategory } from "src/app/models/parentcategories_product";
 })
 export class ParentCategoryService {
 
-  private baseURL = 'http://localhost:8086/DanceOdyssey/parentcategories';
+  private baseURL = 'http://localhost:8086/parentcategories';
 
   constructor(private http: HttpClient) { }
   getParentCategoryImage(id: number): Observable<string> {

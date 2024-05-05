@@ -19,7 +19,7 @@ export class ViewProductComponent implements OnInit {
   selectedImage: Image | null = null;
   parentCategoryId: number | undefined;
   products: Product[] = [];
-  userId: number = 1;
+  userID: any;
   id: number = 0;
   feedback: string = ''; 
   selectedRating: number = 0;
@@ -46,6 +46,8 @@ export class ViewProductComponent implements OnInit {
     );
   }
   ngOnInit(): void {
+    this.userID = sessionStorage.getItem('userID');
+    console.log(this.userID);
     this.route.params.subscribe(params => {
       this.productId = +params['id'];
       this.loadProductDetails();
@@ -121,23 +123,29 @@ decrementQuantity(): void {
   }
 
   addRatingToProduct(): void {
-    if (this.productId && this.userId) {
+   
+
+    if (this.productId && this.userID) {
       const newRating: RatingProduct = new RatingProduct(
         this.id,
         this.feedback,
         this.selectedRating
       );
-      this.productService.addRatingToProduct(this.productId, this.userId, newRating).subscribe(
+      this.productService.addRatingToProduct(this.productId, this.userID, newRating).subscribe(
         () => {
           console.log('La notation a été ajoutée avec succès.');
-          this.loadProductDetails();
+          console.log(newRating)
         },
         (error) => {
           console.error('Erreur lors de l\'ajout de la notation au produit:', error);
+          this.loadProductDetails();
+          console.log(newRating)
         }
       );
     } else {
       console.error('Les informations nécessaires pour ajouter une notation ne sont pas fournies.');
+      
     }
+    
   }
 }

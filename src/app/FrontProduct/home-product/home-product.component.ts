@@ -29,7 +29,8 @@ export class HomeProductComponent implements OnInit {
   selectedParentCategoryId: number | null = null; // Initialisez l'ID de la catégorie parent sélectionnée à null
   nbrProduct: number = 1; // Nombre de produits à ajouter au panier (initialisé à 1)
   selectedCartId: number = 1; // ID du panier sélectionné (initialisé à 1)
-
+  productImages: Image[] = [];
+  userID:any;
   constructor(
     private productService: ProductService,
     private parentCategoryService: ParentCategoryService,
@@ -41,10 +42,25 @@ export class HomeProductComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    this.userID = sessionStorage.getItem('userID');
+    console.log(this.userID);
+    this.productService.getCartID(this.userID).subscribe(
+      cartID => {
+        console.log('Cart ID:', cartID);
+        this.selectedCartId=cartID;
+      },
+      error => {
+        console.error('Error fetching cart ID:', error);
+        // Handle error...
+      }
+    );
+  
+
     this.loadParentCategoriesWithSubCategories();
     this.loadLast5Products();
     this.loadTopRatingProducts();
     this.loadPromotionalProducts();
+    this.loadImagesForProduct(2);   
     const productId = this.route.snapshot.params['productId'];
   }
 
@@ -138,6 +154,7 @@ export class HomeProductComponent implements OnInit {
     this.productService.getTopRatingProducts().subscribe(
       (data: Product[]) => {
         this.topRatingProducts = this.filterArchivedProducts(data);
+        console.log(data)
       },
       (error) => {
         console.error('Error loading top rating products:', error);
@@ -160,7 +177,7 @@ export class HomeProductComponent implements OnInit {
 
   loadImagesForProduct(productId: number): void {
     this.productService.getImagesForProduct(productId).subscribe(images => {
-      this.images = images;
+      this.productImages = images;
     });
   }
 

@@ -78,18 +78,21 @@ export class AddProductComponent implements OnInit {
     if (this.selectedParentCategory && this.selectedParentCategory.id && this.product && this.product.subCategories.length > 0) {
       this.product.parentCategory = this.selectedParentCategory;
       const subCategoryId = this.product.subCategories[0].id;
+      this.router.navigate(['/admin/list-product']);
       
       this.productService.addProduct(this.selectedParentCategory.id, subCategoryId, this.product).subscribe(
         (newProduct: Product) => {
           console.log('Product added successfully:', newProduct);
           if (this.selectedFiles.length > 0) {
             this.productService.addImagesToProduct(newProduct.idProduct, this.selectedFiles).subscribe(
-              (result) => {          this.router.navigate(['/admin/list-product']);
+              (result) => {      
+                    this.router.navigate(['/admin/list-product']);
 
                 console.log('Images added successfully:', result);
               },
               (error) => {
                 console.error('Error adding images:', error);
+                this.router.navigate(['/admin/list-product']);
               }
             );
           }
@@ -97,10 +100,12 @@ export class AddProductComponent implements OnInit {
         },
         (error) => {
           console.error('Error adding product:', error);
+          this.router.navigate(['/admin/list-product']);
         }
       );
     } else {
       console.error('Selected parent category, product or subcategory is null.');
+      this.router.navigate(['/admin/list-product']);
     }
   }
 }

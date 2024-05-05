@@ -9,7 +9,7 @@ import { Product,Image,RatingProduct } from '../models/product';
 })
 export class ProductService {
 
-  private apiURL = 'http://localhost:8086/DanceOdyssey/products';
+  private apiURL = 'http://localhost:8086/products';
 
   constructor(private http: HttpClient) { }
 
@@ -103,6 +103,7 @@ export class ProductService {
   }
  
   getImagesForProduct(productId: number): Observable<Image[]> {
+    console.log("gg");
     return this.http.get<Image[]>(`${this.apiURL}/${productId}/images`)
       .pipe(
         catchError(this.handleError)
@@ -120,6 +121,10 @@ export class ProductService {
       .pipe(
         catchError(this.handleError)
       );
+  }
+  getCartID(idUser: number): Observable<number> {
+    const url = `${this.apiURL}/getCartID/${idUser}`;
+    return this.http.get<number>(url);
   }
 
   searchByName(name: string): Observable<Product[]> {

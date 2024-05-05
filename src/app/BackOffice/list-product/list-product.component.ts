@@ -23,7 +23,10 @@ export class ListProductComponent implements OnInit {
   loadProducts(): void {
     this.productService.showAllProducts().subscribe(products => {
       this.products = products.filter(product => !product.archived);
+      
     });
+
+
   }
 
   openImageGallery(productId: number): void {
