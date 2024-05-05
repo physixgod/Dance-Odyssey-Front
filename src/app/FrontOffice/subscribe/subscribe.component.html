@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Subscription Options</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-image: url('../../../assets/images/ffff.jpg');
+            background-size: cover;
+            background-position: center;
+            background-color: #212529;
+            color: #fff;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh; /* Utilisation de min-height au lieu de height pour permettre l'expansion de l'image */
+        }
+        
+        .container {
+            background-color: rgba(0, 0, 0, 0.5);
+            border-radius: 10px;
+            padding: 20px;
+            text-align: center;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+        }
+        
+        .subscription {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 20px;
+        }
+
+        .subscription .option {
+            background-color: #495057;
+            padding: 20px;
+            border-radius: 10px;
+            flex-grow: 1;
+            margin: 0 10px;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .subscription .option:hover {
+            transform: translateY(-5px);
+        }
+
+        .subscription .option h2 {
+            margin-top: 0;
+        }
+
+        .subscription .option p {
+            margin-bottom: 10px;
+        }
+
+        .pay-button {
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .pay-button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1>Choose a Subscription</h1>
+        <div class="subscription">
+            <div class="option">
+                <h2>1 Month Subscription</h2>
+                <p>Price: 10 dinars</p>
+                <button class="pay-button" (click)="redirectToPayment('1 Month Subscription')">Pay Now</button>
+            </div>
+            <div class="option">
+                <h2>6 Months Subscription</h2>
+                <p>Price: 40 dinars</p>
+                <button class="pay-button" (click)="redirectToPayment('6 Months Subscription')">Pay Now</button>
+            </div>
+            <div class="option">
+                <h2>1 Year Subscription</h2>
+                <p>Price: 70 dinars</p>
+                <button class="pay-button" (click)="redirectToPayment('1 Year Subscription')">Pay Now</button>
+            </div>
+        </div>
+    </div>
+
+</body>
+
+</html>

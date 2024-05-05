@@ -1,0 +1,50 @@
+<div class="hero overlay" style="background-image: url('/assets/images/addEvent.jpg');">
+  <div class="container">
+    <div class="row align-items-center">
+      <div class="col-lg-5 mx-auto text-center">
+        <h1 class="text-white">Upcoming Events </h1>
+        <p>Discover exciting events and engage in those that capture your interest</p>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="container site-section">
+  <div class="row">
+    <div class="col-6 title-section">
+      <h2 class="title">Events Near Me</h2>
+      <div class="form-group">
+        <label for="maxDistance">Max Distance (in Kilometre):</label>
+        <input type="number" class="form-control" id="maxDistance" [(ngModel)]="maxDistance" name="maxDistance" placeholder="Enter max distance">
+      </div>
+      <button class="btn btn-primary" (click)="fetchEventsNearMe()">Search</button>
+    </div>
+   
+  </div>
+  <div class="row">
+    <div class="col-lg-4 mb-4" *ngFor="let event of events">
+      <div class="custom-media d-block">
+        <div class="img mb-4">
+          <a [routerLink]="['/events', event.eventID]">
+            <img *ngIf="event.eventImage" 
+                 [src]="event.eventImage" 
+                 alt="Event Image" 
+                 class="img-fluid" 
+                 style="width: 400px; height: 400px;">
+            <!-- If no image URL available, display a placeholder image -->
+            <img *ngIf="!event.eventImage" 
+                 src="/assets/images/eventimage.jpg" 
+                 alt="Image" 
+                 class="img-fluid" 
+                 style="width: 400px; height: 400px;">
+          </a>
+        </div>
+        <div class="text">
+          <span class="meta">{{ event.startDate | date: 'mediumDate' }}</span>
+          <h3 class="mb-4"><a [routerLink]="['/events', event.eventID]">{{ event.eventName }}</a></h3>
+          <p>{{ event.description }}</p>
+          <p><a [routerLink]="['/registerEvent', event.eventID]">Read more</a></p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

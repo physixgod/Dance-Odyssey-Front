@@ -1,0 +1,58 @@
+/* Style pour le tableau */
+.table {
+  width: 100%;
+  margin-bottom: 1rem;
+  color: black;
+  background-color: #fff;
+  border-collapse: collapse;
+}
+
+/* Style pour les cellules de titre */
+.table th {
+  padding: 0.75rem; /* Taille standard du padding pour les cellules de titre */
+  vertical-align: middle;
+  border: 1px solid #dee2e6;
+}
+
+/* Style pour les cellules de données */
+.table td {
+  padding: 0.5rem; /* Taille standard du padding pour les cellules de données */
+  vertical-align: middle;
+  border: 1px solid #dee2e6;
+  text-align: center; /* Alignement du texte au centre */
+}
+
+/* Style pour l'image du produit */
+.product-cell {
+  cursor: pointer;
+}
+
+/* Style pour l'image du produit */
+.product-image {
+  width: 60px; /* Augmentation de la taille de l'image */
+  height: 60px; /* Augmentation de la taille de l'image */
+  border-radius: 50%; /* Ajout d'un arrondi pour un aspect plus agréable */
+
+}
+
+.product-cell {
+  cursor: pointer;
+  display: flex;
+  justify-content: center; /* Centre horizontalement */
+  align-items: center; /* Centre verticalement */
+}
+/* Style pour le groupe de boutons */
+.button-group {
+  display: flex;
+  justify-content: space-between;
+}
+
+/* Style pour les boutons */
+.btn {
+  padding: 5px 10px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+
