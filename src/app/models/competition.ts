@@ -12,6 +12,7 @@ export class Competition {
     status!: string;
     participations!: Participate[];
     jurymanagers!: JuryManager[];
+    file: File | null | undefined;
     competitionImage!: string;
   }
   

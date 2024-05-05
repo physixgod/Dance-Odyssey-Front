@@ -53,6 +53,21 @@ import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { AddCompetitionComponent } from './BackOffice/add-competition/add-competition.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms'; // Importez ReactiveFormsModule ici
 import { ListCompetitionsComponent } from './FrontOffice/list-competitions/list-competitions.component';
+import { AddEventComponent } from './FrontOffice/add-event/add-event.component';
+import { GetjuriesComponent } from './BackOffice/getjuries/getjuries.component';
+import { CompetitionDetailsComponent } from './BackOffice/competition-details/competition-details.component';
+import { JuryaffectationComponent } from './BackOffice/juryaffectation/juryaffectation.component';
+import { JudgingCriteriaComponent } from './BackOffice/judging-criteria/judging-criteria.component';
+import { ShowaffectedjuriesComponent } from './BackOffice/showaffectedjuries/showaffectedjuries.component';
+import { ShowAprrovedJuriesComponent } from './BackOffice/show-aprroved-juries/show-aprroved-juries.component';
+import { RegisterjuryComponent } from './registerjury/registerjury.component';
+import { NoteComponent } from './FrontOffice/note/note.component';
+import { ParticipantScoreComponent } from './FrontOffice/participant-score/participant-score.component';
+import { GroupCreationComponent } from './FrontOffice/group-creation/group-creation.component';
+import { AllGroupsComponent } from './FrontOffice/all-groups/all-groups.component';
+import { MyGroupComponent } from './FrontOffice/my-group/my-group.component';
+import { GroupsQuizComponent } from './FrontOffice/groups-quiz/groups-quiz.component';
+import { SuggestedGroupsComponent } from './FrontOffice/suggested-groups/suggested-groups.component';
 import { AddProductComponent } from './BackOffice/add-product/add-product.component';
 import { CommonModule } from '@angular/common';
 import { ListProductComponent } from './BackOffice/list-product/list-product.component';
@@ -74,6 +89,7 @@ import { LatestProductsComponent } from './FrontProduct/latest-products/latest-p
 import { BestSellersComponent } from './FrontProduct/best-sellers/best-sellers.component';
 import { MusicComponent } from './FrontProduct/music/music.component';
 import { MostofferedComponent } from './FrontProduct/mostoffered/mostoffered.component';
+
 
 import { TopRankingComponent } from './FrontProduct/top-ranking/top-ranking.component';
 import { AddEventComponent } from './FrontOffice/add-event/add-event.component';
@@ -113,6 +129,20 @@ import { AddEventComponent } from './FrontOffice/add-event/add-event.component';
     MostofferedComponent,
     TopRankingComponent,
     AddEventComponent,
+    GetjuriesComponent,
+    CompetitionDetailsComponent,
+    JuryaffectationComponent,
+    JudgingCriteriaComponent,
+    ShowaffectedjuriesComponent,
+    ShowAprrovedJuriesComponent,
+    RegisterjuryComponent,
+    NoteComponent,
+    ParticipantScoreComponent,
+    GroupCreationComponent,
+    AllGroupsComponent,
+    MyGroupComponent,
+    GroupsQuizComponent,
+    SuggestedGroupsComponent,
     UserRegisterComponent,
     TableadminComponent,
     UserLoginComponent,
@@ -139,7 +169,6 @@ import { AddEventComponent } from './FrontOffice/add-event/add-event.component';
     ReadmoreCompetitionsComponent,
     ShowCompetitionsDancersComponent
     
-
   ],
   imports: [
     CommonModule,

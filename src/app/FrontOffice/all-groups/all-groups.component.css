@@ -1,0 +1,14 @@
+.card {
+    background-color: #0c0430; /* Purple color */
+    color: white; /* Text color */
+    border: none; /* Remove border */
+  }
+  
+  .card-title {
+    color: white; /* Title color */
+  }
+  
+  .card-text {
+    color: white; /* Text color */
+  }
+  
