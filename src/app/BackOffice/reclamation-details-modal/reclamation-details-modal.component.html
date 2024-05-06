@@ -1,0 +1,14 @@
+<!-- reclamation-details-modal.component.html -->
+<div class="reclamation-details-container">
+    <h2>Reclamation Details</h2>
+  
+    <div class="details">
+      <p><strong>Reason:</strong> {{ data.reclamation.reclamationReason }}</p>
+      <p><strong>Priority:</strong> {{ data.reclamation.priority }}</p>
+      <p><strong>Description:</strong> {{ data.reclamation.reclamationDescription }}</p>
+      <p><strong>Date:</strong> {{ data.reclamation.reclamationDate }}</p>
+    </div>
+  
+    <button mat-button class="close-button" (click)="closeDialog()">Close</button>
+  </div>
+  

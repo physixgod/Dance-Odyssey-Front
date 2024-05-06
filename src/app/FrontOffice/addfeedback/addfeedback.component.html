@@ -1,0 +1,74 @@
+<div class="hero overlay" style="background-image: url('/assets/images/addEvent.jpg');">
+  <div class="container">
+    <div class="center-container">
+      <div class="site-section">   
+        <div class="col-lg-7 mx-auto">
+          <!-- This is where you can put any content you want above the form -->
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Move the form down by adding padding -->
+  <div class="container mt-5">
+    <div class="center-container">
+      <div class="site-section">   
+        <div class="col-lg-7 mx-auto">
+          <div class="feedback-form">
+            <h2>Share your Feedback</h2>
+            <form (ngSubmit)="addFeedback()" #feedbackForm="ngForm">
+              <div class="form-group">
+                <label for="rating">App Rating:</label>
+                <div class="rating-input">
+                  <div class="star-rating">
+                    <input type="radio" id="star1" name="rating" value="1" [(ngModel)]="feedback.rating" required/>
+                    <label for="star1" title="1 star" class="star" (mouseover)="highlightStars(1)"  [ngClass]="{ 'highlighted': feedback.rating >= 1 }">&#9733;</label>
+                    <input type="radio" id="star2" name="rating" value="2" [(ngModel)]="feedback.rating"/>
+                    <label for="star2" title="2 star" class="star" (mouseover)="highlightStars(2)"  [ngClass]="{ 'highlighted': feedback.rating >= 2 }">&#9733;</label>
+                    <input type="radio" id="star3" name="rating" value="3" [(ngModel)]="feedback.rating"/>
+                    <label for="star3" title="3 star" class="star" (mouseover)="highlightStars(3)"  [ngClass]="{ 'highlighted': feedback.rating >= 3 }">&#9733;</label>
+                    <input type="radio" id="star4" name="rating" value="4" [(ngModel)]="feedback.rating"/>
+                    <label for="star4" title="4 star" class="star" (mouseover)="highlightStars(4)"  [ngClass]="{ 'highlighted': feedback.rating >= 4 }">&#9733;</label>
+                    <input type="radio" id="star5" name="rating" value="5" [(ngModel)]="feedback.rating"/>
+                    <label for="star5" title="5 star" class="star" (mouseover)="highlightStars(5)"  [ngClass]="{ 'highlighted': feedback.rating >= 5 }">&#9733;</label>
+                  </div>
+                </div>
+              </div>
+              
+              <fieldset class="form-group">
+                <legend>How was your experience?</legend>
+                <div class="form-check form-check-inline">
+                  <input class="form-check-input" type="radio" name="userExperience" id="excellent" value="Excellent" [(ngModel)]="feedback.feedbackMessage" required>
+                  <label class="form-check-label" for="excellent">Excellent</label>
+                </div>
+                <div class="form-check form-check-inline">
+                  <input class="form-check-input" type="radio" name="userExperience" id="good" value="Good" [(ngModel)]="feedback.feedbackMessage">
+                  <label class="form-check-label" for="good">Good</label>
+                </div>
+                <div class="form-check form-check-inline">
+                  <input class="form-check-input" type="radio" name="userExperience" id="average" value="Average" [(ngModel)]="feedback.feedbackMessage">
+                  <label class="form-check-label" for="average">Average</label>
+                </div>
+                <div class="form-check form-check-inline">
+                  <input class="form-check-input" type="radio" name="userExperience" id="poor" value="Poor" [(ngModel)]="feedback.feedbackMessage">
+                  <label class="form-check-label" for="poor">Poor</label>
+                </div>
+              </fieldset>
+              
+              <!-- Textarea for comments -->
+              <div class="form-group">
+                <label for="feedbackcomments">Comments or Suggestions:</label>
+                <textarea class="form-control" id="feedbackcomments" name="feedbackcomments" rows="5" [(ngModel)]="feedback.feedbackcomments"></textarea>
+              </div>
+              
+             
+              
+              <!-- Submit button -->
+              <button type="submit" class="btn btn-primary" [disabled]="feedbackForm.invalid">Submit Feedback</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

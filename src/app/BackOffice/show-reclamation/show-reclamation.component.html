@@ -1,0 +1,31 @@
+<div class="container mt-4">
+  <h2 class="mb-3">Reclamations</h2>
+
+  <!-- Export Button -->
+  <button class="btn btn-primary mb-3" (click)="exportToExcel()">Export to Excel</button>
+
+  <!-- Search input -->
+  <div class="input-group mb-3">
+    <input type="text" class="form-control" placeholder="Search" [(ngModel)]="searchTerm" (input)="search()">
+  </div>
+
+  <!-- Reclamations list -->
+  <div class="row">
+    <div class="col-md-4" *ngFor="let reclamation of filteredReclamations">
+      <div class="card mb-3">
+        <div class="card-body">
+          <h3 class="card-title">{{ reclamation.reclamationReason }}</h3>
+          <p class="card-text">Priority: <span [style.color]="getPriorityColor(reclamation.priority)">{{ reclamation.priority }}</span></p>
+          <p class="card-text">Description: {{ reclamation.reclamationDescription }}</p>
+          <p class="card-text">Date: {{ reclamation.reclamationDate }}</p>
+
+          <!-- Action buttons -->
+          <div class="d-flex justify-content-between">
+            <button class="btn btn-success rounded-pill" (click)="respondToReclamation($event, reclamation)">Respond</button>
+            <button class="btn btn-primary rounded-pill" (click)="openReclamationDetailsModal(reclamation)">Details</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

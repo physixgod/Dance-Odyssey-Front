@@ -7,15 +7,12 @@ import { TokenInterceptor } from './services/token.interceptor';
 import { ForgotpasswordComponent } from './FrontOffice/forgotpassword/forgotpassword.component';
 import { SubscribeComponent } from './FrontOffice/subscribe/subscribe.component';
 import { PaymentPageComponent } from './FrontOffice/payment-page/payment-page.component';
-
 import { UserstatComponent } from './BackOffice/userstat/userstat.component';
 
 import { SubstatComponent } from './BackOffice/substat/substat.component';
-
 import { RecaptchaModule, RECAPTCHA_V3_SITE_KEY } from 'ng-recaptcha';
-import { UsereditComponent } from './FrontOffice/useredit/useredit.component'; 
+import { UsereditComponent } from './FrontOffice/useredit/useredit.component';
 import { EventsListComponent } from './FrontOffice/events-list/events-list.component';
-
 import { ArchiveCompetitionsComponent } from './BackOffice/archive-competitions/archive-competitions.component';
 import { CompetitionRanksComponent } from './competition-ranks/competition-ranks.component';
 import { ReadmoreCompetitionsComponent } from './FrontOffice/readmore-competitions/readmore-competitions.component';
@@ -26,15 +23,11 @@ import { MyEventsComponent } from './FrontOffice/my-events/my-events.component';
 import { UpgradeEventComponent } from './FrontOffice/upgrade-event/upgrade-event.component';
 import { CompetitionPDFComponent } from './BackOffice/competition-pdf/competition-pdf.component';
 import { TriviaComponent } from './FrontOffice/trivia/trivia.component';
-
 import { RegisterEventComponent } from './FrontOffice/register-event/register-event.component';
 import { EventFlyerComponent } from './event-flyer/event-flyer.component';
 import { AddAccommodationComponent } from './FrontOffice/add-accommodation/add-accommodation.component';
-
 import { RockGameComponent } from './FrontOffice/rock-game/rock-game.component';
 import { ResultsComponent } from './FrontOffice/results/results.component';
-
-import { NgxChartsModule } from '@swimlane/ngx-charts';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { RouterModule, Routes } from '@angular/router';
@@ -92,6 +85,39 @@ import { MostofferedComponent } from './FrontProduct/mostoffered/mostoffered.com
 
 
 import { TopRankingComponent } from './FrontProduct/top-ranking/top-ranking.component';
+import {
+  ReclamationDetailsModalComponent
+} from "./BackOffice/reclamation-details-modal/reclamation-details-modal.component";
+import {AddProgressModalComponent} from "./FrontOffice/add-progress-modal/add-progress-modal.component";
+import {ProgressTrackingComponent} from "./FrontOffice/progress-tracking/progress-tracking.component";
+import {ShowfeedbackComponent} from "./BackOffice/showfeedback/showfeedback.component";
+import {AddfeedbackComponent} from "./FrontOffice/addfeedback/addfeedback.component";
+import {ReclamationetfeedbackComponent} from "./FrontOffice/reclamationetfeedback/reclamationetfeedback.component";
+import {ShowReclamationComponent} from "./BackOffice/show-reclamation/show-reclamation.component";
+import {AddReclamtionComponent} from "./FrontOffice/add-reclamation/add-reclamation.component";
+import {UpdateReclamationComponent} from "./FrontOffice/update-reclamation/update-reclamation.component";
+import {MatDialogModule} from "@angular/material/dialog";
+import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
+import {ToastrModule} from "ngx-toastr";
+import {CourseDialogComponent} from "./BackOffice/course-dialog/course-dialog.component";
+import {ListCourseComponent} from "./BackOffice/list-course/list-course.component";
+import {ModifCourceComponent} from "./BackOffice/modif-cource/modif-cource.component";
+import {AddAnnulationComponent} from "./BackOffice/add-annulation/add-annulation.component";
+import {ListeAnnulationComponent} from "./BackOffice/liste-annulation/liste-annulation.component";
+
+
+
+import { AddCourseComponent } from './BackOffice/add-course/add-course.component';
+import { AddcourseComponent } from './FrontOffice/addcourse/addcourse.component';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatSlideToggleModule } from '@angular/material/slide-toggle';
+import { NgxChartsModule } from '@swimlane/ngx-charts';
+import { NgChartsModule } from 'ng2-charts';
+
+
+
+
+
 
 @NgModule({
   declarations: [
@@ -167,8 +193,26 @@ import { TopRankingComponent } from './FrontProduct/top-ranking/top-ranking.comp
     RockGameComponent,
     ResultsComponent,
     ReadmoreCompetitionsComponent,
-    ShowCompetitionsDancersComponent
-    
+    ShowCompetitionsDancersComponent,
+    AddReclamtionComponent,
+    ShowReclamationComponent,
+    UpdateReclamationComponent,
+    ReclamationetfeedbackComponent,
+    AddfeedbackComponent,
+    ShowfeedbackComponent,
+    ProgressTrackingComponent,
+    AddProgressModalComponent,
+    ReclamationDetailsModalComponent,
+      ////////////////////////
+      CourseDialogComponent,
+      CourseDialogComponent,
+      ListCourseComponent,
+      ModifCourceComponent,
+      AddAnnulationComponent,
+      ListeAnnulationComponent,
+      AddcourseComponent,
+      AddcourseComponent,
+
   ],
   imports: [
     CommonModule,
@@ -178,9 +222,28 @@ import { TopRankingComponent } from './FrontProduct/top-ranking/top-ranking.comp
     AppRoutingModule,
     HttpClientModule,
     RouterModule,
-    NgxChartsModule
-    
-    
+    BrowserAnimationsModule, // required animations module
+    ToastrModule.forRoot(),
+    MatDialogModule,
+    MatFormFieldModule,
+    MatSlideToggleModule,
+    NgxChartsModule,
+    NgChartsModule,
+    BrowserModule,
+    AppRoutingModule,
+    HttpClientModule,
+    FormsModule,
+    MatSlideToggleModule,
+    BrowserAnimationsModule,
+    MatDialogModule,
+    FormsModule,
+    ReactiveFormsModule,
+    MatFormFieldModule,
+    NgChartsModule
+
+
+
+
   ],
   providers: [
     {

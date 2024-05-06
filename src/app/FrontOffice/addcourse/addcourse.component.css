@@ -1,0 +1,104 @@
+/* Reset the overall body styling */
+body {
+    background-color: #121212;  /* Dark background for better contrast */
+    color: #fff;
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding-top: 100px; /* Add padding to the top of the body to push everything down */
+}
+
+/* Specific styles for the header to ensure it is above other content */
+header {
+    position: fixed; /* Make the header fixed at the top */
+    width: 100%; /* Full width */
+    top: 0; /* Align to the top */
+    left: 0; /* Align to the left */
+    background-color: #282828;
+    z-index: 1050; /* High z-index to keep it above other content */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5); /* Shadow for depth */
+    padding: 10px 20px; /* Padding for aesthetics */
+}
+
+/* Styles for the logo */
+.logo {
+    height: 60px; /* Adjust size as necessary */
+    width: auto; /* Maintain aspect ratio */
+    display: block; /* Block display to manipulate easier */
+}
+
+/* Navigation styling */
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0;
+}
+
+nav a {
+    color: #fff;
+    text-decoration: none;
+    padding: 10px 15px;
+    font-weight: bold;
+}
+
+/* Container for the form with a background image */
+.container {
+    position: relative;
+    margin: 0 auto; /* Centering the container */
+    top: 130px; /* Adjust based on header height */
+    width: 60%; /* Decreased width to make the form smaller */
+    padding: 15px; /* Reduced padding */
+    background-color: rgba(40, 40, 40, 0.85); /* Increased transparency to blend with the image */
+    background-image: url(' ../../../assets/images/Her0204.jpg'); /* Insert the path to your image */
+    background-size: cover; /* Ensures the background covers the entire container */
+    background-position: center; /* Center the background image */
+    border-radius: 8px;
+    box-shadow: 0 4x 8px rgba(0, 0, 0, 0.5);
+    z-index: 100; /* Ensure it's above page content but below any overlay elements */
+}
+
+/* Styling form inputs to enhance visibility */
+.form-control, .form-control-file {
+    background-color: rgba(255, 255, 255, 0.9); /* Light, semi-transparent white for input backgrounds */
+    color: #000; /* Black text color for contrast */
+    border: 1px solid #bbb; /* Lighter border to help define the input boundaries */
+    border-radius: 5px; /* Rounded corners for aesthetics */
+}
+
+/* Styling form labels for enhanced visibility */
+.form-group label {
+    color: #E0E0E0; /* Light grey color for better visibility against the background */
+    font-weight: bold; /* Making the label text bolder */
+}
+
+/* Style modifications for dropdowns for better visibility */
+.form-select {
+    background-color: rgba(255, 255, 255, 0.9); /* Light, semi-transparent white for dropdown */
+    color: #000; /* Black text color for readability */
+    border-radius: 5px;
+}
+
+/* Active state for dropdown */
+.form-select:focus {
+    background-color: rgba(255, 255, 255, 0.95); /* Slightly more opaque on focus */
+    color: #222; /* Dark grey text color for active state */
+}
+
+/* Option styling within the dropdown */
+.form-select option {
+    background-color: #222; /* Dark background for options */
+    color: #fff; /* White text color for options */
+}
+
+/* Adjust button styling */
+.btn-primary {
+    background-color: #6200ea;
+    border: none;
+    color: #fff; /* White text for buttons for high contrast */
+}
+
+@media (max-width: 768px) {
+    .container {
+        width: 80%; /* More suitable for smaller screens */
+    }
+}

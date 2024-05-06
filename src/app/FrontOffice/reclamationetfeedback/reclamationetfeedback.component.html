@@ -1,0 +1,36 @@
+<div class="hero overlay" 
+>
+    <div class="container">
+      <div class="row align-items-center">
+        <div class="col-lg-5 mx-auto text-center">
+          <h1 class="text-white">Complaint and Feedback </h1>
+          <!-- Reclamation Button -->
+          <button class="btn btn-primary mr-2" (click)="toggleReclamationOptions()">Reclamation</button>
+          <!-- Dropdown for Reclamation Options -->
+          <div *ngIf="showReclamationOptions" class="dropdown">
+            <button class="btn btn-primary dropdown-toggle" type="button" id="reclamationDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              Options
+            </button>
+            <div class="dropdown-menu" aria-labelledby="reclamationDropdown">
+              <button class="dropdown-item" (click)="addReclamation()">Add</button>
+              <button class="dropdown-item" (click)="editReclamation()">Edit</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <div class="site-section">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-7">
+          <!-- Content goes here -->
+        </div>
+        <div class="col-lg-4 ml-auto">
+          <!-- Sidebar content goes here -->
+        </div>
+      </div>
+    </div>
+  </div>
+  

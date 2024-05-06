@@ -77,6 +77,21 @@ import { AddAccommodationComponent } from './FrontOffice/add-accommodation/add-a
 import { ShowEventsAccComponent } from './FrontOffice/show-events-acc/show-events-acc.component';
 import { RockGameComponent } from './FrontOffice/rock-game/rock-game.component';
 import { ResultsComponent } from './FrontOffice/results/results.component';
+import {ShowfeedbackComponent} from "./BackOffice/showfeedback/showfeedback.component";
+import {ShowReclamationComponent} from "./BackOffice/show-reclamation/show-reclamation.component";
+import {ProgressTrackingComponent} from "./FrontOffice/progress-tracking/progress-tracking.component";
+import {AddfeedbackComponent} from "./FrontOffice/addfeedback/addfeedback.component";
+import {ReclamationetfeedbackComponent} from "./FrontOffice/reclamationetfeedback/reclamationetfeedback.component";
+import {AddReclamtionComponent} from "./FrontOffice/add-reclamation/add-reclamation.component";
+
+
+import { AddCourseComponent } from './BackOffice/add-course/add-course.component';
+
+import { AddcourseComponent } from './FrontOffice/addcourse/addcourse.component';
+import {ListCourseComponent} from "./BackOffice/list-course/list-course.component";
+import {ModifCourceComponent} from "./BackOffice/modif-cource/modif-cource.component";
+import {AddAnnulationComponent} from "./BackOffice/add-annulation/add-annulation.component";
+import {ListeAnnulationComponent} from "./BackOffice/liste-annulation/liste-annulation.component";
 const routes: Routes = [
 { path:"",
   component: AllTemplateFrontComponent,
@@ -104,11 +119,22 @@ const routes: Routes = [
     {path:'showEventsAcc/:id',component:ShowEventsAccComponent},
     {path:'rockGame',component:RockGameComponent},
     {path: 'results/:updatedScore', component: ResultsComponent },
-    
+
+    ////////////////////////////////////////////////////////////
+    {path:'addreclamtion', component:AddReclamtionComponent},
+    {path:'recandfeed', component:ReclamationetfeedbackComponent},
+    {path:'addfeedback',component:AddfeedbackComponent},
+    { path: 'progress-tracking',component: ProgressTrackingComponent},
+      //////////////////////////oumayma/////////////////////
+      {path:'front', component:AddcourseComponent},
+      {path:'liste', component:ListCourseComponent},
+      { path:'modifier/:courseID', component: ModifCourceComponent },
+      { path:'addAnnulation/:courseID', component: AddAnnulationComponent },
+
   ]
 },{
   path:'eventFlyer',component:EventFlyerComponent
-  
+
 },
 
 { path: 'login', component: UserLoginComponent }, // Ad
@@ -142,11 +168,11 @@ const routes: Routes = [
 
 
 
-    
+
 
 
   ]
-  
+
 
 
 },
@@ -154,7 +180,7 @@ const routes: Routes = [
 
 {
   path:"registerjury",component:RegisterjuryComponent
-  
+
 },
 
 {
@@ -171,13 +197,13 @@ const routes: Routes = [
     {path:'showAffectedJuries/:competitionId',component:ShowaffectedjuriesComponent},
     {path:'ApprovedJuries',component:ShowAprrovedJuriesComponent},
     { path: 'judgingcreteriaaffectation/:competitionId',component: JudgingCriteriaComponent},
-    
+
 
     {path:'add-product',component:AddProductComponent},
     { path:'list-product',component:ListProductComponent},
     {path:'orderslist', component:ManageOrdersComponent},
 
-    
+
 {path:'edit-product/:id',component:EditProductComponent},
 {path:'add-Categoriesproduct',component:CategorieProductComponent},
 {path:'list_Archived',component:ListArchivedComponent},
@@ -199,8 +225,16 @@ const routes: Routes = [
     {path:'competitionDancers/:id', component:ShowCompetitionsDancersComponent},
     {path:'updateCompetition/:id',component:UpdateCompetitionComponent},
     {path:'CompetitionPDF/:id',component:CompetitionPDFComponent},
-    
-    
+    /////////////////////MONTASAR////////////////////////////////////////
+    { path: 'show/:reclamationId', component: ShowReclamationComponent },
+    { path: 'showfeedback',component: ShowfeedbackComponent},
+      /////////////////////////oumayma////////////////
+      { path: 'add-course', component: AddCourseComponent },
+      { path: 'liste-annulation', component: ListeAnnulationComponent },
+
+
+
+
   ]
 },
 
@@ -211,7 +245,7 @@ const routes: Routes = [
 
 @NgModule({
   declarations: [
-    FilterPipe 
+    FilterPipe
   ],
   imports: [RouterModule.forRoot(routes), RouterModule.forRoot(routes,{useHash:true})],
   exports: [RouterModule],

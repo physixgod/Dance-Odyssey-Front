@@ -1,0 +1,59 @@
+<form #courseForm="ngForm" (ngSubmit)="addCourse()" class="container">
+  <div class="row mb-3">
+    <label class="col-sm-2 col-form-label" for="course-name">Nom du cours</label>
+    <div class="col-sm-10">
+      <input type="text" class="form-control" [(ngModel)]="course.courseName" name="courseName" id="course-name" />
+    </div>
+  </div>
+
+  <div class="row mb-3">
+    <label class="col-sm-2 col-form-label" for="description">Description</label>
+    <div class="col-sm-10">
+      <textarea class="form-control" [(ngModel)]="course.description" name="description" id="description"></textarea>
+    </div>
+  </div>
+
+  <div class="mb-3 row">
+    <label for="category" class="col-sm-2 col-form-label">Catégorie</label>
+    <div class="col-sm-10">
+      <select class="form-select" [(ngModel)]="course.category" name="category" (ngModelChange)="updateDates($event)">
+        <option *ngFor="let category of getCategories()" [value]="category">{{ category }}</option>
+      </select>
+    </div>
+  </div>
+
+  <div class="mb-3 row">
+    <label for="dateCourse" class="col-sm-2 col-form-label">Date du cours</label>
+    <div class="col-sm-10">
+      <select class="form-select" [(ngModel)]="course.dateCourse" name="dateCourse">
+        <option *ngFor="let date of selectedDates" [value]="date">{{ date }}</option>
+      </select>
+    </div>
+  </div>
+
+  <div class="row mb-3">
+    <label for="duration" class="col-sm-2 col-form-label">Durée</label>
+    <div class="col-sm-10">
+      <input type="number" class="form-control" [(ngModel)]="course.durationInHours" name="durationInHours" id="duration" />
+    </div>
+  </div>
+
+  <div class="row mb-3">
+    <label for="level" class="col-sm-2 col-form-label">Niveau</label>
+    <div class="col-sm-10">
+      <input type="text" class="form-control" [(ngModel)]="course.requiredSkillLevel" name="level" id="level" />
+    </div>
+  </div>
+
+  <input type="file" (change)="onFileSelected($event)" accept="video/*">
+
+  <div class="row justify-content-end">
+    <div class="col-sm-10">
+      <button type="submit" class="btn btn-primary py-3 px-5">Enregistrer</button>
+    </div>
+  </div>
+
+  <div *ngIf="showSuccessMessage" class="alert alert-success mt-2">
+    <strong>Succès!</strong> Le cours a été ajouté.
+  </div>
+</form>

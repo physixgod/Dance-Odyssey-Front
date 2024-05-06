@@ -1,0 +1,60 @@
+<div class="container mt-4">
+  <h2 class="mb-3">Feedbacks</h2>
+
+  <!-- Filter dropdown -->
+  <div class="form-group row">
+    <div class="col-sm-4">
+      <label for="messageFilter" class="col-form-label">Filter by:</label>
+      <select class="form-control" id="messageFilter" [(ngModel)]="selectedMessageFilter" (change)="onMessageFilterChange()">
+        <option value="all">All Feedbacks</option>
+        <option value="good">Good</option>
+        <option value="average">Average</option>
+        <option value="poor">Poor</option>
+      </select>
+    </div>
+  </div>
+  
+
+  <!-- Average Rating display -->
+  <div class="form-group row">
+    <label class="col-sm-4 col-form-label">Average Rating</label>
+    <div class="col-sm-4">
+      <span class="average-rating">{{ calculateAverageRating() }}/5</span>
+    </div>
+  </div>
+
+  <!-- Feedback list -->
+  <table class="table table-striped">
+    <thead class="thead-dark">
+      <tr>
+        <th scope="col">Feedback ID</th>
+        <th scope="col">Rating</th>
+        <th scope="col">User Experience</th>
+        <th scope="col">Comments</th>
+        <th scope="col">Created At</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let feedback of filteredFeedbacksPage">
+        <td>{{ feedback.feedbackID }}</td>
+        <td>
+          <span *ngIf="feedback.rating >= 1">⭐️</span>
+          <span *ngIf="feedback.rating >= 2">⭐️</span>
+          <span *ngIf="feedback.rating >= 3">⭐️</span>
+          <span *ngIf="feedback.rating >= 4">⭐️</span>
+          <span *ngIf="feedback.rating >= 5">⭐️</span>
+        </td>
+        <td>{{ feedback.feedbackMessage }}</td>
+        <td>{{ feedback.feedbackcomments }}</td>
+        <td>{{ feedback.createdAt }}</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <!-- Pagination -->
+  <div class="pagination">
+    <button class="btn btn-link" (click)="goToPreviousPage()" [disabled]="currentPage === 1">Previous</button>
+    <span>{{ currentPage }} / {{ totalPages }}</span>
+    <button class="btn btn-link" (click)="goToNextPage()" [disabled]="currentPage === totalPages">Next</button>
+  </div>
+</div>

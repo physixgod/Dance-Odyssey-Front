@@ -1,0 +1,102 @@
+.feedback-form {
+  background-color: rgba(26, 3, 94, 0.8); /* Adjust the alpha (fourth value) for opacity */
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.2); /* Increased shadow */
+  color: #fff; /* Text color */
+}
+
+.feedback-form h2 {
+  font-size: 28px; /* Increased font size */
+  margin-bottom: 10px; /* Increased spacing */
+}
+
+.feedback-form .form-group {
+  margin-bottom: 25px; /* Increased spacing */
+}
+
+.feedback-form .rating-input {
+  margin-bottom: 25px; /* Increased spacing */
+}
+
+.feedback-form .star-rating {
+  display: inline-flex;
+}
+
+.feedback-form .star-rating input[type="radio"] {
+  display: none;
+}
+
+.feedback-form .star-rating label.star {
+  font-size: 40px; /* Increased size of stars */
+  color: #ccc;
+  cursor: pointer;
+  transition: color 0.3s ease; /* Smooth color transition */
+}
+
+.feedback-form .star-rating input[type="radio"]:checked ~ label.star {
+  color: #f8ce0b; /* Selected star color */
+}
+
+.feedback-form .star-rating label.star.highlighted,
+.feedback-form .star-rating label.star:hover {
+  color: #f8ce0b; /* Hovered star color */
+}
+
+.feedback-form label {
+  font-size: 18px; /* Increased font size for labels */
+}
+
+.feedback-form textarea.form-control {
+  resize: vertical; /* Allow vertical resizing */
+}
+
+.feedback-form button[type="submit"] {
+  background-color: #b63783; /* Button background color */
+  color: #fff; /* Button text color */
+  border: none;
+  padding: 15px 30px; /* Increased padding */
+  border-radius: 5px;
+  font-size: 18px; /* Increased font size */
+  cursor: pointer;
+  transition: background-color 0.3s ease; /* Smooth background color transition */
+}
+
+.feedback-form button[type="submit"]:hover {
+  background-color: #d4b106; /* Darker background color on hover */
+}
+/* Custom radio input styles */
+.form-check-input[type="radio"] {
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  width: 20px;
+  height: 20px;
+  border: 2px solid #e0d9d9;
+  border-radius: 50%;
+  margin-right: 5px;
+  cursor: pointer;
+}
+
+/* Radio input hover effect */
+.form-check-input[type="radio"]:hover {
+  border-color: #666;
+}
+
+/* Radio input checked state */
+.form-check-input[type="radio"]:checked {
+  background-color: #f5eded;
+}
+
+/* Custom label styles */
+.form-check-label {
+  cursor: pointer;
+}
+
+/* Align radio inputs and labels vertically */
+.form-check-inline {
+  display: inline-flex;
+  align-items: center;
+  margin-right: 15px;
+}
+

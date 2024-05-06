@@ -1,0 +1,23 @@
+<div class="container mt-5">
+  <div class="row justify-content-center">
+    <div class="col-md-8">
+      <div class="card">
+        <div class="card-header">
+          Espace Annulation
+        </div>
+        <div class="card-body">
+          <p><strong>Nom du cours :</strong> {{ course.courseName }}</p>
+          <p><strong>Category :</strong> {{ course.category }}</p>
+          <p><strong>Date du cours :</strong> {{ course.dateCourse }}</p>
+          <form [formGroup]="registerFormCustom" (ngSubmit)="onSubmitsch()">
+            <div class="form-group">
+              <label for="message">Message</label>
+              <textarea formControlName="message" id="message" class="form-control" rows="4"></textarea>
+            </div>
+            <button type="submit" class="btn btn-purple">Add Schedule</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

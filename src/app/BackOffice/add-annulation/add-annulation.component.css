@@ -1,0 +1,49 @@
+/* Style général de la page */
+body {
+    background-color: #f4f4f4; /* Couleur de fond plus claire pour tout le corps */
+    color: #333; /* Couleur de texte générale plus foncée pour une meilleure lisibilité */
+  }
+  
+  /* Carte principale contenant le formulaire */
+  .card {
+    background: #fff; /* Fond blanc pour la carte */
+    border-radius: 8px; /* Bords arrondis pour la carte */
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1); /* Ombre subtile pour la carte */
+    margin-top: 40px; /* Espace au-dessus de la carte pour la séparer du reste du contenu */
+  }
+  
+  .card-header {
+    background-color: #673ab7; /* Couleur de fond pour l'en-tête de la carte */
+    color: #ffffff; /* Texte blanc pour l'en-tête */
+    font-size: 20px; /* Taille de police pour l'en-tête */
+    text-align: center; /* Centrage du texte de l'en-tête */
+  }
+  
+  .card-body {
+    padding: 20px; /* Padding à l'intérieur de la carte pour l'espacement */
+  }
+  
+  /* Styles pour le champ de saisie du message */
+  .form-control {
+    border: 2px solid #673ab7; /* Bordure colorée pour le champ de saisie */
+    color: #000; /* Couleur de texte noire pour la saisie */
+  }
+  
+  .form-control:focus {
+    box-shadow: 0 0 5px rgba(103, 58, 183, 0.5); /* Effet de focus avec une ombre violette */
+  }
+  
+  /* Bouton de soumission du formulaire */
+  .btn-purple {
+    background-color: #673ab7; /* Fond violet pour le bouton */
+    color: #fff; /* Texte blanc sur le bouton */
+    border: none; /* Pas de bordure pour le bouton */
+    padding: 10px 20px; /* Padding pour le bouton */
+    border-radius: 5px; /* Bords arrondis pour le bouton */
+    transition: background-color 0.3s; /* Transition pour un effet au survol */
+  }
+  
+  .btn-purple:hover {
+    background-color: #5e35b1; /* Changement de couleur au survol */
+  }
+  
