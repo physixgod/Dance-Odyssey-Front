@@ -17,6 +17,6 @@ export class Jury {
     imageUrl!:string;
     archived!:boolean;
 
-    
-    
+
+
 }
