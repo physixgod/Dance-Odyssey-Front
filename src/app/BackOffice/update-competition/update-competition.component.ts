@@ -24,7 +24,8 @@
       competitionID: 0,
       participations: [],
       jurymanagers: [],
-      competitionImage: ''
+      competitionImage: '',
+      file: undefined
     };
     uploadedImage: File | null = null;
     constructor(

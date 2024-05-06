@@ -11,7 +11,6 @@
         <nav class="site-navigation position-relative text-right" role="navigation">
           <ul class="site-menu main-menu js-clone-nav mr-auto d-none d-lg-block">
             <li class="active"><a [routerLink]="['/homepage']" class="nav-link">Home</a></li>
-            <li><a  class="nav-link">About</a></li>
             <li class="has-children"*ngIf="isPaidUser()">
                 <a href="javascript:void(0)" class="nav-link">Competitons</a>
                 <ul class="dropdown">
@@ -29,11 +28,24 @@
                   <li><a [routerLink]="['/MyEvents']">My Events</a></li>
               </ul>
             </li>
-            <li><<a [routerLink]="['/product/homeproduct']" class="nav-link">Products</a></li>
-            <li><a class="nav-link">Community</a></li>
+            <li><a [routerLink]="['/product/homeproduct']" class="nav-link">Products</a></li>
+            <li class="has-children" >
+              <a href="javascript:void(0)" class="nav-link">community</a>
+              <ul class="dropdown">
+                <li><a [routerLink]="['/group-creation']">Create a group</a></li>
+                  <li><a [routerLink]="['/all-groups']">All groups</a></li>
+                  <li><a [routerLink]="['/groupsQuiz']">Group Quiz</a></li>
+                  
+              </ul>
+            </li>
             <li><a [routerLink]="['/profile']">Profile</a></li>
             <li><a [routerLink]="['//subscribe']">subscribe</a></li>
+            <li *ngIf="role === '3'">
+              <a [routerLink]="['/uploading-score']" class="nav-link">Manage Competitions</a>
+            </li>
             <li><a  class="nav-link" (click)="signOut()">Sign Out</a></li>
+            
+            
           </ul>
         </nav>
         <a href="#" class="d-inline-block d-lg-none site-menu-toggle js-menu-toggle text-black float-right text-white">

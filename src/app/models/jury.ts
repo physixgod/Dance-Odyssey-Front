@@ -1,13 +1,22 @@
-export class JuryManager {
-  juryID!: number;
-  expertiseArea!: string;
-  imageUrl!: string; // Correction de la propriété 'imageUrl'
+// Jury.ts
+import { Competition } from "./competition"; // Assuming Competition model exists
 
-  diploma!: string;
-  firstName!: string;
-  lastName!: string;
-  email!: string;
-  password!: string;
-  telNumber!: string;
-  archived!: boolean;
+export class Jury {
+    juryID!: number;
+    expertiseArea!: string;
+    diploma!: string;
+    firstName!: string;
+    lastName!: string;
+    email!: string;
+    password!: string;
+    telNumber!: string;
+    juryCV!: string;
+    approved!: boolean;
+    rejected!: boolean;
+    competitionsManagedByJuries!: Competition[];
+    imageUrl!:string;
+    archived!:boolean;
+
+    
+    
 }

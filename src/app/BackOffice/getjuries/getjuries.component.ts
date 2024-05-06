@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
-import { JuryManager } from 'src/app/models/jury';
+import { JuryManager } from 'src/app/models/jury1';
 import { JuryService } from 'src/app/services/jury.service';
+import { UserService } from 'src/app/services/user.service';
 
 
 @Component({
@@ -13,7 +14,7 @@ export class GetjuriesComponent {
   searchName: string = '';
 
   juries ! : JuryManager[];
-  constructor(private juryService : JuryService){
+  constructor(private juryService : JuryService,private services:UserService){
   }
 
   ngOnInit(): void {
@@ -57,6 +58,19 @@ export class GetjuriesComponent {
       },
       (error) => {
         console.error('Error rejecting jury:', error);
+        // Handle the error as needed
+      }
+    );
+  }
+  getJuryCV(juryID: number): void {
+    this.services.getJuryCV(juryID).subscribe(
+      (cv: string) => {
+        // Handle the CV, you can log it for now
+        console.log(cv);
+        window.open(cv, '_blank');
+      },
+      (error) => {
+        console.error('Error fetching jury CV:', error);
         // Handle the error as needed
       }
     );

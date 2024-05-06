@@ -29,6 +29,7 @@ export class UserLoginComponent {
         sessionStorage.setItem("lastName", response.lastName);
         sessionStorage.setItem("token", response.token);
         sessionStorage.setItem("role", JSON.stringify(response.role));
+        sessionStorage.setItem("roles", JSON.stringify(response.role.id)); 
   
         console.log('Status stored:', response.status);
   
@@ -36,6 +37,7 @@ export class UserLoginComponent {
           this.router.navigate(['/admin']);
         } else if (response.role.id == 2) {
           this.router.navigate(['/homepage']);
+       
         } else {
           this.router.navigate(['/homepage']);
         }

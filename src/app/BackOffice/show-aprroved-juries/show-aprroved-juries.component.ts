@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { JuryManager } from 'src/app/models/jury';
+import { JuryManager } from 'src/app/models/jury1';
 import { JuryService } from 'src/app/services/jury.service';
 
 @Component({

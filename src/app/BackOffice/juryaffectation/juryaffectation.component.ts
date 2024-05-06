@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { JuryManager } from 'src/app/models/jury';
+import { JuryManager } from 'src/app/models/jury1';
 import { JuryService } from 'src/app/services/jury.service';
 import { catchError } from 'rxjs/operators';
 import { of } from 'rxjs';
