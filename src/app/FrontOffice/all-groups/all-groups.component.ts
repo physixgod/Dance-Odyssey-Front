@@ -15,8 +15,9 @@ export class AllGroupsComponent implements OnInit {
   constructor(private JuryService: JuryService, private router: Router) { }
 
   ngOnInit(): void {
-    this.fetchGroups();
     this.dancerId = sessionStorage.getItem('userID');
+    this.fetchGroups();
+    
     
   }
 
@@ -29,11 +30,17 @@ export class AllGroupsComponent implements OnInit {
 
   joinGroup(groupId: number): void {
     console.log(groupId);
-    this.JuryService.joinGroup(groupId, this.dancerId)
-      .subscribe(response => {
+  this.JuryService.joinGroup(groupId, this.dancerId)
+    .subscribe(
+      response => {
         console.log(response); // Log the response for now
         this.groups = this.groups.filter(group => group.groupID !== groupId);
         this.router.navigate(['/my-group', groupId]);
-      });
+      },
+      error => {
+        console.error('Error joining group:', error);
+        this.router.navigate(['/my-group', groupId]);
+      }
+    );
   }
 }

@@ -44,6 +44,17 @@ export class HomeProductComponent implements OnInit {
   ngOnInit(): void {
     this.userID = sessionStorage.getItem('userID');
     console.log(this.userID);
+    this.ordersService.addCart(this.userID).subscribe(
+      cart => {
+        console.log('Cart added:', cart);
+        // Optionally, you can update the selected cart ID or perform other actions
+        this.selectedCartId = cart.id;
+      },
+      error => {
+        console.error('Error adding cart:', error);
+        // Handle error...
+      }
+    );
     this.productService.getCartID(this.userID).subscribe(
       cartID => {
         console.log('Cart ID:', cartID);

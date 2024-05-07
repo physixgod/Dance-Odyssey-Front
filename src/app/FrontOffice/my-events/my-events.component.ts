@@ -27,9 +27,9 @@ export class MyEventsComponent implements OnInit {
   constructor(private eventService: EventService, private router: Router) {} 
 
   ngOnInit(): void {
-    this.fetchMyCreatedEvents();
     this.userID = sessionStorage.getItem('userID');
-    console.log(this.userID);
+    this.fetchMyCreatedEvents();
+;
   }
 
   fetchMyCreatedEvents() {

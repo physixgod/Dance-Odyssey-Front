@@ -6,6 +6,7 @@ import { Product,Image,RatingProduct } from '../models/product';
 import { OrderLine } from '../models/orderLine';
 import { Cart } from '../models/cart';
 import { Orders } from '../models/orders';
+import { StripeService } from '../models/StripeService';
 
 @Injectable({
   providedIn: 'root'
@@ -26,7 +27,13 @@ export class OrdersService {
         catchError(this.handleError)
       );
   }
-
+  processPayment(cartId: number, payload: StripeService): Observable<any> {
+    console.log("gg");
+    // Make an HTTP POST request to process the payment
+    return this.http.post<any>(`${this.baseURL}/process-payment/${cartId}`, payload).pipe(
+      catchError(this.handleError) // Use the error handling function
+    );
+  }
   removeOrderLine(orderLineId: number, cartId: number): Observable<OrderLine> {
     const url = `${this.baseURL}/orderline/${orderLineId}/cart/${cartId}`;
     return this.http.delete<OrderLine>(url)
@@ -115,4 +122,11 @@ export class OrdersService {
 
     return throwError('Something went wrong');
   }
+  addCart(iduser: number): Observable<Cart> {
+    // Make an HTTP POST request to add a cart for the given user
+    return this.http.post<Cart>(`${this.baseURL}/addCart/${iduser}`, {}).pipe(
+      catchError(this.handleError) // Use the error handling function
+    );
+  }
+
 }

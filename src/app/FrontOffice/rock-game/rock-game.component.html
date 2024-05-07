@@ -3,12 +3,13 @@
         <div class="row align-items-center">
             <div class="col-lg-5 mx-auto text-center">
                 <h1 class="text-white">Mini Game</h1>
+                <h3 *ngIf="gamePlayed;">You had already played today , come back tomorrow.</h3>
             </div>
         </div>
     </div>
 </div>
 
-<div class="container site-section">
+<div *ngIf="!gamePlayed;"class="container site-section">
     <div class="container mt-5">
         <h2 class="text-center mb-4">Rock Paper Scissors Mini Game</h2>
       
@@ -24,6 +25,7 @@
         </div>
     </div>
 </div>
+
 
 <style>
     .webcam-capture {

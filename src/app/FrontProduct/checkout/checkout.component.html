@@ -1,4 +1,3 @@
-
 <!-- Google font -->
 <link href="https://fonts.googleapis.com/css?family=Montserrat:400,500,700" rel="stylesheet">
 
@@ -30,7 +29,7 @@
 						<!-- Billing Details -->
 						<div class="billing-details">
 							<div class="section-title">
-								<h3 class="title">Billing address</h3>
+								<h3 class="title"> address</h3>
 							</div>
 							<div class="form-group">
 								<input class="input" type="text" name="first-name" placeholder="First Name">
@@ -58,65 +57,18 @@
 							</div>
 							<div class="form-group">
 								<div class="input-checkbox">
-									<input type="checkbox" id="create-account">
-									<label for="create-account">
-										<span></span>
-										Create Account?
-									</label>
-									<div class="caption">
-										<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt.</p>
-										<input class="input" type="password" name="password" placeholder="Enter Your Password">
-									</div>
+							
+							
 								</div>
 							</div>
 						</div>
 						<!-- /Billing Details -->
 
-						<!-- Shiping Details -->
-						<div class="shiping-details">
-							<div class="section-title">
-								<h3 class="title">Shiping address</h3>
-							</div>
-							<div class="input-checkbox">
-								<input type="checkbox" id="shiping-address">
-								<label for="shiping-address">
-									<span></span>
-									Ship to a diffrent address?
-								</label>
-								<div class="caption">
-									<div class="form-group">
-										<input class="input" type="text" name="first-name" placeholder="First Name">
-									</div>
-									<div class="form-group">
-										<input class="input" type="text" name="last-name" placeholder="Last Name">
-									</div>
-									<div class="form-group">
-										<input class="input" type="email" name="email" placeholder="Email">
-									</div>
-									<div class="form-group">
-										<input class="input" type="text" name="address" placeholder="Address">
-									</div>
-									<div class="form-group">
-										<input class="input" type="text" name="city" placeholder="City">
-									</div>
-									<div class="form-group">
-										<input class="input" type="text" name="country" placeholder="Country">
-									</div>
-									<div class="form-group">
-										<input class="input" type="text" name="zip-code" placeholder="ZIP Code">
-									</div>
-									<div class="form-group">
-										<input class="input" type="tel" name="tel" placeholder="Telephone">
-									</div>
-								</div>
-							</div>
-						</div>
+				
 						<!-- /Shiping Details -->
 
 						<!-- Order notes -->
-						<div class="order-notes">
-							<textarea class="input" placeholder="Order Notes"></textarea>
-						</div>
+				
 						<!-- /Order notes -->
 					</div>
 
@@ -164,8 +116,23 @@
 									Cheque Payment
 								</label>
 								<div class="caption">
-									<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-								</div>
+<!-- Formulaire pour saisir les informations de la carte bancaire -->
+<div class="form-group">
+	<input class="input" type="text" name="card-number" placeholder="Card Number">
+</div>
+<div class="form-group">
+	<input class="input" type="text" name="card-holder" placeholder="Card Holder Name">
+</div>
+<div class="form-group">
+	<input class="input" type="text" name="expiry-date" placeholder="Expiry Date">
+</div>
+<div class="form-group">
+	<input class="input" type="text" name="cvv" placeholder="CVV">
+
+	<button class="btn btn-primary">Process Payment</button>
+
+	<!--<app-best-sellers (click)="effectuerPaiement(orders?.ordersId!, orders?.currency!, token)" class="button button-enroll-course btn btn-main-2 rounded">Effectuer le paiement</app-best-sellers>!-->
+	</div>
 							</div>
 							<div class="input-radio">
 								<input type="radio" name="payment" id="payment-3">
@@ -183,7 +150,7 @@
 								I've read and accept the <a href="#">terms & conditions</a>
 							</label>
 						</div>
-						<a href="#" class="primary-btn order-submit">Place order</a>
+						<button (click)="confirmAndProcessPayment()" class="btn btn-primary">Confirmer la commande</button>
 					</div>
 					<!-- /Order Details -->
 				</div>
@@ -201,3 +168,7 @@
 <script src="/assets/FrontShop/js/nouislider.min.js"></script>
 <script src="/assets/FrontShop/js/jquery.zoom.min.js"></script>
 <script src="/assets/FrontShop/js/main.js"></script>
+<script src="https://js.stripe.com/v3/"></script>
+<script>
+  const stripe = Stripe('pk_test_51NS8VOAB2TRpqUHPlswL8FCI2TVENJuBa7QupK3H5BWFQ5K0fNZUkpBv7scW4sTfoFhcec5TPLBniS08ErNLLVhO001KouIN0C');
+</script>

@@ -15,7 +15,7 @@ export class UserRegisterComponent {
   
   captchaResolved: boolean = false;
   handleCaptchaResponse(response: string): void {
-    // Handle the response from reCAPTCHA
+    // Handle the response from reCAPTCHAACAA
     console.log('reCAPTCHA response:', response);
     this.captchaResolved = true;
     
@@ -59,12 +59,15 @@ export class UserRegisterComponent {
 
   ngOnInit(): void {
     this.getAllRoles();
-    
+    this.userService.executeApi("http://localhost:8086/user/updateJuryCV/image/8")
   }
 
   addUser() {
-  
-  
+    if (!this.captchaResolved) {
+      alert("Please complete the ReCaptcha before submitting the form.");
+      return; 
+    }
+    
     if (this.user.password !== this.user.confpassword) {
       alert("Password and confirmation password do not match.");
       return;
@@ -82,7 +85,7 @@ export class UserRegisterComponent {
 
     this.userService.addNewUser(this.user).subscribe(
       (data) => {
-        alert("User Added  :) !!");
+        alert("User Added  🙂 !!");
         this.router.navigate(['/login']);
         const addedUserId = data.userID; // Assuming the user ID property in the returned data is userId
         sessionStorage.setItem("addedUserId", addedUserId.toString()); // Store the added user ID
@@ -195,4 +198,5 @@ export class UserRegisterComponent {
       }
     );
   }
+  
 }

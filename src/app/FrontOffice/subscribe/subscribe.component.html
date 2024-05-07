@@ -1,101 +1,179 @@
-<!DOCTYPE html>
-<html lang="en">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/assets/Front Office/fonts/icomoon/style.css">
+<link rel="stylesheet" href="/assets/Front Office/css/bootstrap/bootstrap.css">
+<link rel="stylesheet" href="/assets/Front Office/css/jquery-ui.css">
+<link rel="stylesheet" href="/assets/Front Office/css/owl.carousel.min.css">
+<link rel="stylesheet" href="/assets/Front Office/css/owl.theme.default.min.css">
+<link rel="stylesheet" href="/assets/Front Office/css/owl.theme.default.min.css">
+<link rel="stylesheet" href="/assets/Front Office/css/jquery.fancybox.min.css">
+<link rel="stylesheet" href="/assets/Front Office/css/bootstrap-datepicker.css">
+<link rel="stylesheet" href="/assets/Front Office/fonts/flaticon/font/flaticon.css">
+<link rel="stylesheet" href="/assets/Front Office/css/aos.css">
+<link rel="stylesheet" href="/assets/Front Office/css/style.css">
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Subscription Options</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-image: url('../../../assets/images/ffff.jpg');
-            background-size: cover;
-            background-position: center;
-            background-color: #212529;
-            color: #fff;
-            margin: 0;
-            padding: 0;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh; /* Utilisation de min-height au lieu de height pour permettre l'expansion de l'image */
-        }
-        
-        .container {
-            background-color: rgba(0, 0, 0, 0.5);
-            border-radius: 10px;
-            padding: 20px;
-            text-align: center;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
-        }
-        
-        .subscription {
-            display: flex;
-            justify-content: space-between;
-            margin-bottom: 20px;
-        }
 
-        .subscription .option {
-            background-color: #495057;
-            padding: 20px;
-            border-radius: 10px;
-            flex-grow: 1;
-            margin: 0 10px;
-            transition: all 0.3s ease;
-            cursor: pointer;
-        }
+  <div class="site-wrap">
 
-        .subscription .option:hover {
-            transform: translateY(-5px);
-        }
-
-        .subscription .option h2 {
-            margin-top: 0;
-        }
-
-        .subscription .option p {
-            margin-bottom: 10px;
-        }
-
-        .pay-button {
-            background-color: #007bff;
-            color: #fff;
-            border: none;
-            border-radius: 5px;
-            padding: 10px 20px;
-            font-size: 16px;
-            cursor: pointer;
-            transition: background-color 0.3s ease;
-        }
-
-        .pay-button:hover {
-            background-color: #0056b3;
-        }
-    </style>
-</head>
-
-<body>
-    <div class="container">
-        <h1>Choose a Subscription</h1>
-        <div class="subscription">
-            <div class="option">
-                <h2>1 Month Subscription</h2>
-                <p>Price: 10 dinars</p>
-                <button class="pay-button" (click)="redirectToPayment('1 Month Subscription')">Pay Now</button>
-            </div>
-            <div class="option">
-                <h2>6 Months Subscription</h2>
-                <p>Price: 40 dinars</p>
-                <button class="pay-button" (click)="redirectToPayment('6 Months Subscription')">Pay Now</button>
-            </div>
-            <div class="option">
-                <h2>1 Year Subscription</h2>
-                <p>Price: 70 dinars</p>
-                <button class="pay-button" (click)="redirectToPayment('1 Year Subscription')">Pay Now</button>
-            </div>
+    <div class="site-mobile-menu site-navbar-target">
+      <div class="site-mobile-menu-header">
+        <div class="site-mobile-menu-close">
+          <span class="icon-close2 js-menu-toggle"></span>
         </div>
+      </div>
+      <div class="site-mobile-menu-body"></div>
     </div>
 
-</body>
 
-</html>
+    <header class="site-navbar py-4" role="banner">
+
+    
+
+    </header>
+    <body>
+      <div class="wrapper">
+         <nav class="nav">
+             <div class="nav-logo">
+              <img src="/assets/images/logo.png" alt="Logo" width="150" height="150">
+            </div>
+             <div class="nav-menu" id="navMenu">
+                 <ul>
+            
+                 </ul>
+             </div>
+             <div class="nav-button">
+              
+             </div>
+             <div class="nav-menu-btn">
+                 <i class="bx bx-menu" onclick="myMenuFunction()"></i>
+             </div>
+         </nav>
+     <!----------------------------- Form box ----------------------------------->    
+         <div class="form-box">
+             
+             <!------------------- login form -------------------------->
+             <div class="container">
+                <h1>Choose a Subscription</h1>
+                <div class="subscription">
+                    <div class="option">
+                        <h2>1 Month Subscription</h2>
+                        <p>Price: 10 dinars</p>
+                        <button class="pay-button" (click)="redirectToPayment('1 Month Subscription')">Pay Now</button>
+                    </div>
+                    <div class="option">
+                        <h2>6 Months Subscription</h2>
+                        <p>Price: 40 dinars</p>
+                        <button class="pay-button" (click)="redirectToPayment('6 Months Subscription')">Pay Now</button>
+                    </div>
+                    <div class="option">
+                        <h2>1 Year Subscription</h2>
+                        <p>Price: 70 dinars</p>
+                        <button class="pay-button" (click)="redirectToPayment('1 Year Subscription')">Pay Now</button>
+                    </div>
+                </div>
+            </div>
+          
+
+             <!------------------- registration form -------------------------->
+             <div class="register-container" id="register">
+                 <div class="top">
+                     <span>Have an account? <a href="#" onclick="login()">Login</a></span>
+                     <header>Sign Up</header>
+                 </div>
+                 <div class="two-forms">
+                     <div class="input-box">
+                         <input type="text" class="input-field" placeholder="Firstname">
+                         <i class="bx bx-user"></i>
+                     </div>
+                     <div class="input-box">
+                         <input type="text" class="input-field" placeholder="Lastname">
+                         <i class="bx bx-user"></i>
+                     </div>
+                 </div>
+                 <div class="input-box">
+                     <input type="text" class="input-field" placeholder="Email">
+                     <i class="bx bx-envelope"></i>
+                 </div>
+                 <div class="input-box">
+                     <input type="password" class="input-field" placeholder="Password">
+                     <i class="bx bx-lock-alt"></i>
+                 </div>
+                 <div class="input-box">
+                     <input type="submit" class="submit" value="Register">
+                 </div>
+                 <div class="two-col">
+                     <div class="one">
+                         <input type="checkbox" id="register-check">
+                         <label for="register-check"> Remember Me</label>
+                     </div>
+                     <div class="two">
+                         <label><a href="#">Terms & conditions</a></label>
+                     </div>
+                 </div>
+             </div>
+         </div>
+     </div>   
+     <script>
+        
+        function myMenuFunction() {
+         var i = document.getElementById("navMenu");
+         if(i.className === "nav-menu") {
+             i.className += " responsive";
+         } else {
+             i.className = "nav-menu";
+         }
+        }
+      
+     </script>
+     <script>
+         var a = document.getElementById("loginBtn");
+         var b = document.getElementById("registerBtn");
+         var x = document.getElementById("login");
+         var y = document.getElementById("register");
+         function login() {
+             x.style.left = "4px";
+             y.style.right = "-520px";
+             a.className += " white-btn";
+             b.className = "btn";
+             x.style.opacity = 1;
+             y.style.opacity = 0;
+         }
+         function register() {
+             x.style.left = "-510px";
+             y.style.right = "5px";
+             a.className = "btn";
+             b.className += " white-btn";
+             x.style.opacity = 0;
+             y.style.opacity = 1;
+         }
+     </script>
+     </body>
+   
+
+ 
+
+
+
+   
+
+
+
+  <!-- .site-wrap -->
+
+
+
+
+<script src="/assets/Front Office/js/jquery-3.3.1.min.js"></script>
+<script src="/assets/Front Office/js/jquery-migrate-3.0.1.min.js"></script>
+<script src="/assets/Front Office/js/jquery-ui.js"></script>
+<script src="/assets/Front Office/js/popper.min.js"></script>
+<script src="/assets/Front Office/js/bootstrap.min.js"></script>
+<script src="/assets/Front Office/js/owl.carousel.min.js"></script>
+<script src="/assets/Front Office/js/jquery.stellar.min.js"></script>
+<script src="/assets/Front Office/js/jquery.countdown.min.js"></script>
+<script src="/assets/Front Office/js/bootstrap-datepicker.min.js"></script>
+<script src="/assets/Front Office/js/jquery.easing.1.3.js"></script>
+<script src="/assets/Front Office/js/aos.js"></script>
+<script src="/assets/Front Office/js/jquery.fancybox.min.js"></script>
+<script src="/assets/Front Office/js/jquery.sticky.js"></script>
+<script src="/assets/Front Office/js/jquery.mb.YTPlayer.min.js"></script>
+<script src="/assets/Front Office/js/main.js"></script>

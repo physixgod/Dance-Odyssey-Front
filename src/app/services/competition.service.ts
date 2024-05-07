@@ -61,6 +61,9 @@ gainPoints(myScore: number, pcScore: number, idDancer: number): Observable<numbe
     .set('pcScore', pcScore.toString());
   return this.http.post<number>(url, {}, { params });
 }
+getGame(idDancer: number): Observable<boolean> {
+  return this.http.get<boolean>(`${this.baseURL}GetGame/${idDancer}`);
+}
 
 
 }

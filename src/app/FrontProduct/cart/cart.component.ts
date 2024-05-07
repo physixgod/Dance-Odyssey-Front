@@ -11,7 +11,7 @@ import { ProductService } from 'src/app/services/product.service';
 })
 export class CartComponent implements OnInit {
   userID:any;
-  selectedCartId: number = 1; // ID du panier sélectionné
+  selectedCartId: any; // ID du panier sélectionné
   orderLines: OrderLine[] = [];
   cart: Cart | null = null; // Cart est un objet unique, pas un tableau
   constructor(private ordersService: OrdersService,private productService: ProductService) { }
@@ -21,7 +21,7 @@ export class CartComponent implements OnInit {
     console.log(this.userID);
     this.productService.getCartID(this.userID).subscribe(
       cartID => {
-        console.log('Cart ID:', cartID);
+        console.log('Cart ID++++++++++++++++++++++++++++++++++++:', cartID);
         this.selectedCartId=cartID;
       },
       error => {
@@ -29,6 +29,7 @@ export class CartComponent implements OnInit {
         // Handle error...
       }
     );
+    console.log("dsfdsgsdgsdgsdgdsgsdg"+this.selectedCartId)
   
     this.fetchOrderLinesWithNullOrderId();
     this.fetchCartById(this.selectedCartId); // Appel pour récupérer les détails du panier avec l'ID spécifié
@@ -78,11 +79,11 @@ export class CartComponent implements OnInit {
 
   removeOrderLine(orderLine: OrderLine): void {
     const orderLineId = orderLine.orderId;
-    const cartId = this.selectedCartId;
+    ;
 
     // Vérifier si orderLineId et cartId ne sont pas null avant de les passer à la méthode removeOrderLine
-    if (orderLineId !== null && cartId !== null) {
-      this.ordersService.removeOrderLine(orderLineId, cartId).subscribe(
+    if (orderLineId !== null && this.selectedCartId !== null) {
+      this.ordersService.removeOrderLine(orderLineId, this.selectedCartId).subscribe(
         (removedOrderLine: OrderLine) => {
           // Supprimer l'élément de la liste des commandes
           const index = this.orderLines.indexOf(orderLine);

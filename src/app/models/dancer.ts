@@ -8,7 +8,7 @@ export interface Dancer {
     experienceLevel: string; // Or you can use the ExperienceLevel enum if you have it defined in Angular
     email: string;
     telNum: string;
-   
+    gamePlayed: boolean;
     
   }
   

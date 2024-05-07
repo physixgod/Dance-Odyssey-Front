@@ -13,8 +13,8 @@ export class ReclamationService {
 
   constructor(private http: HttpClient) { }
 
-  addReclamation(reclamation: Reclamation): Observable<Reclamation> {
-    return this.http.post<Reclamation>(this.apiUrl, reclamation);
+  addReclamation(reclamation: Reclamation, idDancer: number): Observable<Reclamation> {
+    return this.http.post<Reclamation>(`${this.apiUrl}/${idDancer}`, reclamation);
   }
 
   getAllReclamations(): Observable<Reclamation[]> {

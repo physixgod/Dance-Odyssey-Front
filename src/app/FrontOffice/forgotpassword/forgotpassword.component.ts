@@ -28,6 +28,7 @@ export class ForgotpasswordComponent {
     if (this.email) {
       this.userService.sendPasswordResetEmail(this.email, this.code).subscribe(
         () => {
+          alert('email sent')
           console.log('Password reset email sent successfully.');
           // Optionally, provide feedback to the user (e.g., show a success message)
         },
@@ -82,6 +83,7 @@ export class ForgotpasswordComponent {
   { if(this.password==this.password2)
     
   this.userService.resetPassword(this.email,this.password).subscribe();
+  alert('password changed')
 
   }
   

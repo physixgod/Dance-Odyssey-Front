@@ -84,7 +84,7 @@ import {AddfeedbackComponent} from "./FrontOffice/addfeedback/addfeedback.compon
 import {ReclamationetfeedbackComponent} from "./FrontOffice/reclamationetfeedback/reclamationetfeedback.component";
 import {AddReclamtionComponent} from "./FrontOffice/add-reclamation/add-reclamation.component";
 
-
+//import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AddCourseComponent } from './BackOffice/add-course/add-course.component';
 
 import { AddcourseComponent } from './FrontOffice/addcourse/addcourse.component';

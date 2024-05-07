@@ -5,7 +5,7 @@ import { Competition } from '../models/competition';
 import { Group } from '../models/group';
 import { catchError,map } from 'rxjs/operators';
 import { HttpClient, HttpErrorResponse, HttpParams } from '@angular/common/http';
-
+import {Event} from '../models/event';
 import { Dancer } from '../models/dancer';
 @Injectable({
   providedIn: 'root'
@@ -183,4 +183,17 @@ export class JuryService {
     return this.http.get<Group[]>(url, { params });
   
 }
+
+
+getAllEvents(): Observable<Event[]> {
+  return this.http.get<Event[]>(`${this.baseURL}AllEvent`);
+}
+
+addWorkshop(workshop: any, idGroup: number): Observable<any> {
+  return this.http.post(`${this.baseURL}addworkshop/${idGroup}`, workshop);
+  }
+
+  registerDancerEvent(idDancer: number, idEvent: number): Observable<string> {
+    return this.http.post<string>(`${this.baseURL}registerDancerEvent/${idDancer}/${idEvent}`, null);
+  }
 } 

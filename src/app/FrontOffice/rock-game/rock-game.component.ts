@@ -19,15 +19,20 @@ export class RockGameComponent {
   sysImage = '';
   videoSrc="";
   userID:any;
+  gamePlayed:any;
   
 
   constructor(private videoStreamService: VideoStreamService,private http: HttpClient,private competitionService: CompetitionService,private router: Router) {}
 
   ngOnInit() {
-    this.videoSrc = 'http://127.0.0.1:5000/video_feed';
     this.userID = sessionStorage.getItem('userID');
     console.log(this.userID);
-  
+    this.videoSrc = 'http://127.0.0.1:5000/video_feed';
+    
+    this.competitionService.getGame(this.userID).subscribe(gamePlayed => {
+      this.gamePlayed = gamePlayed;
+      console.log('Game played status before played:', this.gamePlayed);
+    });
   }
 
 
@@ -68,6 +73,10 @@ export class RockGameComponent {
     this.competitionService.gainPoints(myScoreInt, pcScoreInt, this.userID).subscribe(updatedScore => {
       console.log('Updated Score:', updatedScore);
       this.router.navigate(['/results', updatedScore]);
+    });
+    this.competitionService.getGame(this.userID).subscribe(gamePlayed => {
+      this.gamePlayed = gamePlayed;
+      console.log('Game played status after played:', this.gamePlayed);
     });
     });
   }

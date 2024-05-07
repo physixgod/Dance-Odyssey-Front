@@ -239,7 +239,8 @@ import { NgChartsModule } from 'ng2-charts';
     FormsModule,
     ReactiveFormsModule,
     MatFormFieldModule,
-    NgChartsModule
+    NgChartsModule,
+    RecaptchaModule
 
 
 

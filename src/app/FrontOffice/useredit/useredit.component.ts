@@ -32,7 +32,7 @@ export class UsereditComponent implements OnInit {
 
   ngOnInit(): void {
     this.userID = sessionStorage.getItem('userID');
-    this. userName = sessionStorage.getItem('userName');
+    
     if (this.userID) {
       this.userService.getUserById(this.userID).subscribe(
         (user) => {

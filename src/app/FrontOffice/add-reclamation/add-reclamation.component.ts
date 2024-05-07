@@ -23,6 +23,7 @@ export class AddReclamtionComponent implements OnDestroy {
   };
   private notificationSubscription: Subscription;
   notificationCount: number = 0;
+  userID:any;
 
   constructor(
     private reclamationService: ReclamationService,
@@ -39,8 +40,10 @@ export class AddReclamtionComponent implements OnDestroy {
       this.notificationCount = notification;
     });
   }
- 
+  ngOnInit(): void { this.userID = sessionStorage.getItem('userID');
+  console.log("+++++++++++++++++++++++++++++++++"+this.userID);}
   ngOnDestroy(): void {
+    
     // Unsubscribe from notification subject
     this.notificationSubscription.unsubscribe();
   }
@@ -93,7 +96,7 @@ export class AddReclamtionComponent implements OnDestroy {
   }
 
   addReclamation() {
-    this.reclamationService.addReclamation(this.reclamation).subscribe(
+    this.reclamationService.addReclamation(this.reclamation,this.userID).subscribe(
       (data: Reclamation) => {
         console.log("Data: ", data);
         this.sendEmail();

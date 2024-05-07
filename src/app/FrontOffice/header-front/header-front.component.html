@@ -21,23 +21,22 @@
                 </ul>
               </li>
 
-
             <li class="has-children" *ngIf="isPaidUser()">
               <a href="javascript:void(0)" class="nav-link">Events</a>
               <ul class="dropdown">
                   <li><a [routerLink]="['/addevent']">Create Event</a></li>
                   <li><a [routerLink]="['/listevents']">Events List</a></li>
                   <li><a [routerLink]="['/MyEvents']">My Events</a></li>
-                  <li><a [routerLink]="['/addreclamtion']">Addreclamtion</a></li>
+                  
               </ul>
             </li>
 
 
             <li class="has-children" *ngIf="isPaidUser()">
-              <a href="javascript:void(0)" class="nav-link">Cours</a>
+              <a href="javascript:void(0)" class="nav-link">Dance Courses</a>
               <ul class="dropdown">
                   <li><a [routerLink]="['/front']">Create Cours</a></li>
-                  <li><a [routerLink]="['/liste']">Events List</a></li>
+                  <li><a [routerLink]="['/liste']">Course List</a></li>
               </ul>
             </li>
 
@@ -47,8 +46,8 @@
               <a href="javascript:void(0)" class="nav-link">reclamtion</a>
               <ul class="dropdown">
                   <li><a [routerLink]="['/progress-tracking']">Progress tracking</a></li>
-                  <li><a [routerLink]="['/addfeedback']">Add feedback</a></li>
-                  <li><a [routerLink]="['/addreclamtion']">Add reclamtion</a></li>
+                  <li><a [routerLink]="['/addfeedback']">Add Feedback</a></li>
+                  <li><a [routerLink]="['/addreclamtion']">Add Reclamtion</a></li>
               </ul>
             </li>
 
@@ -72,7 +71,7 @@
             </li>
             <li><a [routerLink]="['/profile']">Profile</a></li>
             <li><a [routerLink]="['//subscribe']">subscribe</a></li>
-            <li *ngIf="role === '3'">
+            <li *ngIf="role === '4'">
               <a [routerLink]="['/uploading-score']" class="nav-link">Manage Competitions</a>
             </li>
             <li><a  class="nav-link" (click)="signOut()">Sign Out</a></li>
@@ -87,6 +86,7 @@
     </div>
   </div>
   <style>
+    
     .site-menu .dropdown li a {
       color: white;
       background-color: rgba(12, 24, 97, 0.8);
@@ -101,4 +101,5 @@
       background-color: #EA0167;
     }
   </style>
+  
 </header>
