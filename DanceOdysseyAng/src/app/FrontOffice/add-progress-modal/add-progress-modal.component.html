@@ -1,0 +1,57 @@
+<h2 mat-dialog-title class="text-center">Add Progress Tracking:</h2>
+<mat-dialog-content class="p-4">
+    <form [formGroup]="trackingForm" (ngSubmit)="submitForm()" class="form">
+        <div class="form-group row">
+            <label for="duration" class="col-sm-3 col-form-label">Duration (hh:mm)</label>
+            <div class="col-sm-9">
+                <input type="text" id="duration" formControlName="duration" class="form-control" required>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label for="difficulty" class="col-sm-3 col-form-label">Difficulty (/4)</label>
+            <div class="col-sm-9">
+                <div>
+                    <label class="radio-inline">
+                        <input type="radio" formControlName="difficulty" value="4"> Very Easy
+                    </label>
+                    <label class="radio-inline">
+                        <input type="radio" formControlName="difficulty" value="5"> Easy
+                    </label>
+                    <label class="radio-inline">
+                        <input type="radio" formControlName="difficulty" value="6"> Moderate
+                    </label>
+                    <label class="radio-inline">
+                        <input type="radio" formControlName="difficulty" value="7"> Hard
+                    </label>
+                    <label class="radio-inline">
+                        <input type="radio" formControlName="difficulty" value="8"> Very Hard
+                    </label>
+                </div>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label for="weight" class="col-sm-3 col-form-label">Your Weight (kg)</label>
+            <div class="col-sm-9">
+                <input type="number" id="weight" formControlName="weight" class="form-control" required min="0">
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <label for="nextGoal" class="col-sm-3 col-form-label">Next goal (calories)</label>
+            <div class="col-sm-9">
+                <input type="number" id="nextGoal" formControlName="nextGoal" class="form-control" min="0">
+            </div>
+        </div>
+        <div class="form-group row">
+            <label for="comment" class="col-sm-3 col-form-label">Comment</label>
+            <div class="col-sm-9">
+                <textarea id="comment" formControlName="comment" class="form-control"></textarea>
+            </div>
+        </div>
+    </form>
+</mat-dialog-content>
+<mat-dialog-actions class="justify-content-center">
+    <button class="btn btn-danger" (click)="closeDialog()" style="margin-right: 25px;">Close</button>
+    <button class="btn btn-success" type="submit" [disabled]="!trackingForm.valid"
+        [mat-dialog-close]="trackingForm.value">Submit</button>
+</mat-dialog-actions>

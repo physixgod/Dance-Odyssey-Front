@@ -1,0 +1,64 @@
+/* Applique un style général au conteneur de dialogue */
+.mat-dialog-container {
+    font-family: 'Arial', sans-serif;
+    color: #000;
+    padding: 20px; /* Ajout d'un padding pour ne pas toucher les bords */
+}
+
+/* Style pour les inputs et textareas */
+.mat-dialog-container input[type="text"],
+.mat-dialog-container textarea {
+    border: 1px solid #000;
+    border-radius: 5px;
+    padding: 10px; /* Ajout de padding à l'intérieur des inputs */
+    margin-bottom: 15px; /* Ajout d'une marge en bas pour les séparer */
+}
+
+/* Style pour les boutons */
+.mat-dialog-container .save-course-button {
+    margin-right: 10px; /* Ajout d'une marge à droite du bouton Save */
+}
+
+.mat-dialog-container button {
+    padding: 10px 20px; /* Ajout de padding pour augmenter la taille des boutons */
+    margin-top: 10px; /* Ajout d'une marge au-dessus pour les séparer du formulaire */
+}
+
+
+.form-control {
+    
+    color: #080708 !important;
+  
+}
+
+
+/* Agrandir le conteneur de dialogue */
+.mat-dialog-container {
+    max-width: 600px; /* Ou une largeur qui convient à votre design */
+    margin: auto;
+    padding: 20px;
+}
+
+/* Aligner les labels et les champs de saisie pour une meilleure organisation */
+.mat-dialog-container label {
+    display: block; /* Ou 'inline-block' si vous préférez les labels à côté des champs */
+    margin-bottom: 5px; /* Espace sous le label avant le champ de saisie */
+}
+
+.mat-dialog-container input[type="text"],
+.mat-dialog-container textarea,
+.mat-dialog-container input[type="number"] {
+    width: 100%; /* Utiliser toute la largeur disponible */
+    padding: 10px; /* Espace à l'intérieur des champs */
+    margin-bottom: 15px; /* Espace après chaque champ avant le prochain élément */
+}
+
+/* Boutons bien positionnés */
+.mat-dialog-actions {
+    text-align: right; /* Aligner les boutons à droite */
+    padding-top: 20px; /* Espace au-dessus des boutons */
+}
+
+.mat-dialog-container .save-course-button {
+    margin-right: 5px; /* Espace entre les boutons */
+}

@@ -1,0 +1,57 @@
+/* Conteneur principal des cartes */
+.card {
+    box-shadow: 0 6px 10px rgba(0,0,0,0.1); /* Ombre subtile */
+    border: none; /* Retire les bordures classiques */
+    border-radius: 10px; /* Coins arrondis */
+    overflow: hidden; /* Empêche le contenu de déborder */
+    transition: transform 0.3s ease, box-shadow 0.3s ease; /* Animation fluide */
+    background: linear-gradient(145deg, #9c27b0, #673ab7); /* Dégradé de couleurs pour un look moderne */
+  }
+  
+  .card:hover {
+    transform: translateY(-5px); /* Légère élévation au survol */
+    box-shadow: 0 12px 20px rgba(0,0,0,0.2); /* Ombre plus marquée au survol */
+  }
+  
+  .card-header {
+    background-color: rgba(0, 0, 0, 0.1); /* En-tête légèrement transparent */
+    color: #ffffff; /* Texte en blanc */
+    padding: 15px 20px; /* Espacement interne */
+    font-family: 'Open Sans', sans-serif; /* Police moderne */
+    font-size: 18px; /* Taille de la police */
+  }
+  
+  .card-body {
+    color: #ffffff; /* Texte en blanc */
+    padding: 20px; /* Espacement interne */
+    font-family: 'Roboto', sans-serif; /* Police moderne */
+    line-height: 1.6; /* Espacement des lignes pour meilleure lisibilité */
+  }
+  
+  .btn-outline-primary, .btn-outline-danger, .btn-outline-secondary {
+    border: none; /* Retire les bordures des boutons */
+    font-weight: bold; /* Texte en gras */
+    opacity: 0.8; /* Légère transparence */
+    transition: background-color 0.3s, opacity 0.3s; /* Transition fluide pour les boutons */
+  }
+  
+  .btn-outline-primary:hover, .btn-outline-danger:hover, .btn-outline-secondary:hover {
+    opacity: 1; /* Pleine opacité au survol */
+  }
+  
+  /* Personnalisation spécifique des boutons */
+  .btn-outline-primary {
+    color: #fff;
+    background-color: #2d24aa; /* Couleur de fond */
+  }
+  
+  .btn-outline-danger {
+    color: #fff;
+    background-color: #e91e1e; /* Couleur de fond */
+  }
+  
+  .btn-outline-secondary {
+    color: #fff;
+    background-color: #ba68c8; /* Couleur de fond */
+  }
+  

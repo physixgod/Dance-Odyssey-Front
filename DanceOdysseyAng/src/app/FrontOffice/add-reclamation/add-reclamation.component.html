@@ -1,0 +1,94 @@
+<div class="hero overlay" style="background-image: url('/assets/images/addEvent.jpg');">
+  <div class="container">
+    <div class="center-container">
+      <div class="step-container">
+        <div class="step" *ngIf="currentStep === 1">
+          <!-- Step 1: Select the Problem and Priority -->
+    <!-- Step 1: Select the Problem and Priority -->
+<h2 class="step-title">Step 1: Select the Problem and Priority</h2>
+<!-- Select the problem -->
+<div class="form-group">
+  <label for="reclamationReason" id="reclamationReasonLabel">Select the problem:</label>
+  <select class="form-control" id="reclamationReason" name="reclamationReason" [(ngModel)]="reclamation.reclamationReason">
+    <option value="Technical Issue" class="option-black">Technical Issue</option>
+    <option value="Billing Problem" class="option-black">Billing Problem</option>
+    <option value="Product Quality" class="option-black">Product Quality</option>
+    <option value="Other" class="option-black">Other</option>
+  </select>
+</div>
+
+          <!-- Select the priority -->
+          <div class="form-group">
+            <label for="priority">Select the priority:</label><br>
+            <p class="small-text">Priority indicates the urgency or importance of the reclamation. Please choose the appropriate priority level for your reclamation.</p>
+            <div class="form-check form-check-inline">
+              <input class="form-check-input" type="radio" id="lowPriority" name="priority" [(ngModel)]="reclamation.priority" value="Low">
+              <label class="form-check-label" for="lowPriority">Low</label>
+            </div>
+            <div class="form-check form-check-inline">
+              <input class="form-check-input" type="radio" id="mediumPriority" name="priority" [(ngModel)]="reclamation.priority" value="Medium">
+              <label class="form-check-label" for="mediumPriority">Medium</label>
+            </div>
+            <div class="form-check form-check-inline">
+              <input class="form-check-input" type="radio" id="highPriority" name="priority" [(ngModel)]="reclamation.priority" value="High">
+              <label class="form-check-label" for="highPriority">High</label>
+            </div>
+          </div>
+          <button class="btn btn-primary" (click)="nextStep()">Next</button>
+        </div>
+      
+        <div class="step" *ngIf="currentStep === 2">
+          <!-- Step 2: Enter Reclamation Description for Technical Issue -->
+          <h2 class="step-title">Step 2: Enter Reclamation Description for Technical Issue</h2>
+          <div class="form-group">
+            <label for="reclamationDescription">Description:</label>
+            <textarea class="form-control" id="reclamationDescription" name="reclamationDescription" [(ngModel)]="reclamation.reclamationDescription" rows="4" placeholder="Enter your reclamation description"></textarea>
+          </div>
+          <button class="btn btn-secondary" (click)="prevStep()">Previous</button>
+          <button class="btn btn-primary" (click)="addReclamation()">Submit</button>
+        </div>
+
+        <div class="step" *ngIf="currentStep === 3">
+          <!-- Step 3: Enter Reclamation Description for Billing Problem -->
+          <h2 class="step-title">Step 2: Enter Reclamation Description for Billing Problem</h2>
+          <div class="form-group">
+            <label for="reclamationDescription">Description:</label>
+            <textarea class="form-control" id="reclamationDescription" name="reclamationDescription" [(ngModel)]="reclamation.reclamationDescription" rows="4" placeholder="Enter your reclamation description"></textarea>
+          </div>
+          <button class="btn btn-secondary" (click)="prevStep()">Previous</button>
+          <button class="btn btn-primary" (click)="addReclamation()">Submit</button>
+        </div>
+
+        <div class="step" *ngIf="currentStep === 4">
+          <!-- Step 4: Enter Reclamation Description for Product Quality -->
+          <h2 class="step-title">Step 2: Enter Reclamation Description for Product Quality</h2>
+          <div class="form-group">
+            <label for="reclamationDescription">Description:</label>
+            <textarea class="form-control" id="reclamationDescription" name="reclamationDescription" [(ngModel)]="reclamation.reclamationDescription" rows="4" placeholder="Enter your reclamation description"></textarea>
+          </div>
+          <button class="btn btn-secondary" (click)="prevStep()">Previous</button>
+          <button class="btn btn-primary" (click)="addReclamation()">Submit</button>
+        </div>
+
+        <div class="step" *ngIf="currentStep === 5">
+          <!-- Step 5: Enter Reclamation Description for Other -->
+          <h2 class="step-title">Step 2: Enter Reclamation Description for Other</h2>
+          <div class="form-group">
+            <label for="reclamationDescription">Description:</label>
+            <textarea class="form-control" id="reclamationDescription" name="reclamationDescription" [(ngModel)]="reclamation.reclamationDescription" rows="4" placeholder="Enter your reclamation description"></textarea>
+          </div>
+          <button class="btn btn-secondary" (click)="prevStep()">Previous</button>
+          <button class="btn btn-primary" (click)="addReclamation()">Submit</button>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>
+<script>
+  document.getElementById('reclamationReason').addEventListener('change', function() {
+  var label = document.getElementById('reclamationReasonLabel');
+  label.style.color = 'black';
+});
+
+</script>

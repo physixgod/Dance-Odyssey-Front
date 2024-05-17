@@ -1,0 +1,55 @@
+<div class="mat-dialog-container" style="max-width: 600px; margin: auto; padding: 20px;">
+    <h1 mat-dialog-title>Update Course</h1>
+    <div mat-dialog-content>
+        <div class="card-body center">
+            <form>
+                <!-- Course Name -->
+                <div class="row mb-3">
+                    <label class="col-sm-3 col-form-label" for="course-name" style="margin-bottom: 10px;"> Name</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" [(ngModel)]="course.courseName" name="courseName"
+                            id="course-name" style="margin-top: 10px;" />
+                    </div>
+                </div>
+                <!-- Description -->
+                <div class="row mb-3">
+                    <label class="col-sm-3 col-form-label" for="description" style="margin-bottom: 10px;">Description</label>
+                    <div class="col-sm-10">
+                        <textarea id="description" class="form-control" [(ngModel)]="course.description"
+                            name="description" style="margin-top: 10px;"></textarea>
+                    </div>
+                </div>
+                <!-- Course Category -->
+                <div class="row mb-3">
+                    <label class="col-sm-3 col-form-label" for="course-category" style="margin-bottom: 10px;"> Category</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" [(ngModel)]="course.category" name="courseCategory"
+                            id="course-category" style="margin-top: 10px;" />
+                    </div>
+                </div>
+                <!-- Duration -->
+                <div class="row mb-3">
+                    <label class="col-sm-3 col-form-label" for="duration" style="margin-bottom: 10px;">Duration</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" [(ngModel)]="course.durationInHours"
+                            name="durationInHours" id="duration" style="margin-top: 10px;" />
+                    </div>
+                </div>
+                <!-- Level -->
+                <div class="row mb-3">
+                    <label class="col-sm-3 col-form-label" for="level" style="margin-bottom: 10px;">Level</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" [(ngModel)]="course.requiredSkillLevel"
+                            name="courseLevel" id="level" style="margin-top: 10px;" />
+                    </div>
+                </div>
+                <!-- Submit Button -->
+                <div class="row justify-content-end">
+                    <div class="col-sm-10">
+                        <button type="submit" class="btn btn-primary save-course-button" style="margin-top: 10px;">Save</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

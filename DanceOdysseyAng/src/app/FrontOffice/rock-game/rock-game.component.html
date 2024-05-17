@@ -1,0 +1,36 @@
+<div class="hero overlay" style="background-image: url('/assets/images/addEvent.jpg');">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-lg-5 mx-auto text-center">
+                <h1 class="text-white">Mini Game</h1>
+                <h3 *ngIf="gamePlayed;">You had already played today , come back tomorrow.</h3>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div *ngIf="!gamePlayed;"class="container site-section">
+    <div class="container mt-5">
+        <h2 class="text-center mb-4">Rock Paper Scissors Mini Game</h2>
+      
+        <div class="row justify-content-center">
+            <div class="col-md-8 text-center">
+                <img [src]="videoSrc" alt="Webcam Stream" width="750" height="520">
+            </div>
+        </div>
+    </div>
+    <div class="row justify-content-center mt-4">
+        <div class="col-md-8 text-center">
+            <button class="btn btn-primary" (click)="getScores()">Submit results</button>
+        </div>
+    </div>
+</div>
+
+
+<style>
+    .webcam-capture {
+        width: 100%;
+        max-width: 600px; /* Adjust the max-width as needed */
+        margin: 0 auto; /* Center the webcam capture */
+    }
+</style>

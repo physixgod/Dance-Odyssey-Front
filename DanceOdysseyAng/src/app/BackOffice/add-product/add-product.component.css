@@ -1,0 +1,22 @@
+/* Réduire la hauteur du champ de sélection des sous-catégories */
+#subCategoryIds {
+    height: auto;
+    max-height: auto; /* Réglez la hauteur maximale souhaitée */
+    overflow-y: auto;
+    border: 1px solid #ccc; /* Ajoutez une bordure */
+    border-radius: 5px; /* Arrondissez les coins */
+    transition: border-color 0.3s; /* Animation de transition */
+}
+
+/* Style de la bordure lorsqu'elle est sélectionnée */
+#subCategoryIds:focus {
+    border-color: #007bff; /* Couleur de la bordure sélectionnée */
+    outline: none; /* Supprimez l'effet de focus */
+}
+/* Style des options sélectionnées dans le champ de sélection des sous-catégories */
+#subCategoryIds option:checked {
+    background-color: #007bff; /* Couleur de fond lorsque l'option est sélectionnée */
+    color: #fff; /* Couleur du texte */
+    border: 1px solid #007bff; /* Bordure autour de l'option sélectionnée */
+    border-radius: 5px; /* Arrondi des coins */
+}

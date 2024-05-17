@@ -1,0 +1,134 @@
+<div class="hero overlay" style="background-image: url('/assets/images/addEvent.jpg');">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-lg-5 mx-auto text-center">
+                <h1 class="text-white">Find Your Dance Group</h1>
+                <p>Answer a few questions and discover the perfect dance group for you!</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="site-section">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-7 mx-auto">
+                <form (submit)="suggestGroups()">
+                    <div class="form-group">
+                        <label>What is your age range?</label><br>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" [(ngModel)]="ageRange" name="ageRange" id="ageUnder18" value="Under 18">
+                            <label class="form-check-label" for="ageUnder18">Under 18</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" [(ngModel)]="ageRange" name="ageRange" id="age18to25" value="18-25">
+                            <label class="form-check-label" for="age18to25">18-25</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" [(ngModel)]="ageRange" name="ageRange" id="age26to35" value="26-35">
+                            <label class="form-check-label" for="age26to35">26-35</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" [(ngModel)]="ageRange" name="ageRange" id="age36plus" value="36+">
+                            <label class="form-check-label" for="age36plus">36+</label>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>Which dance styles are you interested in?</label><br>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" [(ngModel)]="danceStyles" name="danceStyles" id="danceStyleHipHop" value="Hip-hop">
+                            <label class="form-check-label" for="danceStyleHipHop">Hip-hop</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" [(ngModel)]="danceStyles" name="danceStyles" id="danceStyleBallet" value="Ballet">
+                            <label class="form-check-label" for="danceStyleBallet">Ballet</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" [(ngModel)]="danceStyles" name="danceStyles" id="danceStyleContemporary" value="Contemporary">
+                            <label class="form-check-label" for="danceStyleContemporary">Contemporary</label>
+                        </div>
+                        <!-- Add more dance style options -->
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" [(ngModel)]="danceStyles" name="danceStyles" id="danceStyleJazz" value="Jazz">
+                            <label class="form-check-label" for="danceStyleJazz">Jazz</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" [(ngModel)]="danceStyles" name="danceStyles" id="danceStyleTap" value="Tap">
+                            <label class="form-check-label" for="danceStyleTap">Tap</label>
+                        </div>
+                        <!-- Add more dance style options as needed -->
+                    </div>
+                    <div class="form-group">
+                        <label>Are you looking for a dance group with diverse age representation?</label><br>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" [(ngModel)]="diverseAgeRepresentation" name="diverseAgeRepresentation" id="diverseAgeYes" [value]="true">
+                            <label class="form-check-label" for="diverseAgeYes">Yes</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" [(ngModel)]="diverseAgeRepresentation" name="diverseAgeRepresentation" id="diverseAgeNo" [value]="false">
+                            <label class="form-check-label" for="diverseAgeNo">No</label>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>Are you seeking beginner-friendly activities or classes?</label><br>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" [(ngModel)]="beginnerFriendly" name="beginnerFriendly" id="beginnerFriendlyYes" [value]="true">
+                            <label class="form-check-label" for="beginnerFriendlyYes">Yes</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" [(ngModel)]="beginnerFriendly" name="beginnerFriendly" id="beginnerFriendlyNo" [value]="false">
+                            <label class="form-check-label" for="beginnerFriendlyNo">No</label>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>Are you interested in participating in a mentorship program for dancers?</label><br>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" [(ngModel)]="mentorshipProgram" name="mentorshipProgram" id="mentorshipProgramYes" [value]="true">
+                            <label class="form-check-label" for="mentorshipProgramYes">Yes</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" [(ngModel)]="mentorshipProgram" name="mentorshipProgram" id="mentorshipProgramNo" [value]="false">
+                            <label class="form-check-label" for="mentorshipProgramNo">No</label>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-primary py-3 px-5">Find My Group</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div class="container">
+        <div class="row" >
+            <!-- Group Cards -->
+            <div class="col-md-4" *ngFor="let group of suggestedGroups">
+                <div class="card mb-4 shadow-sm" style="background-color: #f8f9fa; border-radius: 8px; border: 1px solid #dee2e6;">
+                    <!-- Group Image (if available) -->
+                    <!-- <img src="{{ group.imageUrl }}" class="card-img-top" alt="Group Image"> -->
+                    <div class="card-body" style="background-color: #ccc; border-radius: 0 0 8px 8px;">
+                        <!-- Group Name -->
+                        <h5 class="card-title" style="font-weight: bold; color: #333;">{{ group.groupName }}</h5>
+                        <hr style="margin-top: 5px; margin-bottom: 10px; border: 0; border-top: 1px solid #ccc;"> <!-- Horizontal line -->
+                        <!-- Group Description -->
+                        <p class="card-text" style="color: #555; margin-bottom: 10px;">{{ group.groupDescription }}</p>
+                        <!-- Dance Style -->
+                        <p class="card-text" style="color: #555; margin-bottom: 10px;">Dance Style: {{ group.danceStyle }}</p>
+                        <!-- Join Button -->
+                        <button class="btn btn-primary" (click)="group.groupID && joinGroup(group.groupID)" style=" border: none; color: white; padding: 8px 16px; font-size: 14px; border-radius: 0 0 8px 8px; cursor: pointer;">Join</button>
+                    </div>
+                </div>
+            </div>
+            
+                </div>
+            </div>
+            
+            </div>
+          </div>
+          
+
+
+<style>
+    .col-lg-7 {
+        margin-left: auto !important;
+        margin-right: auto !important;
+    }
+</style>

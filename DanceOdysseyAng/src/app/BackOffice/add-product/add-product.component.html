@@ -1,0 +1,137 @@
+<div class="content-wrapper">
+    <div class="container-xxl flex-grow-1 container-p-y">
+      <h4 class="fw-bold py-3 mb-4">
+        <span class="text-muted fw-light"></span>Add New Product
+      </h4>
+      <div class="row">
+        <div class="col-xxl">
+          <div class="card mb-4">
+            <div class="card-header d-flex align-items-center justify-content-between">
+              <h5 class="mb-0">Product Form</h5>
+            </div>
+            <div class="card-body">
+              <form #productForm="ngForm">
+              <!-- Product Name -->
+<div class="row mb-3">
+  <label class="col-sm-2 col-form-label" for="productName">Product Name</label>
+  <div class="col-sm-10">
+      <input type="text" class="form-control" [(ngModel)]="product.productName" name="productName" id="productName" required pattern="[a-zA-Z ]*" />
+      <div *ngIf="productForm.controls['productName'].errors?.['pattern']" class="text-danger">Le nom du produit ne peut contenir que des lettres et des espaces.</div>
+      <div *ngIf="productForm.controls['productName'].errors?.['required']" class="text-danger"></div>
+  </div>
+</div>
+
+<!-- Price -->
+<div class="row mb-3">
+  <label class="col-sm-2 col-form-label" for="price">Price</label>
+  <div class="col-sm-10">
+      <input type="number" class="form-control" [(ngModel)]="product.price" name="price" id="price" required min="0" />
+      <div *ngIf="productForm.controls['price'].errors?.['required']" class="text-danger">Le prix est requis.</div>
+      <div *ngIf="productForm.controls['price'].errors?.['min']" class="text-danger">Le prix ne peut pas être négatif.</div>
+  </div>
+</div>
+
+<!-- Description -->
+<div class="row mb-3">
+  <label class="col-sm-2 col-form-label" for="description">Description</label>
+  <div class="col-sm-10">
+      <textarea class="form-control" [(ngModel)]="product.description" name="description" id="description" required></textarea>
+      <div *ngIf="productForm.controls['description'].errors?.['required']" class="text-danger"></div>
+  </div>
+</div>
+
+<!-- Quantity -->
+<div class="row mb-3">
+  <label class="col-sm-2 col-form-label" for="quantity">Quantity</label>
+  <div class="col-sm-10">
+      <input type="number" class="form-control" [(ngModel)]="product.quantity" name="quantity" id="quantity" required min="0" />
+      <div *ngIf="productForm.controls['quantity'].errors?.['required']" class="text-danger">La quantité est requise.</div>
+      <div *ngIf="productForm.controls['quantity'].errors?.['min']" class="text-danger">La quantité ne peut pas être négative.</div>
+  </div>
+</div>
+
+<!-- Points Price -->
+<div class="row mb-3">
+  <label class="col-sm-2 col-form-label" for="pointsPrice">Points Price</label>
+  <div class="col-sm-10">
+      <input type="number" class="form-control" [(ngModel)]="product.pointsPrice" name="pointsPrice" id="pointsPrice" required min="0" />
+      <div *ngIf="productForm.controls['pointsPrice'].errors?.['required']" class="text-danger">Le prix en points est requis.</div>
+      <div *ngIf="productForm.controls['pointsPrice'].errors?.['min']" class="text-danger">Le prix en points ne peut pas être négatif.</div>
+  </div>
+</div>
+
+<!-- Pourcentage Promotion -->
+<div class="row mb-3">
+  <label class="col-sm-2 col-form-label" for="pourcentagePromotion">Pourcentage Promotion</label>
+  <div class="col-sm-10">
+      <input type="number" class="form-control" [(ngModel)]="product.pourcentagePromotion" name="pourcentagePromotion" id="pourcentagePromotion" required min="0" />
+      <div *ngIf="productForm.controls['pourcentagePromotion'].errors?.['required']" class="text-danger">Le pourcentage de promotion est requis.</div>
+      <div *ngIf="productForm.controls['pourcentagePromotion'].errors?.['min']" class="text-danger">Le pourcentage de promotion ne peut pas être négatif.</div>
+  </div>
+</div>
+
+<!-- End Promotion Date -->
+<div class="row mb-3" *ngIf="product.pourcentagePromotion !== 0">
+  <label class="col-sm-2 col-form-label" for="promotionEndDate">End Promotion Date</label>
+  <div class="col-sm-10">
+      <input type="date" class="form-control" [(ngModel)]="product.promotionEndDate" name="promotionEndDate" id="promotionEndDate" required />
+      <div *ngIf="productForm.controls['promotionEndDate'].errors?.['required']" class="text-danger">La date de fin de promotion est requise.</div>
+  </div>
+</div>
+
+<!-- Model -->
+<div class="row mb-3">
+  <label class="col-sm-2 col-form-label" for="model">Model</label>
+  <div class="col-sm-10">
+      <input type="text" class="form-control" [(ngModel)]="product.model" name="model" id="model" required />
+      <div *ngIf="productForm.controls['model'].errors?.['required']" class="text-danger"></div>
+  </div>
+</div>
+
+             <!-- Main Category -->
+<div class="row mb-3">
+    <label class="col-sm-2 col-form-label" for="categoryId">Category</label>
+    <div class="col-sm-10">
+      <select class="form-control" [(ngModel)]="selectedParentCategory" name="categoryId" id="categoryId" (change)="onCategoryChange()" required>
+        <option *ngFor="let category of categories" [ngValue]="category">{{ category.type }}</option>
+      </select>
+    </div>
+  </div>
+  
+  <!-- Subcategories -->
+  <div class="row mb-3" *ngIf="selectedParentCategory">
+    <label class="col-sm-2 col-form-label" for="subCategoryIds">Subcategories</label>
+    <div class="col-sm-10">
+      <select multiple class="form-control" [(ngModel)]="product.subCategories" name="subCategoryIds" id="subCategoryIds" required>
+        <option *ngFor="let subCategory of subCategories" [ngValue]="subCategory">{{ subCategory.type }}</option>
+      </select>
+    </div>
+  </div>
+  
+  
+       <!-- Image -->
+  <!-- Image -->
+  <div class="mb-3">
+    <label for="fileInput" class="form-label">Product Media</label>
+    <input class="form-control" type="file" id="fileInput" (change)="onFileSelected($event)" multiple required />
+  </div>
+  
+  
+  
+  
+                <!-- Status Message -->
+                <div *ngIf="statusMessage" class="alert mt-3" [ngClass]="statusClass">
+                  {{ statusMessage }}
+                </div>
+  
+                <div class="text-center"> <!-- Centrer horizontalement -->
+  
+                    <button type="button" class="btn btn-primary" (click)="addProduct()">Save Product</button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>

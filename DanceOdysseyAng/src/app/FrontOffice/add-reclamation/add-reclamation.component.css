@@ -1,0 +1,101 @@
+.select-text-color option {
+  color: rgb(19, 19, 19); /* Change the color to your desired color */
+}
+
+.hero {
+  position: relative; /* Ensure relative positioning */
+}
+
+.overlay {
+  position: relative;
+}
+
+.center-container {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 1; /* Ensure the form is above the overlay */
+}
+
+.step-container {
+  width: 400px; /* Adjust the width as needed */
+  background-color: rgba(255, 255, 255, 0.8); /* Move background color to step container */
+  padding: 20px; /* Add padding to step container */
+  border-radius: 8px; /* Add border radius */
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1); /* Add box shadow */
+}
+
+.step {
+  margin-bottom: 20px;
+}
+
+.step-title {
+  margin-bottom: 20px;
+  color: #333;
+}
+
+.btn-primary {
+  margin-right: 10px;
+}
+
+.btn-secondary {
+  margin-right: 10px;
+  background-color: #6c757d;
+  border-color: #6c757d;
+}
+
+.btn-primary,
+
+.option-black {
+  color: black;
+}
+.small-text {
+  font-size: 12px; /* Adjust the font size as needed */
+  color: black;
+}
+
+/* CSS for radio buttons */
+.form-check-input[type="radio"] {
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  width: 20px;
+  height: 20px;
+  border: 2px solid #ee0a0a; /* Border color */
+  border-radius: 50%; /* Make them circular */
+  outline: none;
+  cursor: pointer;
+}
+
+/* Style when radio button is checked */
+.form-check-input[type="radio"]:checked {
+  background-color: #781fc0; /* Background color when checked */
+}
+
+/* Style for radio button labels */
+.form-check-label {
+  margin-left: 5px; /* Adjust spacing between radio button and label */
+}
+
+/* Style for small text below radio buttons */
+.small-text {
+  font-size: 12px;
+  color: black;
+  margin-top: 5px; /* Adjust spacing between radio buttons and small text */
+}
+.option-black {
+  color: black;
+}
+
+.select-text-color {
+  color: black;
+}
+
+
+
+
+.form-control{
+  color: black;
+
+}

@@ -1,0 +1,12 @@
+.priority-high {
+    background-color: rgb(239, 147, 147);
+  }
+  
+  .priority-medium {
+    background-color: rgb(244, 207, 138);
+  }
+  
+  .priority-low {
+    background-color: rgb(153, 239, 153);
+  }
+  

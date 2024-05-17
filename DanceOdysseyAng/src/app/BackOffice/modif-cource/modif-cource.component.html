@@ -1,0 +1,122 @@
+
+  <div class="hero overlay" style="background-image: url('/assets/images/home.jpg');">
+    <div class="container hero-content">
+      <div class="row align-items-center">
+        <div class="col-lg-5 ml-auto">
+          <h1 class="text-white mb-4">Dance Odyssey</h1>
+          <p class="mb-4">Step into the rhythm of your dance journey! Explore, compete, and connect in our vibrant dance community. Welcome to your stage!</p>
+          <div id="date-countdown"></div>
+          <p>
+            <a href="#" class="btn btn-primary py-3 px-4 mr-3">Register</a>
+            <a href="#" class="more light">Learn More</a>
+          </p>  
+        </div>
+      </div>
+    </div>
+   
+  </div>
+    <style>
+      .hero-content {
+        margin-left: -20px; /* Adjust the value as needed */
+      }
+    
+      .hero-content h1,
+      .hero-content p {
+        margin-left: -280px; /* Adjust the value as needed */
+      }
+    </style>
+  
+<br><br> 
+
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-7">
+        <form action="#">
+     
+         
+          <div class="form-group">
+
+
+            <form #courseForm="ngForm" (ngSubmit)=" modifierCourse()" class="form-container">
+              <div class="row mb-3">
+                <label class="col-sm-2 col-form-label label" for="course-name">Nom du cours</label>
+                <div class="col-sm-10">
+                  <input type="text" class="form-control input-field" [(ngModel)]="course.courseName" name="courseName" id="course-name" />
+                </div>
+              </div>
+              <div class="row mb-3">
+                <label class="col-sm-2 col-form-label label" for="description">Description</label>
+                <div class="col-sm-10">
+                  <textarea id="basic-default-message" class="form-control input-field" [(ngModel)]="course.description" name="description"></textarea>
+                </div>
+              </div>
+           <!-- Sélection de la catégorie -->
+          <div class="mb-3 row">
+            <label for="category" class="col-sm-2 col-form-label label">Catégorie</label>
+            <div class="col-sm-10">
+              <select id="category" class="form-select input-field" 
+                      [(ngModel)]="course.category" 
+                      name="category" 
+                      (ngModelChange)="updateDates($event)" required>
+                <option *ngFor="let category of getCategories()" [value]="category">{{ category }}</option>
+              </select>
+            </div>
+          </div>
+          
+          <!-- Sélection de la date de cours -->
+          <div class="mb-3 row">
+            <label for="dateCourse" class="col-sm-2 col-form-label label">Date du cours</label>
+            <div class="col-sm-10">
+              <select id="dateCourse" class="form-select input-field" 
+                      [(ngModel)]="course.dateCourse" 
+                      name="dateCourse" required>
+                <option *ngFor="let date of selectedDates" [value]="date">{{ date }}</option>
+              </select>
+            </div>
+          </div>
+          
+          <!-- ...autres éléments du formulaire... -->
+          
+          
+          
+          
+             
+          
+          
+          
+          
+          
+              <div class="row mb-3">
+                <label class="col-sm-2 col-form-label label" for="max-participants">Durée</label>
+                <div class="col-sm-10">
+                  <input type="number" class="form-control input-field" [(ngModel)]="course.durationInHours" name="durationInHours" id="max-participants" />
+                </div>
+              </div>
+              <div class="row mb-3">
+                <label class="col-sm-2 col-form-label label" for="competition-name">Niveau</label>
+                <div class="col-sm-10">
+                  <input type="text" class="form-control input-field" [(ngModel)]="course.requiredSkillLevel" name="courseLevel" id="course-Level" />
+                </div>
+              </div>
+            
+              <input type="file" (change)="onFileSelected($event)">
+            
+              <div class="row justify-content-end">
+                <div class="col-sm-10">
+                  
+                  <button type="submit" class="btn btn-primary py-3 px-5">Modifer </button>
+               
+                </div>
+              </div>
+            </form>
+           
+          </div>
+        </form> 
+      </div>
+     
+  </div>
+
+
+
+  
+

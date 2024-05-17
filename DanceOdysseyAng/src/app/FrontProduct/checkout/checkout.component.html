@@ -1,0 +1,174 @@
+<!-- Google font -->
+<link href="https://fonts.googleapis.com/css?family=Montserrat:400,500,700" rel="stylesheet">
+
+<!-- Bootstrap -->
+<link type="text/css" rel="stylesheet" href="/assets/FrontShop/css/bootstrap.min.css"/>
+
+<!-- Slick -->
+<link type="text/css" rel="stylesheet" href="/assets/FrontShop/css/slick.css"/>
+<link type="text/css" rel="stylesheet" href="/assets/FrontShop/css/slick-theme.css"/>
+
+<!-- nouislider -->
+<link type="text/css" rel="stylesheet" href="/assets/FrontShop/css/nouislider.min.css"/>
+
+<!-- Font Awesome Icon -->
+<link rel="stylesheet" href="/assets/FrontShop/css/font-awesome.min.css">
+
+<!-- Custom stlylesheet -->
+<link type="text/css" rel="stylesheet" href="/assets/FrontShop/css/style.css"/>
+    <!-- Topbar Start -->
+ 
+		<!-- SECTION -->
+		<div class="section">
+			<!-- container -->
+			<div class="container">
+				<!-- row -->
+				<div class="row">
+
+					<div class="col-md-7">
+						<!-- Billing Details -->
+						<div class="billing-details">
+							<div class="section-title">
+								<h3 class="title"> address</h3>
+							</div>
+							<div class="form-group">
+								<input class="input" type="text" name="first-name" placeholder="First Name">
+							</div>
+							<div class="form-group">
+								<input class="input" type="text" name="last-name" placeholder="Last Name">
+							</div>
+							<div class="form-group">
+								<input class="input" type="email" name="email" placeholder="Email">
+							</div>
+							<div class="form-group">
+								<input class="input" type="text" name="address" placeholder="Address">
+							</div>
+							<div class="form-group">
+								<input class="input" type="text" name="city" placeholder="City">
+							</div>
+							<div class="form-group">
+								<input class="input" type="text" name="country" placeholder="Country">
+							</div>
+							<div class="form-group">
+								<input class="input" type="text" name="zip-code" placeholder="ZIP Code">
+							</div>
+							<div class="form-group">
+								<input class="input" type="tel" name="tel" placeholder="Telephone">
+							</div>
+							<div class="form-group">
+								<div class="input-checkbox">
+							
+							
+								</div>
+							</div>
+						</div>
+						<!-- /Billing Details -->
+
+				
+						<!-- /Shiping Details -->
+
+						<!-- Order notes -->
+				
+						<!-- /Order notes -->
+					</div>
+
+					<!-- Order Details -->
+					<div class="col-md-5 order-details">
+						<div class="section-title text-center">
+							<h3 class="title">Your Order</h3>
+						</div>
+						<div class="order-summary">
+							<div class="order-col">
+								<div><strong>PRODUCT</strong></div>
+								<div><strong>TOTAL</strong></div>
+							</div>
+							<div class="order-products">
+								<div class="order-col"*ngFor="let orderLine of orderLines">
+									<div> {{orderLine.description}}</div>
+									<div>{{orderLine.totalPrice}} DT</div>
+								</div> 
+								
+							</div>
+							<div class="order-col">
+								<div>Shiping</div>
+								<div><strong>FREE</strong></div>
+							</div>
+							<div class="order-col"*ngIf="cart">
+								<div><strong>TOTAL</strong></div>
+								<div><strong class="order-total">{{cart.totPrice}} DT</strong></div>
+							</div>
+						</div>
+						<div class="payment-method">
+							<div class="input-radio">
+								<input type="radio" name="payment" id="payment-1">
+								<label for="payment-1">
+									<span></span>
+									Direct Bank Transfer
+								</label>
+								<div class="caption">
+									<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+								</div>
+							</div>
+							<div class="input-radio">
+								<input type="radio" name="payment" id="payment-2">
+								<label for="payment-2">
+									<span></span>
+									Cheque Payment
+								</label>
+								<div class="caption">
+<!-- Formulaire pour saisir les informations de la carte bancaire -->
+<div class="form-group">
+	<input class="input" type="text" name="card-number" placeholder="Card Number">
+</div>
+<div class="form-group">
+	<input class="input" type="text" name="card-holder" placeholder="Card Holder Name">
+</div>
+<div class="form-group">
+	<input class="input" type="text" name="expiry-date" placeholder="Expiry Date">
+</div>
+<div class="form-group">
+	<input class="input" type="text" name="cvv" placeholder="CVV">
+
+	<button class="btn btn-primary">Process Payment</button>
+
+	<!--<app-best-sellers (click)="effectuerPaiement(orders?.ordersId!, orders?.currency!, token)" class="button button-enroll-course btn btn-main-2 rounded">Effectuer le paiement</app-best-sellers>!-->
+	</div>
+							</div>
+							<div class="input-radio">
+								<input type="radio" name="payment" id="payment-3">
+								<label for="payment-3">
+								</label>
+								<div class="caption">
+									<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+								</div>
+							</div>
+						</div>
+						<div class="input-checkbox">
+							<input type="checkbox" id="terms">
+							<label for="terms">
+								<span></span>
+								I've read and accept the <a href="#">terms & conditions</a>
+							</label>
+						</div>
+						<button (click)="confirmAndProcessPayment()" class="btn btn-primary">Confirmer la commande</button>
+					</div>
+					<!-- /Order Details -->
+				</div>
+				<!-- /row -->
+			</div>
+			<!-- /container -->
+		</div>
+		<!-- /SECTION -->
+
+
+        <!-- jQuery Plugins-->
+<script src="/assets/FrontShop/js/jquery.min.js"></script>
+<script src="/assets/FrontShop/js/bootstrap.min.js"></script>
+<script src="/assets/FrontShop/js/slick.min.js"></script>
+<script src="/assets/FrontShop/js/nouislider.min.js"></script>
+<script src="/assets/FrontShop/js/jquery.zoom.min.js"></script>
+<script src="/assets/FrontShop/js/main.js"></script>
+<script src="https://js.stripe.com/v3/"></script>
+<script>
+  const stripe = Stripe('pk_test_51NS8VOAB2TRpqUHPlswL8FCI2TVENJuBa7QupK3H5BWFQ5K0fNZUkpBv7scW4sTfoFhcec5TPLBniS08ErNLLVhO001KouIN0C');
+</script>

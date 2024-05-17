@@ -1,0 +1,20 @@
+.chart-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #f0f0f0;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  .chart-container-alt {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #ffe6e6; /* Light red background color */
+    padding: 20px;
+    border-radius: 20px; /* Rounder corners */
+    box-shadow: 0 0 10px rgba(255, 0, 0, 0.2); /* Red shadow */
+  }
+  

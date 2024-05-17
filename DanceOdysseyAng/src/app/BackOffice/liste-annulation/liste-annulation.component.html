@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Votre Titre</title>
+    <!-- Lien pour Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
+    <style>
+        /* Style pour les icônes et l'ajustement de la taille des boutons */
+        .icon {
+            font-size: 12px; /* Taille des icônes */
+        }
+        .btn {
+            font-size: 12px; /* Taille de police pour les boutons */
+            padding: 4px 8px; /* Taille des boutons */
+        }
+    </style>
+</head>
+<body>
+    <div class="content-wrapper">
+        <div class="container-xxl flex-grow-1 container-p-y">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Name courses</th>
+                        <th>Category courses</th>
+                        <th>Duration</th>
+                        <th>Message Annulation</th>
+                        <th>etat</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody class="table-border-bottom-0">
+                    <tr *ngFor="let course of Courses">
+                        <td>
+                            <!-- Supprimez la ligne suivante pour enlever l'icône 'A' -->
+                            <!-- <i class="fab fa-angular text-danger"></i> -->
+                            <strong>{{course.courseName}}</strong>
+                        </td>
+                        <td>{{course.category}}</td>
+                        <td>{{course.dateCourse}}</td>
+                        <td>{{course.annulations[0].message}}</td>
+                        <td>{{course.annulations[0].etat}}</td>
+                        <td>
+                            <button (click)="changerEtat(course.courseID)" class="btn btn-primary">
+                                <i class="fas fa-check icon"></i> accepter
+                            </button>
+                        </td>
+                        <td>
+                            <button (click)="refus(course.courseID)" class="btn btn-danger">
+                                <i class="fas fa-times icon"></i> refuser
+                            </button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <br><br><br>
+        </div>
+    </div>
+</body>
+</html>

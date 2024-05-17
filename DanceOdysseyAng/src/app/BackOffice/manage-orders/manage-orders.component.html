@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Votre titre de page</title>
+  <!-- Liens vers les styles CSS et les bibliothèques externes -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+  <!-- Lien vers le style Bootstrap -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <!-- Styles CSS personnalisés -->
+  <style>
+    /* Ajoutez vos styles CSS personnalisés ici */
+  </style>
+</head>
+<body>
+  <div class="layout-wrapper layout-content-navbar">
+    <div class="layout-container">
+      <div class="layout-page">
+        <div class="content-wrapper">
+          <div class="container-xxl flex-grow-1 container-p-y">
+            <div class="table-responsive">
+              <table class="table">
+                <thead class="thead-dark">
+                  <tr>
+                    <th>Date de commande</th>
+                    <th>Email</th>
+                    <th>Payment method</th>
+                    <th>Tax</th>
+                    <th>Total price</th>
+                    <th>Etat</th>
+                    <th>Actions</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let order of ordersList">
+                    <td>{{order.ordersDate}}</td>
+                    <td>{{order.buyer_email}}</td>
+                    <td>{{order.payment_mode}}</td>
+                    <td>{{order.tax}}</td>
+                    <td>{{order.totalPriceOders}}</td>
+                    <td>
+                        <strong [ngClass]="getOrderStatusClass(order.etat)">
+                            {{ order.etat }}
+                      </strong>
+                    </td>
+                    <td>
+                      <button class="btn btn-danger" (click)="refuseOrder(order.ordersId)">Refuser</button>
+                      <button class="btn btn-success" (click)="acceptOrder(order.ordersId)">Accepter</button>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Scripts JavaScript et liens vers d'autres bibliothèques -->
+  <script src="lien-vers-votre-script.js"></script>
+</body>
+</html>

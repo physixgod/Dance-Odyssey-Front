@@ -1,0 +1,138 @@
+<div class="hero overlay" style="background-image: url('/assets/images/addEvent.jpg');">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-lg-5 mx-auto text-center">
+                <h1 class="text-white">Accommodations</h1>
+                <p>Here you can see the list of accommodations for the event.</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container site-section">
+    <div class="row">
+        <div class="col-12 title-section">
+            <h2>Accommodations</h2>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-12">
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th>Price Per Night</th>
+                        <th>Available Slots</th>
+                        <th>Location</th>
+                        <th>Contact</th>
+                        <th>Breakfast</th>
+                        <th>Lunch</th>
+                        <th>Dinner</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let accommodation of accommodations">
+                        <td>{{ accommodation.pricePerNight }}</td>
+                        <td>{{ accommodation.availableSlots }}</td>
+                        <td>{{ accommodation.location }}</td>
+                        <td>{{ accommodation.contact }}</td>
+                        <td>
+                            <span *ngIf="accommodation.breakfeast; else notAvailable">{{ accommodation.breakfeastPrice }} DT</span>
+                            <ng-template #notAvailable>Not Available</ng-template>
+                        </td>
+                        <td>
+                            <span *ngIf="accommodation.lunch; else notAvailable">{{ accommodation.lunchPrice }} DT</span>
+                            <ng-template #notAvailable>Not Available</ng-template>
+                        </td>
+                        <td>
+                            <span *ngIf="accommodation.dinner; else notAvailable">{{ accommodation.dinnerPrice }} DT</span>
+                            <ng-template #notAvailable>Not Available</ng-template>
+                        </td>
+                        <td>
+                            <button class="btn btn-primary" (click)="showReservationForm(accommodation)">Reserve</button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+
+    <div class="reservation-form-wrapper" *ngIf="showForm">
+        <div class="reservation-form">
+            <h3>Reservation Form</h3>
+            <form >
+                <div class="form-group">
+                    <label for="numberOfPersons">Number of Persons:</label>
+                    <input type="number" class="form-control" id="numberOfPersons" name="numberOfPersons" required #numberOfPersons>
+
+                </div>
+                <div *ngIf="selectedAccommodation.breakfeast">
+                    <label>
+                        <input type="checkbox" #breakfast name="breakfast"> Breakfast
+                    </label>
+                </div>
+                <div *ngIf="selectedAccommodation.lunch">
+                    <label>
+                        <input type="checkbox" #lunch name="lunch"> Lunch
+                    </label>
+                </div>
+                <div *ngIf="selectedAccommodation.dinner">
+                    <label>
+                        <input type="checkbox" #dinner name="dinner"> Dinner
+                    </label>
+                </div>
+                <button class="btn btn-primary" (click)="calculatePrice(stringToNumber(numberOfPersons.value), breakfast, lunch, dinner)">Show Price</button>
+                
+            </form>
+            <div class="form-group">
+                <label>Total Price:</label>
+                <textarea class="form-control" style="height: 50px;text-align: center;">{{ totalPrice }}</textarea>
+            </div>
+            <button type="button" class="btn btn-primary" (click)="reserveAccommodation(stringToNumber(numberOfPersons.value))">Reserve</button>
+            <div class="form-group">
+                <label>Reservation Status:</label>
+                <textarea class="form-control" style="height: 50px;text-align: center;">{{ reservationStatus }}</textarea>
+            </div>
+        </div>
+</div>
+
+<style>
+    .reservation-form-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    position: relative;
+}
+
+.reservation-form {
+    width: 50%; /* Adjust as needed */
+    padding: 20px;
+    position: absolute;
+    top: 20px; /* Adjust the top value as needed */
+    left: 50%;
+    transform: translateX(-50%);
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+}
+
+.form-group {
+    margin-top: 20px;
+}
+
+.form-control {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+/* Center button */
+.btn-primary {
+    display: block;
+    margin: 0 auto;
+}
+
+</style>
